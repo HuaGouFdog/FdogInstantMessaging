@@ -1,8 +1,5 @@
 # FdogInstantMessaging
 
-
-# FdogInstantMessaging
-
 #### 介绍
 FdogInstantMessaging，Fdog即时通讯软件,利用在校所学知识进行编写，主要包括网页端，客户端，以及服务端。
 
@@ -27,8 +24,11 @@ Fdog系列已写目录：
 1.  tomcat7.x
 2.  mysql7.x
 3.  centOS7.x
+
 PC端
 1.  qt5.10
+
+
 服务端
 1.  qt5.10
 
@@ -40,7 +40,7 @@ PC端
 
 #### 更新目录
 
-## 2020年五月1日 已完成客户端直接基本通信
+##### 2020年五月1日 已完成客户端直接基本通信
     备注：目前还无法实现好友添加
 
 
