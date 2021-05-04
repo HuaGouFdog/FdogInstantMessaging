@@ -17,6 +17,7 @@ Fdog系列已写目录：
 
 [Fdog系列（五）：使用Qt模仿QQ实现登录界面到主界面，功能篇](https://zxfdog.blog.csdn.net/article/details/116308548)
 
+[Fdog系列（六）：利用Qt通过服务端进行客户端与客户端通信（资料少，建议收藏）](https://zxfdog.blog.csdn.net/article/details/116355817)
 
 #### 使用环境
 
