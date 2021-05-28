@@ -21,6 +21,24 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="text">
+               <string>开始监听</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="text">
+               <string>停止监听</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
           <item row="2" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
@@ -59,54 +77,15 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QPushButton" name="pushButton">
-              <property name="text">
-               <string>开始监听</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_2">
-              <property name="text">
-               <string>停止监听</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_3">
-              <property name="text">
-               <string>清空文本框</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_4">
-              <property name="text">
-               <string>退出</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
           <item row="3" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <widget class="QPlainTextEdit" name="plainTextEdit"/>
+          </item>
+          <item row="2" column="1" rowspan="2">
+           <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QLineEdit" name="lineEdit"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_5">
-              <property name="text">
-               <string>发送消息</string>
-              </property>
-             </widget>
+             <widget class="QListWidget" name="listWidget"/>
             </item>
            </layout>
-          </item>
-          <item row="4" column="0">
-           <widget class="QPlainTextEdit" name="plainTextEdit"/>
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="label_3">
@@ -114,13 +93,6 @@
              <string>当前在线用户：</string>
             </property>
            </widget>
-          </item>
-          <item row="2" column="1" rowspan="3">
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QListWidget" name="listWidget"/>
-            </item>
-           </layout>
           </item>
          </layout>
         </item>

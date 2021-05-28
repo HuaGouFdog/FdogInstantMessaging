@@ -1,20 +1,5 @@
 ﻿#include "login.h"
 #include "ui_login.h"
-#include"mainwindow.h"
-#include<QPainter>
-#include <QDesktopServices>
-#include<QListView>
-#include<QDebug>
-#include<qdrawutil.h>
-#include<QGraphicsDropShadowEffect>
-#include<QDir>
-#include<QCoreApplication>
-#include<QFile>
-#include<QTextCodec>
-#include"usersql.h"
-#include<QMenu>
-#include<QMessageBox>
-#include<algorithm>
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
@@ -58,7 +43,7 @@ Login::Login(QWidget *parent) :
     //开始动画
     m_movie->start();
     //创建一个action
-    QAction * searchAction = new QAction(ui->lineEdit);
+    QAction * searchAction = new QAction(ui->lineEdit_2);
     //填加图标
     searchAction->setIcon(QIcon(":/lib/suo.png"));
     //表示action所在方位（左侧）。
@@ -336,8 +321,8 @@ void Login::on_pushButton_clicked()
                 qDebug()<<"未创建成功";
             }
         }
-        this->hide();//隐藏登录窗口
         systemtrayicon->hide();//隐藏系统托盘
+        this->close();//隐藏登录窗口
         //初始化主界面
         w = new MainWindow(account);
         //显示主界面
@@ -391,6 +376,8 @@ void Login::deleteaccount(int i) //传进来的是标记数字
         {
             ui->lineEdit_2->setText("");
             ui->lineEdit->setText("");
+            QPixmap map(":/lib/fdogicon.png");
+            //ui->label_4->setPixmap(map);
             ui->label_4->setStyleSheet("border-image: url(:/lib/fdogicon.png);border-width:0px;border-style:solid;border-color: rgb(255, 255, 255);border-radius:33px;");
             this->m_AccountList->setItemHidden(this->m_AccountList->item(0),true);
             return;

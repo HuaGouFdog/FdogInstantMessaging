@@ -61,6 +61,9 @@ public:
         if (Login->objectName().isEmpty())
             Login->setObjectName(QStringLiteral("Login"));
         Login->resize(447, 344);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/lib/fdogicon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        Login->setWindowIcon(icon);
         Login->setStyleSheet(QLatin1String("*{font-family:Microsoft YaHei;}\n"
 "\n"
 "#Login{\n"
@@ -171,7 +174,7 @@ public:
 "	border-bottom-color: rgb(129, 129, 129);\n"
 "}\n"
 "::down-arrow{\n"
-"border-image: url(:/lib/jietou.png);\n"
+"border-image: url(:/lib/jietou1.png);\n"
 "}"));
         comboBox->setEditable(true);
         comboBox->setMaxVisibleItems(10);
@@ -180,15 +183,14 @@ public:
         comboBox->setIconSize(QSize(10, 10));
         toolButton_3 = new QToolButton(widget);
         toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
-        toolButton_3->setGeometry(QRect(226, 130, 20, 20));
-        toolButton_3->setStyleSheet(QLatin1String("\n"
-"border-width:2px;\n"
+        toolButton_3->setGeometry(QRect(226, 130, 17, 17));
+        toolButton_3->setStyleSheet(QLatin1String("border-width:2px;\n"
 "border-style:solid;\n"
-"border-radius: 9px;\n"
+"border-radius: 8px;\n"
 "border-color: rgb(255, 255, 255);"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/zaixian.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_3->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/lib/zaixian.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_3->setIcon(icon1);
         toolButton_3->setAutoRaise(true);
         label_5 = new QLabel(widget);
         label_5->setObjectName(QStringLiteral("label_5"));
@@ -289,9 +291,9 @@ public:
         toolButton->setMinimumSize(QSize(25, 25));
         toolButton->setMaximumSize(QSize(25, 25));
         toolButton->setSizeIncrement(QSize(25, 25));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/lib/zuixiaohua.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/lib/zuixiaohua.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton->setIcon(icon2);
         toolButton->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton);
@@ -300,9 +302,9 @@ public:
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         toolButton_2->setMinimumSize(QSize(25, 25));
         toolButton_2->setMaximumSize(QSize(25, 25));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/guanbi.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_2->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/lib/guanbi.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_2->setIcon(icon3);
         toolButton_2->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton_2);

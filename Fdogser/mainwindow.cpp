@@ -12,8 +12,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    qDebug()<<"值："<<ui->spinBox->value();
-    sqconn.conndata();
+    if(!sqconn.conndata())//连接数据库
+    {
+        ui->plainTextEdit->appendPlainText("数据库连接不成功，请重试！");
+        return;
+    }
     LabListen = new QLabel("监听状态：");
     LabListen->setMinimumWidth(150);
     ui->statusBar->addWidget(LabListen);
@@ -41,20 +44,18 @@ void MainWindow::onNewConnection()
     tcpSocket = tcpServer->nextPendingConnection();
     this->tcpSocket.append(tcpSocket);
     this->isfrist.append(false);
-    onClientConnected(this->tcpSocket.length()-1);
-
+    onClientConnected(tcpSocket->peerPort());
     QSignalMapper * myMapper1 = new QSignalMapper(this);
     connect(tcpSocket, SIGNAL(disconnected()), myMapper1, SLOT(map()));
-    myMapper1->setMapping(tcpSocket,this->tcpSocket.length()-1);
+    myMapper1->setMapping(tcpSocket,tcpSocket->peerPort());
     connect(myMapper1, SIGNAL(mapped(int)), this, SLOT(onClientDisconnected(int)));
-//    connect(tcpSocket,SIGNAL(disconnected()),this,SLOT(onClientDisconnected()));
+
     connect(tcpSocket,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
             this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
     QSignalMapper * myMapper2 = new QSignalMapper(this);
     connect(tcpSocket, SIGNAL(readyRead()), myMapper2, SLOT(map()));
-    myMapper2->setMapping(tcpSocket,this->tcpSocket.length()-1);
+    myMapper2->setMapping(tcpSocket,tcpSocket->peerPort());
     connect(myMapper2, SIGNAL(mapped(int)), this, SLOT(onSocketReadyRead(int)));
-//    connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(onSocketReadyRead()));
 }
 
 void MainWindow::onSocketStateChange(QAbstractSocket::SocketState socketState)
@@ -88,57 +89,76 @@ void MainWindow::onSocketStateChange(QAbstractSocket::SocketState socketState)
 
 void MainWindow::onClientConnected(int i)
 {
-    ui->plainTextEdit->appendPlainText("**clinet socket connected");
-    ui->plainTextEdit->appendPlainText("**peer address"+
-                                       tcpSocket[i]->peerAddress().toString());
-    ui->plainTextEdit->appendPlainText("**peer port:"+
-                                       QString::number(tcpSocket[i]->peerPort()));
-    ui->listWidget->addItem(tcpSocket[i]->peerAddress().toString()+"  "+QString::number(tcpSocket[i]->peerPort()));
+    for(int j=0;j<tcpSocket.length();j++)
+    {
+        if(tcpSocket[j]->peerPort()==i)
+        {
+            ui->plainTextEdit->appendPlainText("客户端套接字已连接");
+            ui->plainTextEdit->appendPlainText("客户端IP:"+
+                                               tcpSocket[j]->peerAddress().toString());
+            ui->plainTextEdit->appendPlainText("客户端随机分配端口号:"+
+                                               QString::number(tcpSocket[j]->peerPort()));
+            ui->listWidget->addItem(tcpSocket[j]->peerAddress().toString()+"  "+QString::number(tcpSocket[j]->peerPort()));
+        }
+    }
 }
 
 void MainWindow::onClientDisconnected(int i)
 {
-    ui->plainTextEdit->appendPlainText("**client socket disconnected");
-    tcpSocket[i]->deleteLater();
-    this->tcpSocket.removeAt(i);
-    this->isfrist.removeAt(i);
-    //对列表做删除操作
-    ui->listWidget->takeItem(i);
 
+    for(int j=0;j<tcpSocket.length();j++)
+    {
+        if(tcpSocket[j]->peerPort()==i)
+        {
+            ui->plainTextEdit->appendPlainText("客户端套接字已断开连接");
+            tcpSocket[j]->deleteLater();
+            this->tcpSocket.removeAt(j);
+            this->isfrist.removeAt(j);
+            //对列表做删除操作
+            ui->listWidget->takeItem(j);
+        }
+    }
 }
 
 void MainWindow::onSocketReadyRead(int i)
 {
-    if(this->isfrist[i]==false)
+
+    for(int j=0;j<tcpSocket.length();j++)
     {
-        //获取连接账号
-        QString account = tcpSocket[i]->readLine();
-        //写入数据库
-        qDebug()<<"写入数据库";
-        sqconn.update(account,QString::number(tcpSocket[i]->peerPort()));
-        this->isfrist[i]=true;
-    }
-    else
-    {
-        while(tcpSocket[i]->canReadLine())
+        if(tcpSocket[j]->peerPort()==i)
         {
-            //ui->plainTextEdit->appendPlainText("[in]"+tcpSocket[i]->readLine());
-            //获取内容
-            QString data = tcpSocket[i]->readLine();
-            //data.mid(0,8);为到达方 data.mid(8,8);为发送方
-            //遍历列表ip是否登录
-            //遍历数据库查询该帐户
-            QString account = data.mid(0,8);
-            qDebug()<<"目标帐户为："<<account;
-            //通过该帐户找到ip地址，然后发送信息
-            QString port = sqconn.AccountIP(account);
-            for(int i =0;i<this->tcpSocket.length();i++)
+            if(this->isfrist[j]==false)
             {
-                if(QString::number(tcpSocket[i]->peerPort())==port)//说明在线
-                {   //将数据转发给到达方，并保留发送方帐户，用于窗口识别
-                    QByteArray str = data.mid(8).toUtf8();
-                    tcpSocket[i]->write(str);
-                    qDebug()<<"目标端口号："<<tcpSocket[i]->peerPort();
+                //获取连接账号
+                QString account = tcpSocket[j]->readLine();
+                //写入数据库
+                qDebug()<<"写入数据库";
+                sqconn.update(account,QString::number(tcpSocket[j]->peerPort()));
+                this->isfrist[j]=true;
+            }
+            else
+            {
+                while(tcpSocket[j]->canReadLine())
+                {
+                    //ui->plainTextEdit->appendPlainText("[in]"+tcpSocket[i]->readLine());
+                    //获取内容
+                    QString data = tcpSocket[j]->readLine();
+                    //data.mid(0,8);为到达方 data.mid(8,8);为发送方
+                    //遍历列表ip是否登录
+                    //遍历数据库查询该帐户
+                    QString account = data.mid(0,8);
+                    qDebug()<<"目标帐户为："<<account;
+                    //通过该帐户找到ip地址，然后发送信息
+                    QString port = sqconn.AccountIP(account);
+                    for(int i =0;i<this->tcpSocket.length();i++)
+                    {
+                        if(QString::number(tcpSocket[i]->peerPort())==port)//说明在线
+                        {   //将数据转发给到达方，并保留发送方帐户，用于窗口识别
+                            QByteArray str = data.mid(8).toUtf8();
+                            tcpSocket[i]->write(str);
+                            qDebug()<<"目标端口号："<<tcpSocket[i]->peerPort();
+                        }
+                    }
                 }
             }
         }
@@ -170,16 +190,18 @@ QString MainWindow::getLocalIP()
 void MainWindow::on_pushButton_clicked()
 {
     //开始监听
+    ui->plainTextEdit->clear();
     QString IP = ui->comboIP->currentText();//IP地址
     qDebug()<<"值："<<ui->spinBox->value();
     quint16 port = ui->spinBox->value();//端口
     QHostAddress addr(IP);
     tcpServer->listen(addr,port);
-    ui->plainTextEdit->appendPlainText("**开始监听...");
-    ui->plainTextEdit->appendPlainText("**服务器地址："
+    ui->plainTextEdit->appendPlainText("开始监听...");
+    ui->plainTextEdit->appendPlainText("服务器地址："
                    +tcpServer->serverAddress().toString());
-    ui->plainTextEdit->appendPlainText("**服务器端口："
+    ui->plainTextEdit->appendPlainText("服务器端口："
                    +QString::number(tcpServer->serverPort()));
+    ui->plainTextEdit->appendPlainText("*******************************");
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(true);
 
@@ -194,20 +216,8 @@ void MainWindow::on_pushButton_2_clicked()
         tcpServer->close();
         ui->pushButton->setEnabled(true);
         ui->pushButton_2->setEnabled(false);
+        ui->plainTextEdit->clear();
+        ui->plainTextEdit->appendPlainText("已停止监听...");
         LabListen->setText("监听状态：已停止监听");
     }
-}
-
-void MainWindow::on_pushButton_5_clicked()
-{
-    //发送一行字符串，以换行符结束
-    QString msg=ui->lineEdit->text();
-    ui->lineEdit->clear();
-    ui->lineEdit->setFocus();
-
-    QByteArray str = msg.toUtf8();
-    str.append('\n');
-    tcpSocket[0]->write(str);
-    //这里做一个判断，获取目标ip，进行发送
-
 }

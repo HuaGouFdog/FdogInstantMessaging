@@ -23,7 +23,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QToolButton>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -31,54 +30,166 @@ QT_BEGIN_NAMESPACE
 class Ui_Query
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QFrame *line;
+    QWidget *widget;
+    QLineEdit *lineEdit_4;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton;
+    QLabel *label_2;
+    QLineEdit *lineEdit_2;
+    QLineEdit *lineEdit_3;
+    QComboBox *comboBox_2;
+    QComboBox *comboBox;
+    QCheckBox *checkBox;
+    QLineEdit *lineEdit;
+    QWidget *widget1;
     QHBoxLayout *horizontalLayout_3;
     QToolButton *toolButton;
     QLabel *label;
     QSpacerItem *horizontalSpacer;
     QToolButton *toolButton_2;
     QToolButton *toolButton_4;
-    QSpacerItem *verticalSpacer;
-    QHBoxLayout *horizontalLayout;
-    QLineEdit *lineEdit;
-    QCheckBox *checkBox;
-    QPushButton *pushButton;
-    QHBoxLayout *horizontalLayout_2;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
-    QComboBox *comboBox;
-    QComboBox *comboBox_2;
-    QFrame *line;
-    QWidget *widget;
-    QLineEdit *lineEdit_4;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
 
     void setupUi(QWidget *Query)
     {
         if (Query->objectName().isEmpty())
             Query->setObjectName(QStringLiteral("Query"));
-        Query->resize(715, 544);
+        Query->resize(898, 600);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/fdogicon.png"), QSize(), QIcon::Normal, QIcon::Off);
         Query->setWindowIcon(icon);
         Query->setStyleSheet(QLatin1String("#Query{\n"
-"background-color: rgb(142, 231, 255);\n"
+"background-color: rgb(193, 255, 183);\n"
 "}"));
-        verticalLayout = new QVBoxLayout(Query);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout_3 = new QHBoxLayout();
+        line = new QFrame(Query);
+        line->setObjectName(QStringLiteral("line"));
+        line->setGeometry(QRect(0, 179, 901, 21));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        widget = new QWidget(Query);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(10, 199, 881, 391));
+        widget->setMinimumSize(QSize(0, 300));
+        widget->setStyleSheet(QLatin1String("#widget{\n"
+"background-color: rgb(160, 255, 200);\n"
+"}"));
+        lineEdit_4 = new QLineEdit(widget);
+        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        lineEdit_4->setGeometry(QRect(80, 20, 131, 31));
+        QFont font;
+        font.setPointSize(12);
+        lineEdit_4->setFont(font);
+        lineEdit_4->setReadOnly(true);
+        pushButton_3 = new QPushButton(widget);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setGeometry(QRect(80, 60, 81, 21));
+        pushButton_4 = new QPushButton(widget);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(20, 20, 51, 51));
+        pushButton_4->setStyleSheet(QStringLiteral("border-radius:25px;"));
+        pushButton_4->setIconSize(QSize(50, 50));
+        pushButton = new QPushButton(Query);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(600, 110, 121, 41));
+        pushButton->setMinimumSize(QSize(90, 30));
+        QFont font1;
+        font1.setPointSize(12);
+        font1.setBold(false);
+        font1.setWeight(50);
+        pushButton->setFont(font1);
+        pushButton->setStyleSheet(QLatin1String("background-color: rgb(111, 188, 255);\n"
+"border-style:solid;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:5px;"));
+        label_2 = new QLabel(Query);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(-10, 70, 911, 531));
+        label_2->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        lineEdit_2 = new QLineEdit(Query);
+        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEdit_2->setGeometry(QRect(20, 130, 150, 30));
+        lineEdit_2->setMinimumSize(QSize(0, 30));
+        lineEdit_2->setMaximumSize(QSize(150, 16777215));
+        QFont font2;
+        font2.setPointSize(11);
+        lineEdit_2->setFont(font2);
+        lineEdit_2->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;"));
+        lineEdit_3 = new QLineEdit(Query);
+        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        lineEdit_3->setGeometry(QRect(178, 130, 150, 30));
+        lineEdit_3->setMinimumSize(QSize(0, 30));
+        lineEdit_3->setMaximumSize(QSize(150, 16777215));
+        lineEdit_3->setFont(font2);
+        lineEdit_3->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;"));
+        comboBox_2 = new QComboBox(Query);
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
+        comboBox_2->setGeometry(QRect(424, 130, 80, 30));
+        comboBox_2->setMinimumSize(QSize(70, 30));
+        comboBox_2->setMaximumSize(QSize(80, 16777215));
+        comboBox_2->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;"));
+        comboBox = new QComboBox(Query);
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(336, 130, 80, 30));
+        comboBox->setMinimumSize(QSize(70, 30));
+        comboBox->setMaximumSize(QSize(80, 16777215));
+        comboBox->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;"));
+        checkBox = new QCheckBox(Query);
+        checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setGeometry(QRect(526, 90, 57, 30));
+        checkBox->setMinimumSize(QSize(0, 30));
+        QFont font3;
+        font3.setPointSize(13);
+        checkBox->setFont(font3);
+        checkBox->setStyleSheet(QStringLiteral(""));
+        lineEdit = new QLineEdit(Query);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(16, 90, 489, 30));
+        lineEdit->setMinimumSize(QSize(0, 30));
+        lineEdit->setMaximumSize(QSize(489, 16777215));
+        lineEdit->setFont(font2);
+        lineEdit->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;"));
+        widget1 = new QWidget(Query);
+        widget1->setObjectName(QStringLiteral("widget1"));
+        widget1->setGeometry(QRect(10, 5, 881, 28));
+        horizontalLayout_3 = new QHBoxLayout(widget1);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        toolButton = new QToolButton(Query);
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        toolButton = new QToolButton(widget1);
         toolButton->setObjectName(QStringLiteral("toolButton"));
         toolButton->setIcon(icon);
+        toolButton->setIconSize(QSize(20, 20));
         toolButton->setAutoRaise(true);
 
         horizontalLayout_3->addWidget(toolButton);
 
-        label = new QLabel(Query);
+        label = new QLabel(widget1);
         label->setObjectName(QStringLiteral("label"));
+        QFont font4;
+        font4.setPointSize(10);
+        label->setFont(font4);
 
         horizontalLayout_3->addWidget(label);
 
@@ -86,130 +197,36 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer);
 
-        toolButton_2 = new QToolButton(Query);
+        toolButton_2 = new QToolButton(widget1);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/zuixiaohua.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_2->setIcon(icon1);
+        toolButton_2->setIconSize(QSize(20, 20));
         toolButton_2->setAutoRaise(true);
 
         horizontalLayout_3->addWidget(toolButton_2);
 
-        toolButton_4 = new QToolButton(Query);
+        toolButton_4 = new QToolButton(widget1);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/guanbi.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_4->setIcon(icon2);
+        toolButton_4->setIconSize(QSize(20, 20));
         toolButton_4->setAutoRaise(true);
 
         horizontalLayout_3->addWidget(toolButton_4);
 
-
-        verticalLayout->addLayout(horizontalLayout_3);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        lineEdit = new QLineEdit(Query);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setMinimumSize(QSize(0, 30));
-        QFont font;
-        font.setPointSize(11);
-        lineEdit->setFont(font);
-
-        horizontalLayout->addWidget(lineEdit);
-
-        checkBox = new QCheckBox(Query);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
-        checkBox->setMinimumSize(QSize(0, 30));
-        QFont font1;
-        font1.setPointSize(13);
-        checkBox->setFont(font1);
-
-        horizontalLayout->addWidget(checkBox);
-
-        pushButton = new QPushButton(Query);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setMinimumSize(QSize(0, 30));
-
-        horizontalLayout->addWidget(pushButton);
-
-
-        verticalLayout->addLayout(horizontalLayout);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        lineEdit_2 = new QLineEdit(Query);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setMinimumSize(QSize(0, 30));
-        lineEdit_2->setFont(font);
-
-        horizontalLayout_2->addWidget(lineEdit_2);
-
-        lineEdit_3 = new QLineEdit(Query);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
-        lineEdit_3->setMinimumSize(QSize(0, 30));
-        lineEdit_3->setFont(font);
-
-        horizontalLayout_2->addWidget(lineEdit_3);
-
-        comboBox = new QComboBox(Query);
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setMinimumSize(QSize(70, 30));
-
-        horizontalLayout_2->addWidget(comboBox);
-
-        comboBox_2 = new QComboBox(Query);
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
-        comboBox_2->setMinimumSize(QSize(70, 30));
-
-        horizontalLayout_2->addWidget(comboBox_2);
-
-
-        verticalLayout->addLayout(horizontalLayout_2);
-
-        line = new QFrame(Query);
-        line->setObjectName(QStringLiteral("line"));
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-
-        verticalLayout->addWidget(line);
-
-        widget = new QWidget(Query);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setMinimumSize(QSize(0, 442));
-        widget->setStyleSheet(QLatin1String("#widget{\n"
-"background-color: rgb(160, 255, 200);\n"
-"}"));
-        lineEdit_4 = new QLineEdit(widget);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(80, 10, 131, 31));
-        QFont font2;
-        font2.setPointSize(12);
-        lineEdit_4->setFont(font2);
-        lineEdit_4->setReadOnly(true);
-        pushButton_3 = new QPushButton(widget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(80, 50, 81, 21));
-        pushButton_4 = new QPushButton(widget);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(20, 10, 51, 51));
-        pushButton_4->setStyleSheet(QStringLiteral("border-radius:25px;"));
-        pushButton_4->setIconSize(QSize(50, 50));
-
-        verticalLayout->addWidget(widget);
-
+        label_2->raise();
+        line->raise();
+        widget->raise();
+        pushButton->raise();
+        lineEdit_2->raise();
+        lineEdit_3->raise();
+        comboBox_2->raise();
+        comboBox->raise();
+        checkBox->raise();
+        lineEdit->raise();
 
         retranslateUi(Query);
         QObject::connect(toolButton_2, SIGNAL(clicked()), Query, SLOT(showMinimized()));
@@ -220,26 +237,27 @@ public:
     void retranslateUi(QWidget *Query)
     {
         Query->setWindowTitle(QApplication::translate("Query", "\346\237\245\346\211\276", nullptr));
-        toolButton->setText(QApplication::translate("Query", "...", nullptr));
-        label->setText(QApplication::translate("Query", "\346\237\245\346\211\276", nullptr));
-        toolButton_2->setText(QApplication::translate("Query", "...", nullptr));
-        toolButton_4->setText(QApplication::translate("Query", "...", nullptr));
-        lineEdit->setPlaceholderText(QApplication::translate("Query", "\350\276\223\345\205\245Fdog\346\237\245\346\211\276", nullptr));
-        checkBox->setText(QApplication::translate("Query", "\345\234\250\347\272\277", nullptr));
+        pushButton_3->setText(QApplication::translate("Query", "\346\267\273\345\212\240\345\245\275\345\217\213", nullptr));
+        pushButton_4->setText(QString());
         pushButton->setText(QApplication::translate("Query", "\346\237\245\346\211\276", nullptr));
+        label_2->setText(QString());
         lineEdit_2->setPlaceholderText(QApplication::translate("Query", "\344\270\255\345\233\275-\346\261\237\350\213\217-\346\263\260\345\267\236", nullptr));
         lineEdit_3->setPlaceholderText(QApplication::translate("Query", "\346\225\205\344\271\241\357\274\232\346\261\237\350\213\217", nullptr));
-        comboBox->setItemText(0, QApplication::translate("Query", "\344\270\215\351\231\220", nullptr));
-        comboBox->setItemText(1, QApplication::translate("Query", "\347\224\267", nullptr));
-        comboBox->setItemText(2, QApplication::translate("Query", "\345\245\263", nullptr));
-
         comboBox_2->setItemText(0, QApplication::translate("Query", "\344\270\215\351\231\220", nullptr));
         comboBox_2->setItemText(1, QApplication::translate("Query", "12-16", nullptr));
         comboBox_2->setItemText(2, QApplication::translate("Query", "17-21", nullptr));
         comboBox_2->setItemText(3, QApplication::translate("Query", "22-30", nullptr));
 
-        pushButton_3->setText(QApplication::translate("Query", "\346\267\273\345\212\240\345\245\275\345\217\213", nullptr));
-        pushButton_4->setText(QString());
+        comboBox->setItemText(0, QApplication::translate("Query", "\344\270\215\351\231\220", nullptr));
+        comboBox->setItemText(1, QApplication::translate("Query", "\347\224\267", nullptr));
+        comboBox->setItemText(2, QApplication::translate("Query", "\345\245\263", nullptr));
+
+        checkBox->setText(QApplication::translate("Query", "\345\234\250\347\272\277", nullptr));
+        lineEdit->setPlaceholderText(QApplication::translate("Query", "\350\276\223\345\205\245Fdog\346\237\245\346\211\276", nullptr));
+        toolButton->setText(QApplication::translate("Query", "...", nullptr));
+        label->setText(QApplication::translate("Query", "\346\237\245\346\211\276", nullptr));
+        toolButton_2->setText(QApplication::translate("Query", "...", nullptr));
+        toolButton_4->setText(QApplication::translate("Query", "...", nullptr));
     } // retranslateUi
 
 };

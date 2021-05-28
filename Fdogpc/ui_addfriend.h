@@ -39,12 +39,12 @@ public:
     QSpacerItem *horizontalSpacer;
     QWidget *widget;
     QWidget *widget_2;
-    QLabel *label_2;
     QLabel *label_8;
     QLabel *label_9;
     QLabel *label_10;
     QLabel *label_11;
     QLabel *label_12;
+    QPushButton *pushButton_3;
     QWidget *widget_3;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
@@ -132,10 +132,6 @@ public:
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setGeometry(QRect(0, 0, 131, 231));
         widget_2->setStyleSheet(QStringLiteral("background-color: rgb(179, 248, 255);"));
-        label_2 = new QLabel(widget_2);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(20, 20, 91, 91));
-        label_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/10001.jpg);"));
         label_8 = new QLabel(widget_2);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setGeometry(QRect(20, 120, 61, 16));
@@ -151,6 +147,11 @@ public:
         label_12 = new QLabel(widget_2);
         label_12->setObjectName(QStringLiteral("label_12"));
         label_12->setGeometry(QRect(20, 200, 111, 16));
+        pushButton_3 = new QPushButton(widget_2);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setGeometry(QRect(20, 20, 81, 81));
+        pushButton_3->setAutoDefault(true);
+        pushButton_3->setFlat(true);
         widget_3 = new QWidget(widget);
         widget_3->setObjectName(QStringLiteral("widget_3"));
         widget_3->setGeometry(QRect(0, 220, 461, 51));
@@ -210,7 +211,8 @@ public:
 
         retranslateUi(Addfriend);
 
-        stackedWidget->setCurrentIndex(2);
+        pushButton_3->setDefault(false);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Addfriend);
@@ -223,12 +225,12 @@ public:
         label->setText(QApplication::translate("Addfriend", "\350\212\261\347\213\227Fdog - \346\267\273\345\212\240\345\245\275\345\217\213", nullptr));
         toolButton_2->setText(QApplication::translate("Addfriend", "...", nullptr));
         toolButton_3->setText(QApplication::translate("Addfriend", "...", nullptr));
-        label_2->setText(QString());
         label_8->setText(QApplication::translate("Addfriend", "\344\273\212\345\244\234\346\227\240\351\243\216", nullptr));
         label_9->setText(QApplication::translate("Addfriend", "12346578", nullptr));
         label_10->setText(QApplication::translate("Addfriend", "\346\200\247\345\210\253\357\274\232\347\224\267", nullptr));
         label_11->setText(QApplication::translate("Addfriend", "\345\271\264\351\276\204\357\274\23220\345\262\201", nullptr));
         label_12->setText(QApplication::translate("Addfriend", "\346\211\200\345\234\250\345\234\260\357\274\232\346\261\237\350\213\217 \345\256\277\350\277\201", nullptr));
+        pushButton_3->setText(QString());
         pushButton->setText(QApplication::translate("Addfriend", "\344\270\213\344\270\200\346\255\245", nullptr));
         pushButton_2->setText(QApplication::translate("Addfriend", "\345\205\263\351\227\255", nullptr));
         lineEdit->setPlaceholderText(QApplication::translate("Addfriend", "\346\210\221\346\230\257...", nullptr));

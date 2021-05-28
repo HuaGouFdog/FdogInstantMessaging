@@ -1,15 +1,14 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 class Chat;
-#include"query.h"
+class Globalobserver;
+class Verify;
 #include<QMainWindow>
 #include<QSystemTrayIcon>
 #include<QMouseEvent>
 #include<QPoint>
 #include<QMovie>
 #include<QSize>
-#include"usersql.h"
-#include"chat.h"
 #include<QLabel>
 #include<QPushButton>
 #include<QListWidget>
@@ -17,6 +16,23 @@ class Chat;
 #include<QTcpSocket>
 #include<QLabel>
 #include<QList>
+#include<QTimer>
+#include<QMenu>
+#include<QDebug>
+#include<QPainter>
+#include<QBitmap>
+#include<QSize>
+#include<qdrawutil.h>
+#include<QGraphicsDropShadowEffect>
+#include<QListWidget>
+#include<QHostInfo>
+#include"query.h"
+#include"usersql.h"
+#include"chat.h"
+#include"verify.h"
+#include"traywidget.h"
+#include"addfriend.h"
+#include"globalobserver.h"
 namespace Ui {
 class MainWindow;
 }
@@ -26,60 +42,98 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private:
-    QList<Chat *>  listchat;
-    QTcpSocket * tcpClient;//连接网络
-    QLabel * LabSocketate;
-    QWidget * aa = new QWidget();
-    QMenu * menu;
-    QSystemTrayIcon  * systemtrayicon;
-    QPoint m_point;
-    Usersql sqconn; //获取个人信息
-    Usersql sqconnother; //获取分钟信息
-    //QLabel * m_label;
-    QPixmap icon = "";      //头像
-    QString account = "";   //账号
-    QString name = "";      //昵称
-    QString signature ="";  //个性签名
-    QSignalMapper * myMapper;
-    QList<QPushButton *> listbtn;//分组名
-    QList<bool> iswidget;//列表展开
+    /*创系统图标以及托盘菜单*/
+    QSystemTrayIcon  * systemtrayicon;  //系统托盘
+    QMenu * menu;                       //菜单
+    QMenu * mainmenu;                   //主界面菜单
+    QAction *m_pShowAction;             //显示选项
+    QAction *m_pCloseAction;            //退出选项
+    QAction *m_pOnLineAction;           //在线
+    QAction *m_pCallAction;             //call我
+    QAction *m_pCloakingAction;         //隐身
+    QAction *m_pLeaveAction;            //离开
+    QAction *m_pDisturbAction;          //勿扰
+    QAction *m_pOffLineAtion;           //离线
+    /*消息通知*/
+    Traywidget * tarywidget;            //右下角消息显示列表
+    QPixmap icondata;                   //用于保存需要闪动头像
+    bool iconbool =false;               //和icondata搭配使用
+    /*定时器用于托盘头像闪动，显示等*/
+    QTimer timerT;
+    QTimer timerNoT;
+    QTimer timemouse;
+    /*账号基本数据*/
+    Usersql sqconn;                 //获取个人信息
+    Usersql sqconnother;            //获取分钟信息
+    QPixmap icon;                   //头像
+    QString account = "";           //账号
+    QString name = "";              //昵称
+    QString signature ="";          //个性签名
+    QList<QPushButton *> listbtn;   //分组名
     QList<QListWidget *> listwidget; //分组列表
-    QPoint last;//窗口拖动用变量
+    /*子窗口*/
+    Query * a;          //查找窗口
+    Verify * verify;    //验证窗口
+    QWidget * aa = new QWidget();//当鼠标悬浮头像弹出该窗口
+    /*聊天相关*/
+    QStringList stringlistdata; //数据池
+    QStringList stringaccount;  //消息池
+    QList<Chat *> listchat;     //保存聊天窗口
+    QVector<int> Globalinfo;    //全局消息管理 1为普通消息，二位验证消息
+    int count = 0;//当前聊天窗口数
+    /*连接网络*/
+    QTcpSocket * tcpClient;//连接网络
+    QLabel * LabSocketate; //显示网络类型
+    /*鼠标拖动事件*/
+    QList<bool> iswidget;    //列表展开
+    QPoint last;             //窗口拖动变量
+    //QPoint m_point;窗口拖动变量2（第二种写法）
     bool isPressedWidget;
-    int count = 0;
-    //分组信息
-    Query * a; //查找窗口
-    //分组好友
+    /*其他*/
+    QSignalMapper * myMapper; //信号管理
+    QSignalMapper * menuAction;
+    bool ishover = false;//判断鼠标是否进过托盘图标
+
 public:
-    QString getLocalIP();//获取本机IP地址
-    explicit MainWindow(QString account,QWidget *parent = 0);
-    void paintEvent(QPaintEvent *e);
-    void showicon();
-    void setAccount(QString account);
-    QPixmap PixmapToRound(QPixmap &src, int radius);
-    bool eventFilter(QObject *obj, QEvent *event);
-    ~MainWindow();
+    explicit MainWindow(QString account,QWidget *parent = 0); //构造函数
+    void paintEvent(QPaintEvent *e);//重绘背景
+    void showicon();                                //显示系统托盘图标
+    void setAccount(QString account);               //设置账号
+    bool eventFilter(QObject *obj, QEvent *event);  //事件过滤器
+    QString getLocalIP();                           //获取本机IP地址
+    QPixmap PixmapToRound(QPixmap &src, int radius);//平滑图片
+    void datawidget(QPixmap pixmap,QString str);   //更新消息列表
+    ~MainWindow();//析构函数
 signals:
-    void sendChatData(QString data);
+    void sendChatData(QString data);//给聊天窗口发送信号及数据
 
 private slots:
     void mousePressEvent(QMouseEvent *event);//鼠标点击
     void mouseMoveEvent(QMouseEvent *event);//鼠标移动
     void mouseReleaseEvent(QMouseEvent *event);//鼠标释放
-    void on_min_tool_clicked(); //最小化
-    void on_close_tool_clicked(); //关闭按钮
-    void on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reason);
-
-    void on_toolButton_3_clicked();
-
-    void on_widget_clicked(int i);//分组按钮被点击
-    void on_Double_widget_clicked(QListWidgetItem * witem);//好友被双击
-    void onSocketStateChange(QAbstractSocket::SocketState socketState);
-    void onConnected();
-    void onDisconnected();
-    void onSocketReadyRead();
+    void on_widget_clicked(int i);  //分组按钮被点击
+    void on_min_tool_clicked();     //最小化
+    void on_close_tool_clicked();   //关闭按钮
+    void on_toolButton_3_clicked(); //主界面在线按钮
+    //void on_pushButton_2_clicked(); //闪烁 实验
+    //void on_pushButton_3_clicked(); //关闭 实验
+    void on_Double_widget_clicked(QListWidgetItem * witem);//好友列表被双击
+    void on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reason);//对托盘按钮的点击
+    /*TCP相关*/
+    void onSocketStateChange(QAbstractSocket::SocketState socketState);//收到数据
+    void onConnected();//连接
+    void onDisconnected();//断开连接
+    void onSocketReadyRead();//状态
     void listchatcount(); //监视chat数据
+    /*托盘图标闪动相关*/
+    void sltTimerT();
+    void sltTimerNoT();
+    void showdata();
     void MainSendData(QString str);
+    void MainSendAddData(QString str);
+    void actionexe(int);
+    /*消息验证*/
+    void pudatamainverify(QString,QString);
 private:
     Ui::MainWindow *ui;
 };

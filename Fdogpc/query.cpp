@@ -8,6 +8,46 @@
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
+
+Query::Query(QString account,QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Query)
+{
+    ui->setupUi(this);
+    this->account = account;
+    setWindowFlags (Qt::FramelessWindowHint);
+}
+
+Query::~Query()
+{
+    delete ui;
+}
+
+void Query::mousePressEvent(QMouseEvent *event)
+{
+    isPressedWidget = true; // 当前鼠标按下的即是QWidget而非界面上布局的其它控件
+    last = event->globalPos();
+}
+
+void Query::mouseMoveEvent(QMouseEvent *event)
+{
+    if (isPressedWidget)
+        {
+            int dx = event->globalX() - last.x();
+            int dy = event->globalY() - last.y();
+            last = event->globalPos();
+            move(x()+dx, y()+dy);
+        }
+}
+
+void Query::mouseReleaseEvent(QMouseEvent *event)
+{
+    int dx = event->globalX() - last.x();
+    int dy = event->globalY() - last.y();
+    move(x()+dx, y()+dy);
+    isPressedWidget = false; // 鼠标松开时，置为false
+}
+
 QPixmap Query::PixmapToRound(QPixmap &src, int radius)
 {
     if (src.isNull()) {
@@ -40,18 +80,6 @@ QPixmap Query::PixmapToRound(QPixmap &src, int radius)
         return image;
 }
 
-Query::Query(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Query)
-{
-    ui->setupUi(this);
-}
-
-Query::~Query()
-{
-    delete ui;
-}
-
 void Query::on_pushButton_clicked()
 {
     QString account = ui->lineEdit->text();
@@ -73,7 +101,9 @@ void Query::on_pushButton_clicked()
 
 void Query::on_pushButton_3_clicked()
 {
-    Addfriend * a = new Addfriend();
+    //传入name account sex age getProfession
+    Addfriend * a = new Addfriend(this->icon,this->account,sqconn.getName(),sqconn.getAccount(),sqconn.getSex(),sqconn.getAge(),sqconn.getProfession());
+    connect(Globalobserver::getAddfriendp(),SIGNAL(sendaddinfo(QString)),Globalobserver::getMainwindowp(),SLOT(MainSendAddData(QString)));
     a->show();
 }
 
@@ -81,4 +111,9 @@ void Query::on_pushButton_3_clicked()
 void Query::on_toolButton_4_clicked()
 {
     this->hide();
+}
+
+void Query::MainSendAddData(QString)
+{
+    qDebug()<<"查找窗口接收到信号";
 }

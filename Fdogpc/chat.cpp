@@ -7,26 +7,24 @@
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
-Chat::Chat(QString account,QString name,MainWindow * main,QWidget *parent) :
+Chat::Chat(QString otheraccount,QString name,MainWindow * main,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Chat)
 {
     ui->setupUi(this);
-    qDebug()<<"内部出错1";
-    this->otheraccount=account;
+    this->otheraccount=otheraccount;
     this->name=name;
-    this->setWindowTitle("正在与"+name+"聊天");
+    this->setWindowTitle(name);
     tcpClient=new QTcpSocket(this);
     LabSocketate = new QLabel("Socket状态：");
     LabSocketate->setMinimumWidth(250);
-    qDebug()<<"内部出错2";
+
     //ui->statusBar->addWidget(LabSocketate);
     //QString localIP = getLocalIP();
+    ui->label->setText(this->name);
     //接收主窗口的消息信号
-    qDebug()<<"内部出错3";
     mainwindow = main;
     connect(mainwindow,SIGNAL(sendChatData(QString)),this,SLOT(onSocketReadyRead(QString)));
-    qDebug()<<"内部出错4";
 }
 
 QWidget *Chat::CreateWidgetL()
@@ -198,9 +196,11 @@ void Chat::onSocketReadyRead(QString data)
 {
     qDebug()<<"接收到信号";
     qDebug()<<"是真是假："<<this->isread;
+    QDateTime curDateTime=QDateTime::currentDateTime();
+    QString time = curDateTime.toString("hh:mm:ss");
     if(this->isread==true)
     {
-        ui->plainTextEdit->appendPlainText(data);
+        ui->plainTextEdit->appendPlainText("他   "+time+"\n"+data);
         this->isread=false;
     }
 }
@@ -212,7 +212,7 @@ void Chat::on_pushButton_3_clicked()
     //数据格式为: 到达方账号，发送方账号，内容
     QString msg = this->getOtheraccount()+this->getAccount()+ui->lineEdit->text();
     //我发送的内容显示在右边
-    ui->plainTextEdit->appendPlainText("我   "+time+"\n"+msg);
+    ui->plainTextEdit->appendPlainText("我   "+time+"\n"+ui->lineEdit->text());
     //ui->scrollAreaWidgetContents-> CreateWidgetR();
     ui->lineEdit->clear();
     ui->lineEdit->setFocus();

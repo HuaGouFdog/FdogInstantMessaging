@@ -35,12 +35,17 @@ public:
     QPixmap getPixmapIcon(QString url);//根据账户获取头像
     QPixmap PixmapToRound(QPixmap &src, int radius);
     void queryUserInfo(QString account); //获取账号信息
-
     void conndataOther(QString mysqlname); //获取分组信息连接
     QStringList getGroupname_Groupcount();//获取分组名称,人数
-
     void AccountIP1(QString ip);//获取ip更新在线状态
     void AccountIP2(QString ip);//获取ip更新离线状态
+    QString getOtherAccountName(QString otheraccount);//根据账号获取名字
+    QString getOtherAccountSex(QString otheraccount);//根据账号获取性别
+    QString getOtherAccountAge(QString otheraccount);//根据账号获取年龄
+    void setverify(QString time,QString account,QString sate,QString name,QString grouping,QString otheraccount);
+    void getverify(QString time,QString otheraccount,QString sate,QString name,QString grouping,QString account);
+
+    //getset
     QPixmap getIcon() const;
     void setIcon(const QPixmap &value);
     QString getAccount() const;
@@ -61,6 +66,10 @@ public:
     void setMfriendname(const QStringList &value);
     QString getGrade() const;
     void setGrade(const QString &value);
+    QString getProfession() const;
+    void setProfession(const QString &value);
+    QString getSex() const;
+    void setSex(const QString &value);
 };
 
 #endif // USERSQL_H

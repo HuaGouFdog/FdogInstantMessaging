@@ -31,7 +31,11 @@ SOURCES += \
     query.cpp \
     chat.cpp \
     settingcolor.cpp \
-    addfriend.cpp
+    addfriend.cpp \
+    globalobserver.cpp \
+    verify.cpp \
+    traywidget.cpp \
+    agreefriend.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +44,11 @@ HEADERS += \
     query.h \
     chat.h \
     settingcolor.h \
-    addfriend.h
+    addfriend.h \
+    globalobserver.h \
+    verify.h \
+    traywidget.h \
+    agreefriend.h
 
 FORMS += \
         mainwindow.ui \
@@ -48,7 +56,10 @@ FORMS += \
     query.ui \
     chat.ui \
     settingcolor.ui \
-    addfriend.ui
+    addfriend.ui \
+    verify.ui \
+    traywidget.ui \
+    agreefriend.ui
 
 RESOURCES += \
     libres.qrc

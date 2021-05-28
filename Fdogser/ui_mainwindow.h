@@ -18,7 +18,6 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPlainTextEdit>
@@ -38,23 +37,18 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_2;
     QGridLayout *gridLayout;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QComboBox *comboIP;
     QLabel *label_2;
     QSpinBox *spinBox;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
-    QHBoxLayout *horizontalLayout_3;
-    QLineEdit *lineEdit;
-    QPushButton *pushButton_5;
     QPlainTextEdit *plainTextEdit;
-    QLabel *label_3;
     QVBoxLayout *verticalLayout;
     QListWidget *listWidget;
+    QLabel *label_3;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -77,6 +71,22 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        horizontalLayout->addWidget(pushButton);
+
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        horizontalLayout->addWidget(pushButton_2);
+
+
+        gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
+
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -107,57 +117,10 @@ public:
 
         gridLayout->addLayout(horizontalLayout_2, 2, 0, 1, 1);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-
-        horizontalLayout->addWidget(pushButton);
-
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        horizontalLayout->addWidget(pushButton_2);
-
-        pushButton_3 = new QPushButton(centralWidget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-
-        horizontalLayout->addWidget(pushButton_3);
-
-        pushButton_4 = new QPushButton(centralWidget);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-
-        horizontalLayout->addWidget(pushButton_4);
-
-
-        gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        lineEdit = new QLineEdit(centralWidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-
-        horizontalLayout_3->addWidget(lineEdit);
-
-        pushButton_5 = new QPushButton(centralWidget);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-
-        horizontalLayout_3->addWidget(pushButton_5);
-
-
-        gridLayout->addLayout(horizontalLayout_3, 3, 0, 1, 1);
-
         plainTextEdit = new QPlainTextEdit(centralWidget);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
 
-        gridLayout->addWidget(plainTextEdit, 4, 0, 1, 1);
-
-        label_3 = new QLabel(centralWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        gridLayout->addWidget(label_3, 0, 1, 1, 1);
+        gridLayout->addWidget(plainTextEdit, 3, 0, 1, 1);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -168,7 +131,12 @@ public:
         verticalLayout->addWidget(listWidget);
 
 
-        gridLayout->addLayout(verticalLayout, 2, 1, 3, 1);
+        gridLayout->addLayout(verticalLayout, 2, 1, 2, 1);
+
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        gridLayout->addWidget(label_3, 0, 1, 1, 1);
 
 
         verticalLayout_2->addLayout(gridLayout);
@@ -192,13 +160,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\346\234\215\345\212\241\347\253\257", nullptr));
-        label->setText(QApplication::translate("MainWindow", "\347\233\221\345\220\254\345\234\260\345\235\200\357\274\232", nullptr));
-        label_2->setText(QApplication::translate("MainWindow", "\347\233\221\345\220\254\347\253\257\345\217\243\357\274\232", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\347\233\221\345\220\254", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "\345\201\234\346\255\242\347\233\221\345\220\254", nullptr));
-        pushButton_3->setText(QApplication::translate("MainWindow", "\346\270\205\347\251\272\346\226\207\346\234\254\346\241\206", nullptr));
-        pushButton_4->setText(QApplication::translate("MainWindow", "\351\200\200\345\207\272", nullptr));
-        pushButton_5->setText(QApplication::translate("MainWindow", "\345\217\221\351\200\201\346\266\210\346\201\257", nullptr));
+        label->setText(QApplication::translate("MainWindow", "\347\233\221\345\220\254\345\234\260\345\235\200\357\274\232", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "\347\233\221\345\220\254\347\253\257\345\217\243\357\274\232", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "\345\275\223\345\211\215\345\234\250\347\272\277\347\224\250\346\210\267\357\274\232", nullptr));
     } // retranslateUi
 

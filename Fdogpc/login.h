@@ -8,6 +8,19 @@
 #include<QPoint>
 #include<QStringList>
 #include<QListWidget>
+#include<QPainter>
+#include<QDesktopServices>
+#include<QListView>
+#include<QDebug>
+#include<qdrawutil.h>
+#include<QGraphicsDropShadowEffect>
+#include<QDir>
+#include<QCoreApplication>
+#include<QFile>
+#include<QTextCodec>
+#include<QMenu>
+#include<QMessageBox>
+#include<algorithm>
 #include"usersql.h"
 #include"mainwindow.h"
 namespace Ui {
@@ -31,19 +44,18 @@ class Login : public QWidget
     QStringList infopasswd;             //用户密码
     QStringList icon;                   //头像保存地址
     QListWidget * m_AccountList;        //下拉列表框
-    QMenu * menu;
-    QAction *m_pShowAction;
-    QAction *m_pCloseAction;
+    QMenu * menu;                       //右击菜单
+    QAction *m_pShowAction;             //显示选项
+    QAction *m_pCloseAction;            //退出选项
     QSignalMapper * myMapper;
     QVector<int> infoListsign;
 public:
-    QStringList GetDirNameList(const QString &strDirpath);
+    explicit Login(QWidget *parent = 0);
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *event);//鼠标点击
     void mouseMoveEvent(QMouseEvent *event);//鼠标移动
     void mouseReleaseEvent(QMouseEvent *event);//鼠标释放
-    explicit Login(QWidget *parent = 0);
-
+    QStringList GetDirNameList(const QString &strDirpath);
     ~Login();
 
 private slots:
@@ -54,15 +66,15 @@ private slots:
 
     void on_register_btn_clicked();
 
+    void on_pushButton_clicked();
+
     void on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reason);
 
     void on_comboBox_currentIndexChanged(int index);
 
-    void on_pushButton_clicked();
 
     void showwidget();
     void closewidget();
-
     void deleteaccount(int i);
 
 

@@ -45,10 +45,15 @@
         <height>601</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">#widget{
-
-background-color: rgb(193, 255, 183);
+background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.511364, y2:1, stop:0 rgba(8, 97, 213, 255), stop:1 rgba(255, 255, 255, 255));
 }</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -122,7 +127,7 @@ background-color: rgb(193, 255, 183);
            </property>
            <property name="icon">
             <iconset resource="libres.qrc">
-             <normaloff>:/lib/fdogicon.png</normaloff>:/lib/fdogicon.png</iconset>
+             <normaloff>:/lib/fdog.png</normaloff>:/lib/fdog.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -275,14 +280,14 @@ background-color: rgb(193, 255, 183);
         <widget class="QWidget" name="widget_2" native="true">
          <property name="minimumSize">
           <size>
-           <width>301</width>
-           <height>87</height>
+           <width>250</width>
+           <height>71</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>301</width>
-           <height>93</height>
+           <height>16777215</height>
           </size>
          </property>
          <widget class="QLabel" name="signature_label">
@@ -294,11 +299,23 @@ background-color: rgb(193, 255, 183);
             <height>18</height>
            </rect>
           </property>
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
           <property name="styleSheet">
-           <string notr="true">:hover{
+           <string notr="true">:!hover{
+color: rgb(255, 255, 255);
+}
+:hover{
 border-style:solid;
 border-width:1px;
-	border-color: rgb(108, 108, 108);
+border-color: rgb(108, 108, 108);
+	color: rgb(255, 255, 255);
 }</string>
           </property>
           <property name="text">
@@ -326,12 +343,32 @@ border-width:1px;
             <height>15</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei</family>
+            <pointsize>3</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#toolButton_2{
+border-style:solid;
+background-color: rgba(255, 255, 255, 0);
+}
+
+::menu-indicator
+{
+	image: none;
+}</string>
+          </property>
           <property name="text">
            <string>...</string>
           </property>
           <property name="icon">
            <iconset resource="libres.qrc">
             <normaloff>:/lib/zaixian.png</normaloff>:/lib/zaixian.png</iconset>
+          </property>
+          <property name="popupMode">
+           <enum>QToolButton::InstantPopup</enum>
           </property>
           <property name="autoRaise">
            <bool>true</bool>
@@ -341,15 +378,21 @@ border-width:1px;
           <property name="geometry">
            <rect>
             <x>80</x>
-            <y>16</y>
+            <y>17</y>
             <width>71</width>
-            <height>16</height>
+            <height>20</height>
            </rect>
           </property>
           <property name="font">
            <font>
             <family>Microsoft YaHei</family>
+            <pointsize>11</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
            <string/>
@@ -398,10 +441,10 @@ border-color: rgb(255, 255, 255);
          <widget class="QToolButton" name="toolButton_5">
           <property name="geometry">
            <rect>
-            <x>142</x>
-            <y>13</y>
-            <width>41</width>
-            <height>21</height>
+            <x>160</x>
+            <y>20</y>
+            <width>39</width>
+            <height>17</height>
            </rect>
           </property>
           <property name="font">
@@ -412,11 +455,14 @@ border-color: rgb(255, 255, 255);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(255, 47, 11);
-border-image: url(:/lib/dengji.png);</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="libres.qrc">
+            <normaloff>:/lib/dengji.png</normaloff>:/lib/dengji.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -431,22 +477,22 @@ border-image: url(:/lib/dengji.png);</string>
          <widget class="QToolButton" name="toolButton_6">
           <property name="geometry">
            <rect>
-            <x>195</x>
-            <y>13</y>
+            <x>203</x>
+            <y>20</y>
             <width>40</width>
-            <height>20</height>
+            <height>17</height>
            </rect>
           </property>
           <property name="minimumSize">
            <size>
             <width>40</width>
-            <height>20</height>
+            <height>15</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>40</width>
-            <height>20</height>
+            <height>17</height>
            </size>
           </property>
           <property name="layoutDirection">
@@ -469,12 +515,40 @@ border-image: url(:/lib/dengji.png);</string>
            <bool>true</bool>
           </property>
          </widget>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>169</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei</family>
+            <pointsize>7</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 47, 11);</string>
+          </property>
+          <property name="text">
+           <string>12</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
          <zorder>signature_label</zorder>
          <zorder>username_label</zorder>
          <zorder>pushButton</zorder>
          <zorder>toolButton_5</zorder>
          <zorder>toolButton_6</zorder>
          <zorder>toolButton_2</zorder>
+         <zorder>label</zorder>
         </widget>
        </item>
        <item>
@@ -487,7 +561,7 @@ border-image: url(:/lib/dengji.png);</string>
            <property name="minimumSize">
             <size>
              <width>27</width>
-             <height>30</height>
+             <height>26</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -497,7 +571,7 @@ border-image: url(:/lib/dengji.png);</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color:rgba(0,0,0,22);</string>
+            <string notr="true">background-color: rgba(255, 255, 255,50);</string>
            </property>
            <property name="text">
             <string>...</string>
@@ -522,11 +596,26 @@ border-image: url(:/lib/dengji.png);</string>
            <property name="minimumSize">
             <size>
              <width>272</width>
-             <height>30</height>
+             <height>26</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>黑体</family>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">background-color:rgba(0,0,0,22);border-color:rgba(0,0,0,255);color: rgba(9, 0, 3,0);border-style:none;border-width:1px;border-radius:0px;font:15px &quot;黑体&quot;;</string>
+            <string notr="true">background-color: rgba(255, 255, 255,50);
+border-color:rgba(0,0,0,255);
+color: rgba(9, 0, 3,0);
+border-style:none;
+border-width:1px;
+border-radius:0px;
+font:15px &quot;黑体&quot;;</string>
            </property>
            <property name="placeholderText">
             <string>搜索</string>
@@ -552,25 +641,37 @@ border-image: url(:/lib/dengji.png);</string>
          <property name="font">
           <font>
            <family>Microsoft YaHei</family>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="styleSheet">
           <string notr="true">QWidget::tab{
 background-color: rgb(255, 255, 255);
-border-style:none;
-border-width:1px;
-border-radius:0px;
-font:18px &quot;黑体&quot;;
+border-style:solid;
+border-width:2px;
+font:18px &quot;宋体&quot;;
+border-radius:2px;
 height:38px;
-width:105px;
-	color: rgb(100, 100, 100);
+width:102px;
+color: rgb(100, 100, 100);
+	border-color: rgb(255, 255, 255);
+border-bottom-color: rgba(255, 255, 255, 0);
 }
-</string>
+QWidget::tab:selected{
+border-bottom-color: rgb(127, 127, 127);
+border-radius:2px;
+}</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="tab">
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <attribute name="title">
            <string>消息</string>
           </attribute>
@@ -588,21 +689,37 @@ width:105px;
             <number>0</number>
            </property>
            <item>
-            <widget class="QListWidget" name="listWidget">
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei</family>
-              </font>
+            <widget class="QScrollArea" name="scrollArea_3">
+             <property name="widgetResizable">
+              <bool>true</bool>
              </property>
-             <property name="styleSheet">
-              <string notr="true">width:10px;</string>
-             </property>
-             <property name="autoScrollMargin">
-              <number>16</number>
-             </property>
-             <property name="batchSize">
-              <number>100</number>
-             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents_3">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>310</width>
+                <height>412</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_4">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QListWidget" name="listWidget"/>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -625,9 +742,50 @@ width:105px;
             <number>0</number>
            </property>
            <item row="0" column="0">
-            <widget class="QScrollArea" name="scrollArea">
+            <widget class="QTabWidget" name="tabWidget_2">
              <property name="styleSheet">
-              <string notr="true">QScrollBar:vertical{
+              <string notr="true">::tab{
+background-color: rgb(255, 255, 255);
+border-style:solid;
+border-width:0px;
+font:14px &quot;宋体&quot;;
+border-radius:2px;
+height:25px;
+width:70px;
+color: rgb(100, 100, 100);
+border-color: rgb(255, 255, 255);
+}
+::tab:selected{
+border-radius:2px;
+}
+:pane{
+
+}</string>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab_4">
+              <attribute name="title">
+               <string>好友</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QScrollArea" name="scrollArea">
+                 <property name="styleSheet">
+                  <string notr="true">QScrollBar:vertical{
 background-color:rgba(0,0,0,0);
 border-color:rgba(0,0,6,0);
 border-style:solid;
@@ -651,30 +809,39 @@ QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical{background:rgba(0,0,
 
 
 QScrollBar::sub-page:vertical,QScrollBar::sub-page:vertical{background:rgba(0,0,0,0);}</string>
-             </property>
-             <property name="horizontalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="widgetResizable">
-              <bool>true</bool>
-             </property>
-             <widget class="QWidget" name="scrollAreaWidgetContents">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>310</width>
-                <height>396</height>
-               </rect>
-              </property>
-              <property name="cursor">
-               <cursorShape>ArrowCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">#scrollAreaWidgetContents{
+                 </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>310</width>
+                    <height>387</height>
+                   </rect>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>ArrowCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">#scrollAreaWidgetContents{
 background:transparent;
 }</string>
-              </property>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_5">
+              <attribute name="title">
+               <string>群聊</string>
+              </attribute>
              </widget>
             </widget>
            </item>

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="libres.qrc">
+    <normaloff>:/lib/fdogicon.png</normaloff>:/lib/fdogicon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">*{font-family:Microsoft YaHei;}
 
@@ -250,7 +254,7 @@ min-width: 60px;
 	border-bottom-color: rgb(129, 129, 129);
 }
 ::down-arrow{
-border-image: url(:/lib/jietou.png);
+border-image: url(:/lib/jietou1.png);
 }</string>
       </property>
       <property name="editable">
@@ -280,15 +284,14 @@ border-image: url(:/lib/jietou.png);
        <rect>
         <x>226</x>
         <y>130</y>
-        <width>20</width>
-        <height>20</height>
+        <width>17</width>
+        <height>17</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">
-border-width:2px;
+       <string notr="true">border-width:2px;
 border-style:solid;
-border-radius: 9px;
+border-radius: 8px;
 border-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">

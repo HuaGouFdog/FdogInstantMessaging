@@ -21,11 +21,11 @@ void Usersql::conndata()
     {
         this->dbconn = QSqlDatabase::addDatabase("QMYSQL");
     }
-   this-> dbconn.setHostName("0.0.0.0");//主机名字
-   this-> dbconn.setDatabaseName("fdogsql");//数据库名字
-    //dbconn.open("root", "1111111"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
+   this-> dbconn.setHostName("82.156.111.139");//主机名字
+   this-> dbconn.setDatabaseName("xxx");//数据库名字
+    //dbconn.open("root", "xxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
     //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "1111111"))
+    if(this->dbconn.open("root", "xxxxxx"))
     {
     //如果判断为真，则连接成功
         //qDebug()<<"success";
@@ -185,9 +185,9 @@ void Usersql::conndataOther(QString mysqlname)
     }
    this-> dbconn.setHostName("82.156.111.139");//主机名字
    this-> dbconn.setDatabaseName(mysqlname);//数据库名字
-    //dbconn.open("root", "3226960*"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
+    //dbconn.open("root", "xxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
     //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "3226960*"))
+    if(this->dbconn.open("root", "xxx"))
     {
     //如果判断为真，则连接成功
         qDebug()<<"success";
@@ -220,6 +220,61 @@ void Usersql::AccountIP2(QString ip)
 {
     QString s = QString("update state set isline=%1,ip=\"%2\" where account=%3").arg("0",ip,this->getAccount());
     this->query.exec(s);
+}
+
+QString Usersql::getOtherAccountName(QString otheraccount)
+{
+    this->query.exec("select * from user");
+    while(query.next())
+    {
+        if(otheraccount==(this->query.value(0).toString()))
+        {
+            return this->query.value(2).toString();
+        }
+    }
+    return "";
+}
+
+QString Usersql::getOtherAccountSex(QString otheraccount)
+{
+    this->query.exec("select * from user");
+    while(query.next())
+    {
+        if(otheraccount==(this->query.value(0).toString()))
+        {
+            return this->query.value(8).toString();
+        }
+    }
+    return "";
+}
+
+QString Usersql::getOtherAccountAge(QString otheraccount)
+{
+    this->query.exec("select * from user");
+    while(query.next())
+    {
+        if(otheraccount==(this->query.value(0).toString()))
+        {
+            qDebug()<<"年龄是"<<query.value(9).toString();
+            return this->query.value(9).toString();
+        }
+    }
+    return "";
+}
+
+void Usersql::setverify(QString time, QString account, QString sate, QString name, QString grouping, QString otheraccount)
+{
+    //时间 添加方 状态 备注 分组 属于谁
+    QString data = QString("INSERT INTO setverify VALUES('%1','%2','%3','%4','%5','%6')")
+            .arg(time, account,sate, name, grouping, otheraccount);
+    this->query.exec(data);
+}
+
+void Usersql::getverify(QString time, QString otheraccount, QString sate, QString name, QString grouping, QString account)
+{
+    QString data = QString("INSERT INTO getverify VALUES('%1','%2','%3','%4','%5','%6')")
+            .arg(time, otheraccount,sate, name, grouping, account);
+    this->query.exec(data);
 }
 
 QPixmap Usersql::getIcon() const
@@ -320,6 +375,26 @@ QString Usersql::getGrade() const
 void Usersql::setGrade(const QString &value)
 {
     grade = value;
+}
+
+QString Usersql::getProfession() const
+{
+    return profession;
+}
+
+void Usersql::setProfession(const QString &value)
+{
+    profession = value;
+}
+
+QString Usersql::getSex() const
+{
+    return sex;
+}
+
+void Usersql::setSex(const QString &value)
+{
+    sex = value;
 }
 
 Usersql::Usersql()

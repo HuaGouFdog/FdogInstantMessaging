@@ -34,5 +34,15 @@
         <file>lib/delete.png</file>
         <file>lib/max.png</file>
         <file>lib/delete2.png</file>
+        <file>lib/verify1.png</file>
+        <file>lib/verify2.png</file>
+        <file>lib/setting.png</file>
+        <file>lib/jietou1.png</file>
+        <file>lib/body.png</file>
+        <file>lib/caijian.png</file>
+        <file>lib/fangda.png</file>
+        <file>lib/mianxingtubiao_zhendong.png</file>
+        <file>lib/shijian.png</file>
+        <file>lib/weixiao.png</file>
     </qresource>
 </RCC>

@@ -10,10 +10,9 @@ private:
      QSqlQuery query;        //查询操作
 public:
     usersql();
-    void conndata(); //连接数据库
+    bool conndata(); //连接数据库
     QString AccountIP(QString account);//获取目标ip
     QString update(QString account,QString port);
-    //void AccountIP2(QString ip);
 };
 
 #endif // USERSQL_H

@@ -6,7 +6,7 @@ usersql::usersql()
     
 }
 
-void usersql::conndata()
+bool usersql::conndata()
 {
     if(QSqlDatabase::contains(QSqlDatabase::defaultConnection))
     {
@@ -16,16 +16,14 @@ void usersql::conndata()
     {
         this->dbconn = QSqlDatabase::addDatabase("QMYSQL");
     }
-   this-> dbconn.setHostName("82.156.111.0");//主机名字
-   this-> dbconn.setDatabaseName("fdogsql");//数据库名字
-    //dbconn.open("root", "1111111"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
-    //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "1111111"))
-    {
-    //如果判断为真，则连接成功
-        //qDebug()<<"success";
-    }
-    this->query = (QSqlQuery)this->dbconn; //进行绑定 此后可以使用query对象对数据库进行操作。
+   this-> dbconn.setHostName("82.156.111.139");//主机名字
+   this-> dbconn.setDatabaseName("xxxxxxx");//数据库名字
+   if(this->dbconn.open("root", "XXXXXXXX"))
+   {
+       this->query = (QSqlQuery)this->dbconn; //进行绑定 此后可以使用query对象对数据库进行操作
+       return true;
+   }
+   return false;
 }
 QString usersql::AccountIP(QString account)
 {

@@ -17,14 +17,14 @@ private:
     QLabel * LabSocketate;
     QString name;//对方网名
     QString otheraccount;//对方账号
-    QString account;
+    QString account;  //本身帐户
+    MainWindow * mainwindow;//主窗口指针
     bool isread = false;
-    MainWindow * mainwindow;
     int isdown;
     QString getLocalIP();
 public:
 
-    explicit Chat(QString account,QString name,MainWindow * main, QWidget *parent = 0);
+    explicit Chat(QString otheraccount,QString name,MainWindow * main, QWidget *parent = 0);
     QWidget * CreateWidgetL();
     QWidget * CreateWidgetR();
     ~Chat();
