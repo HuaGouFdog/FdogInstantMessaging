@@ -1,7 +1,71 @@
+---
+typora-root-url: READMEimg
+---
+
 # FdogInstantMessaging
 
 #### 介绍
-FdogInstantMessaging，Fdog即时通讯软件,利用在校所学知识进行编写，主要包括网页端，客户端，以及服务端。
+FdogInstantMessaging，Fdog即时通讯软件。
+
+利用在校所学知识进行编写，主要包括网页端，客户端，以及服务端。
+
+网页端主要使用html，jsp，javaweb，使用Tomcat部署在腾讯云服务器上面：[注册网址](https://www.fdogcsdn.cn/FdogMaven/index.jsp) ，并使用腾讯云的短信接口进行短信注册，由于一个月体验已到期，现在无法正常发送短信。
+
+客户端和服务端是在win10平台使用qt5.10进行编写。
+
+由于无法将服务器数据库密码等重要信息上传，所以下载下来的程序无法正常运行，这里只提供源码以及数据库的字段。
+
+欢迎大家下载学习，走前给个星星！
+
+我的博客：https://blog.csdn.net/Fdog_
+
+
+
+#### 图例
+
+##### 1.登录界面
+
+##### ![](https://img-blog.csdnimg.cn/20210528152616336.png)
+
+
+
+##### 2.主界面
+
+
+
+![](https://img-blog.csdnimg.cn/20210528152616300.png)
+
+
+
+##### 3.聊天窗口
+
+<img src="https://img-blog.csdnimg.cn/20210528152616304.png" style="zoom:80%;" />
+
+
+
+##### 4.查找
+
+<img src="https://img-blog.csdnimg.cn/20210528152616288.png" style="zoom:67%;" />
+
+
+
+##### 6.添加好友
+
+![](https://img-blog.csdnimg.cn/20210528152616214.png)
+
+
+
+##### 7.右下角托盘图标
+
+![](https://img-blog.csdnimg.cn/20210528152616283.png)
+
+
+
+
+
+
+
+---
 
 #### 技术讲解
 
@@ -19,6 +83,28 @@ Fdog系列已写目录：
 
 [Fdog系列（六）：利用Qt通过服务端进行客户端与客户端通信（资料少，建议收藏）](https://zxfdog.blog.csdn.net/article/details/116355817)
 
+
+
+数据库的一些字段可能需要：
+
+![](https://img-blog.csdnimg.cn/20210528153827550.png)
+
+
+
+![](https://img-blog.csdnimg.cn/2021052815390824.png)
+
+![](https://img-blog.csdnimg.cn/20210528153459534.png)
+
+
+
+![](https://img-blog.csdnimg.cn/20210528153459539.png)
+
+
+
+![](https://img-blog.csdnimg.cn/20210528153459542.png)
+
+---
+
 #### 使用环境
 
 网页端
@@ -27,31 +113,27 @@ Fdog系列已写目录：
 3.  centOS7.x
 
 PC端
-1.  qt5.10
+1.  win10，qt5.10
 
 
 服务端
-1.  qt5.10
+1.  win10，qt5.10
+
+---
 
 #### 使用说明
 
 1.  将网页端部署完毕，可完成Fdog账号注册功能
 2.  打开服务端，自动接收TCP请求 默认60端口
-3.  打开两个客户端，可接收通信
+3.  登录两个客户端，可互发信息
 
 
 
-由于数据库无法对外公布，且短信服务已到期没有购买，故提供下列账号供您登录
-
-账号：19070015     密码：123456
-
-账号：12345678     密码：3226960*
-
-账号：61673228     密码：wjq123456
+备注：只上传了源码，并没有上传可执行文件（太大了，github又慢），如下载源码后无法编译，右击项目，重新构建即可。
 
 
 
-
+---
 
 #### 更新目录
 
@@ -74,6 +156,8 @@ PC端
 ```
 
 
+
+---
 
 #### 其他
 
