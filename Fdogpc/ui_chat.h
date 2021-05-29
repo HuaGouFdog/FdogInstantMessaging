@@ -71,7 +71,7 @@ public:
     {
         if (Chat->objectName().isEmpty())
             Chat->setObjectName(QStringLiteral("Chat"));
-        Chat->resize(568, 514);
+        Chat->resize(707, 647);
         QFont font;
         font.setPointSize(5);
         Chat->setFont(font);
@@ -87,7 +87,7 @@ public:
         verticalLayout->setContentsMargins(0, 1, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 2, -1, 6);
+        horizontalLayout->setContentsMargins(-1, 2, 8, 6);
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
@@ -95,7 +95,7 @@ public:
         label = new QLabel(Chat);
         label->setObjectName(QStringLiteral("label"));
         QFont font1;
-        font1.setPointSize(10);
+        font1.setPointSize(12);
         font1.setBold(false);
         font1.setWeight(50);
         label->setFont(font1);
@@ -112,6 +112,7 @@ public:
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/zuixiaohua.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton->setIcon(icon1);
+        toolButton->setIconSize(QSize(20, 20));
         toolButton->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton);
@@ -121,6 +122,7 @@ public:
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/max.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_2->setIcon(icon2);
+        toolButton_2->setIconSize(QSize(20, 20));
         toolButton_2->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton_2);
@@ -130,6 +132,7 @@ public:
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/lib/guanbi.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_3->setIcon(icon3);
+        toolButton_3->setIconSize(QSize(20, 20));
         toolButton_3->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton_3);
@@ -156,7 +159,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 434, 237));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 546, 361));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral(""));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
@@ -307,7 +310,8 @@ public:
 
         widget_2 = new QWidget(Chat);
         widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setMaximumSize(QSize(110, 16777215));
+        widget_2->setMinimumSize(QSize(137, 0));
+        widget_2->setMaximumSize(QSize(120, 16777215));
         widget_2->setStyleSheet(QLatin1String("background-color: rgb(191, 191, 191);\n"
 "border-width:1px;\n"
 "border-left-color: rgb(166, 166, 166);"));
@@ -319,8 +323,8 @@ public:
 
         label_2 = new QLabel(widget_2);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setMinimumSize(QSize(95, 256));
-        label_2->setMaximumSize(QSize(95, 256));
+        label_2->setMinimumSize(QSize(120, 310));
+        label_2->setMaximumSize(QSize(120, 310));
         label_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/body.png);"));
 
         verticalLayout_3->addWidget(label_2);

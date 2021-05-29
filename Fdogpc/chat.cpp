@@ -7,7 +7,7 @@
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
-Chat::Chat(QString otheraccount,QString name,MainWindow * main,QWidget *parent) :
+Chat::Chat(QPixmap pixmap,QString otheraccount,QString name,MainWindow * main,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Chat)
 {
@@ -18,7 +18,7 @@ Chat::Chat(QString otheraccount,QString name,MainWindow * main,QWidget *parent) 
     tcpClient=new QTcpSocket(this);
     LabSocketate = new QLabel("Socket状态：");
     LabSocketate->setMinimumWidth(250);
-
+    this->setWindowIcon(QIcon(pixmap));
     //ui->statusBar->addWidget(LabSocketate);
     //QString localIP = getLocalIP();
     ui->label->setText(this->name);
@@ -200,6 +200,7 @@ void Chat::onSocketReadyRead(QString data)
     QString time = curDateTime.toString("hh:mm:ss");
     if(this->isread==true)
     {
+        data = data.mid(8);
         ui->plainTextEdit->appendPlainText("他   "+time+"\n"+data);
         this->isread=false;
     }

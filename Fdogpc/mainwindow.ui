@@ -403,8 +403,8 @@ background-color: rgba(255, 255, 255, 0);
            <rect>
             <x>15</x>
             <y>10</y>
-            <width>53</width>
-            <height>53</height>
+            <width>52</width>
+            <height>52</height>
            </rect>
           </property>
           <property name="cursor">
@@ -412,13 +412,13 @@ background-color: rgba(255, 255, 255, 0);
           </property>
           <property name="styleSheet">
            <string notr="true">#pushButton{
-border-radius:25px;
+border-radius:26px;
 border-style:solid;
 border-width:2px;
 border-color: rgba(255, 255, 255,20);
 }
 #pushButton::hover{
-border-radius:25px;
+border-radius:26px;
 border-style:solid;
 border-width:4px;
 border-color: rgb(255, 255, 255);
@@ -716,7 +716,11 @@ border-radius:2px;
                 <number>0</number>
                </property>
                <item row="0" column="0">
-                <widget class="QListWidget" name="listWidget"/>
+                <widget class="QListWidget" name="listWidget">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -759,7 +763,6 @@ border-color: rgb(255, 255, 255);
 border-radius:2px;
 }
 :pane{
-
 }</string>
              </property>
              <property name="currentIndex">
@@ -830,7 +833,7 @@ QScrollBar::sub-page:vertical,QScrollBar::sub-page:vertical{background:rgba(0,0,
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#scrollAreaWidgetContents{
-background:transparent;
+background-color: rgb(203, 203, 203);
 }</string>
                   </property>
                  </widget>
@@ -888,6 +891,54 @@ background:transparent;
              <property name="bottomMargin">
               <number>0</number>
              </property>
+             <item>
+              <widget class="QListWidget" name="listWidget_2">
+               <property name="styleSheet">
+                <string notr="true">QListWidget::Item{
+background-color: rgb(173, 173, 173);
+}
+
+QListWidget::Item:hover{
+background-color: rgba(203, 203, 203, 100);
+}</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>新建项目</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>新建项目</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>新建项目</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>新建项目</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>新建项目</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>新建项目</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>新建项目</string>
+                </property>
+               </item>
+              </widget>
+             </item>
             </layout>
            </widget>
           </widget>

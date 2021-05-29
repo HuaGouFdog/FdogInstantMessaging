@@ -22,10 +22,10 @@ void Usersql::conndata()
         this->dbconn = QSqlDatabase::addDatabase("QMYSQL");
     }
    this-> dbconn.setHostName("82.156.111.139");//主机名字
-   this-> dbconn.setDatabaseName("xxx");//数据库名字
-    //dbconn.open("root", "xxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
+   this-> dbconn.setDatabaseName("fdogsql");//数据库名字
+    //dbconn.open("root", "xxxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
     //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "xxxxxx"))
+    if(this->dbconn.open("root", "xxxxx"))
     {
     //如果判断为真，则连接成功
         //qDebug()<<"success";
@@ -185,9 +185,9 @@ void Usersql::conndataOther(QString mysqlname)
     }
    this-> dbconn.setHostName("82.156.111.139");//主机名字
    this-> dbconn.setDatabaseName(mysqlname);//数据库名字
-    //dbconn.open("root", "xxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
+    //dbconn.open("root", "xxxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
     //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "xxx"))
+    if(this->dbconn.open("root", "xxxxx"))
     {
     //如果判断为真，则连接成功
         qDebug()<<"success";

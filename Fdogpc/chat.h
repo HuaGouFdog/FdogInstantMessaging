@@ -21,10 +21,11 @@ private:
     MainWindow * mainwindow;//主窗口指针
     bool isread = false;
     int isdown;
+    QPixmap pixmap;
     QString getLocalIP();
 public:
 
-    explicit Chat(QString otheraccount,QString name,MainWindow * main, QWidget *parent = 0);
+    explicit Chat(QPixmap pixmap,QString otheraccount,QString name,MainWindow * main, QWidget *parent = 0);
     QWidget * CreateWidgetL();
     QWidget * CreateWidgetR();
     ~Chat();

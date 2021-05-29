@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>568</width>
-    <height>514</height>
+    <width>707</width>
+    <height>647</height>
    </rect>
   </property>
   <property name="font">
@@ -48,6 +48,9 @@ background-color: rgb(0, 0, 0);
      <property name="topMargin">
       <number>2</number>
      </property>
+     <property name="rightMargin">
+      <number>8</number>
+     </property>
      <property name="bottomMargin">
       <number>6</number>
      </property>
@@ -68,7 +71,7 @@ background-color: rgb(0, 0, 0);
       <widget class="QLabel" name="label">
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>12</pointsize>
          <weight>50</weight>
          <bold>false</bold>
         </font>
@@ -103,6 +106,12 @@ background-color: rgb(0, 0, 0);
         <iconset resource="libres.qrc">
          <normaloff>:/lib/zuixiaohua.png</normaloff>:/lib/zuixiaohua.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="autoRaise">
         <bool>true</bool>
        </property>
@@ -117,6 +126,12 @@ background-color: rgb(0, 0, 0);
         <iconset resource="libres.qrc">
          <normaloff>:/lib/max.png</normaloff>:/lib/max.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="autoRaise">
         <bool>true</bool>
        </property>
@@ -130,6 +145,12 @@ background-color: rgb(0, 0, 0);
        <property name="icon">
         <iconset resource="libres.qrc">
          <normaloff>:/lib/guanbi.png</normaloff>:/lib/guanbi.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
        </property>
        <property name="autoRaise">
         <bool>true</bool>
@@ -167,8 +188,8 @@ background-color: rgb(0, 0, 0);
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>434</width>
-               <height>237</height>
+               <width>546</width>
+               <height>361</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -488,9 +509,15 @@ color: rgb(255, 255, 255);</string>
      </item>
      <item>
       <widget class="QWidget" name="widget_2" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>137</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>110</width>
+         <width>120</width>
          <height>16777215</height>
         </size>
        </property>
@@ -520,14 +547,14 @@ border-left-color: rgb(166, 166, 166);</string>
          <widget class="QLabel" name="label_2">
           <property name="minimumSize">
            <size>
-            <width>95</width>
-            <height>256</height>
+            <width>120</width>
+            <height>310</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>95</width>
-            <height>256</height>
+            <width>120</width>
+            <height>310</height>
            </size>
           </property>
           <property name="styleSheet">

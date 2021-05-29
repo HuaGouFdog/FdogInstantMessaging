@@ -75,6 +75,7 @@ public:
     QScrollArea *scrollArea_2;
     QWidget *scrollAreaWidgetContents_2;
     QVBoxLayout *verticalLayout;
+    QListWidget *listWidget_2;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_5;
     QToolButton *toolButton_4;
@@ -240,16 +241,16 @@ public:
         username_label->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         pushButton = new QPushButton(widget_2);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(15, 10, 53, 53));
+        pushButton->setGeometry(QRect(15, 10, 52, 52));
         pushButton->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton->setStyleSheet(QLatin1String("#pushButton{\n"
-"border-radius:25px;\n"
+"border-radius:26px;\n"
 "border-style:solid;\n"
 "border-width:2px;\n"
 "border-color: rgba(255, 255, 255,20);\n"
 "}\n"
 "#pushButton::hover{\n"
-"border-radius:25px;\n"
+"border-radius:26px;\n"
 "border-style:solid;\n"
 "border-width:4px;\n"
 "border-color: rgb(255, 255, 255);\n"
@@ -391,6 +392,7 @@ public:
         gridLayout_4->setContentsMargins(0, 0, 0, 0);
         listWidget = new QListWidget(scrollAreaWidgetContents_3);
         listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setStyleSheet(QStringLiteral(""));
 
         gridLayout_4->addWidget(listWidget, 0, 0, 1, 1);
 
@@ -423,7 +425,6 @@ public:
 "border-radius:2px;\n"
 "}\n"
 ":pane{\n"
-"\n"
 "}"));
         tab_4 = new QWidget();
         tab_4->setObjectName(QStringLiteral("tab_4"));
@@ -465,7 +466,7 @@ public:
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 310, 387));
         scrollAreaWidgetContents->setCursor(QCursor(Qt::ArrowCursor));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("#scrollAreaWidgetContents{\n"
-"background:transparent;\n"
+"background-color: rgb(203, 203, 203);\n"
 "}"));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
@@ -494,6 +495,25 @@ public:
         verticalLayout->setContentsMargins(15, 15, 15, 15);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        listWidget_2 = new QListWidget(scrollAreaWidgetContents_2);
+        new QListWidgetItem(listWidget_2);
+        new QListWidgetItem(listWidget_2);
+        new QListWidgetItem(listWidget_2);
+        new QListWidgetItem(listWidget_2);
+        new QListWidgetItem(listWidget_2);
+        new QListWidgetItem(listWidget_2);
+        new QListWidgetItem(listWidget_2);
+        listWidget_2->setObjectName(QStringLiteral("listWidget_2"));
+        listWidget_2->setStyleSheet(QLatin1String("QListWidget::Item{\n"
+"background-color: rgb(173, 173, 173);\n"
+"}\n"
+"\n"
+"QListWidget::Item:hover{\n"
+"background-color: rgba(203, 203, 203, 100);\n"
+"}"));
+
+        verticalLayout->addWidget(listWidget_2);
+
         scrollArea_2->setWidget(scrollAreaWidgetContents_2);
         tabWidget->addTab(tab_3, QString());
 
@@ -574,6 +594,25 @@ public:
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_4), QApplication::translate("MainWindow", "\345\245\275\345\217\213", nullptr));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_5), QApplication::translate("MainWindow", "\347\276\244\350\201\212", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "\350\201\224\347\263\273\344\272\272", nullptr));
+
+        const bool __sortingEnabled = listWidget_2->isSortingEnabled();
+        listWidget_2->setSortingEnabled(false);
+        QListWidgetItem *___qlistwidgetitem = listWidget_2->item(0);
+        ___qlistwidgetitem->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
+        QListWidgetItem *___qlistwidgetitem1 = listWidget_2->item(1);
+        ___qlistwidgetitem1->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
+        QListWidgetItem *___qlistwidgetitem2 = listWidget_2->item(2);
+        ___qlistwidgetitem2->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
+        QListWidgetItem *___qlistwidgetitem3 = listWidget_2->item(3);
+        ___qlistwidgetitem3->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
+        QListWidgetItem *___qlistwidgetitem4 = listWidget_2->item(4);
+        ___qlistwidgetitem4->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
+        QListWidgetItem *___qlistwidgetitem5 = listWidget_2->item(5);
+        ___qlistwidgetitem5->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
+        QListWidgetItem *___qlistwidgetitem6 = listWidget_2->item(6);
+        ___qlistwidgetitem6->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
+        listWidget_2->setSortingEnabled(__sortingEnabled);
+
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "\347\251\272\351\227\264", nullptr));
         toolButton_4->setText(QString());
         toolButton_3->setText(QString());
