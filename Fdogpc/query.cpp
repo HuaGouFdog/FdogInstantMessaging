@@ -83,13 +83,13 @@ QPixmap Query::PixmapToRound(QPixmap &src, int radius)
 void Query::on_pushButton_clicked()
 {
     QString account = ui->lineEdit->text();
-    qDebug()<<"输入的账号是："<<ui->lineEdit->text();
+    //qDebug()<<"输入的账号是："<<ui->lineEdit->text();
     //链接数据库
     this->sqconn.conndata();
     //获取数据
     sqconn.queryUserInfo(account);
     //获取昵称
-    qDebug()<<"昵称："<<sqconn.getName();
+    //qDebug()<<"昵称："<<sqconn.getName();
     ui->lineEdit_4->setText(sqconn.getName());
     //获取头像
     this->icon=sqconn.getIcon();

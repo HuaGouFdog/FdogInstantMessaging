@@ -44,5 +44,9 @@
         <file>lib/mianxingtubiao_zhendong.png</file>
         <file>lib/shijian.png</file>
         <file>lib/weixiao.png</file>
+        <file>lib/mian2.gif</file>
+        <file>lib/erweima.png</file>
+        <file>lib/jietou2.png</file>
+        <file>lib/fdog2.png</file>
     </qresource>
 </RCC>

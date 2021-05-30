@@ -28,7 +28,7 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
 
     //连接到服务器
     QString addr =localIP;
-    qDebug()<<"ip:"<<addr;
+    //qDebug()<<"ip:"<<addr;
     //QString addr ="192.16";
     quint16 port = 60;
     tcpClient->connectToHost(addr,port);
@@ -64,7 +64,7 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
     sqconn.queryUserInfo(this->account);
     sqconn.AccountIP1(getLocalIP());      //获取ip登录在线
     this->icon = sqconn.getIcon();
-    qDebug()<<"pixmap "<<this->icon;
+    //qDebug()<<"pixmap "<<this->icon;
     this->account = sqconn.getAccount();
     this->name = sqconn.getName();
     this->tarywidget->setName(this->name);
@@ -86,14 +86,23 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
     QStringList grouping = sqconn.getGrouping();
     QStringList mfriend = sqconn.getMfriend();
     QStringList mfriendname = sqconn.getMfriendname();
-    qDebug()<<mfriend;
+    //qDebug()<<mfriend;
     //显示等级
     ui->toolButton_5->setText("   "+sqconn.getGrade());
    // grouping.length()
+    QFont font1;
+    font1.setFamily("Microsoft YaHei");
+    font1.setPointSize(8);
+    font1.setStyleStrategy(QFont::PreferAntialias);
+    QFont font2;
+    font2.setFamily("Microsoft YaHei");
+    font2.setPointSize(9);
+    font2.setStyleStrategy(QFont::PreferAntialias);
     for(int j = 0;j<grouping.length();j++)
     {
         //创建分组信息
         QPushButton * btn = new QPushButton(QIcon(":/lib/jietou.png")," "+grouping.at(j));
+        btn->setFont(font1);
         this->listbtn.append(btn);
         this->iswidget.append(true);
         btn->setFixedSize(312,38);
@@ -132,8 +141,9 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
                 QLabel * la2 = new QLabel(QString("%1").arg(mf.mid(1)));
                 la2->setObjectName("label2");
                 la2->hide();
-                QLabel * la3 = new QLabel(QString("%1").arg(mfriendname.at(i)));
+                QLabel * la3 = new QLabel(QString("  %1").arg(mfriendname.at(i)));
                 la3->setObjectName("label3");
+                la3->setFont(font2);
                 horLayout->addWidget(l1);
                 horLayout->addWidget(btnicon);
                 horLayout->addWidget(la2);
@@ -157,7 +167,7 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
                 //                          "QListWidget::indicator:unchecked{background-color: rgb(255, 103, 53);}");
             }
         }
-        btn->setText(grouping.at(j)+"     "+QString::number(sum+1));
+        btn->setText(grouping.at(j)+"     "+QString::number(sum+1)+"/"+QString::number(sum+1));
         layout->addWidget(listwidget);
     }
     layout->addStretch();
@@ -308,7 +318,7 @@ void MainWindow::on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reaso
                 }
                 if(a==0)
                 {
-                    qDebug()<<"没找到已存在窗口";
+                    //qDebug()<<"没找到已存在窗口";
                     //普通消息 获取相关数据，生成聊天窗口  对方帐号，对方名字，主窗口指针
                     Chat * a = new Chat(sqconn.getPixmapIcon(data.mid(0,8)),data.mid(0,8),sqconn.getOtherAccountName(data.mid(0,8)),this);
                     a->setAccount(this->account); //本身账号
@@ -444,6 +454,11 @@ QPixmap MainWindow::PixmapToRound(QPixmap &src, int radius)
 
 void MainWindow::datawidget(QPixmap pixmap, QString str)
 {
+    QFont font;
+    font.setFamily("Microsoft YaHei");
+    font.setPointSize(10);
+    //font.setBold(true);
+    font.setStyleStrategy(QFont::PreferAntialias);
     QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
     horLayout->setContentsMargins(0,0,0,0);
     horLayout->setSpacing(0);
@@ -453,7 +468,8 @@ void MainWindow::datawidget(QPixmap pixmap, QString str)
     btn->setIconSize(btnsize);
     btn->setFixedSize(32,32);
     btn->setFlat(true);
-    QLabel * la = new QLabel(str);
+    QLabel * la = new QLabel("  "+str);
+    la->setFont(font);
     horLayout->addWidget(btn);
     horLayout->addWidget(la);
     QWidget * widget = new QWidget(this);
@@ -471,7 +487,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     if(obj == ui->pushButton) {
         if(event->type() == QEvent::HoverEnter) {
             qDebug() <<"鼠标来了";
-            ui->pushButton->setStyleSheet("border-radius:25px;border-style:solid;border-width:4px;border-color: rgb(255, 255, 255);");
+            ui->pushButton->setStyleSheet("border-radius:25px;border-style:solid;border-width:4px;border-color: rgba(255, 255, 255,40);");
             QPoint globalPos = this->mapToGlobal(QPoint(0, 0));
             this->aa->setFixedSize(300,150);
             this->aa->move(globalPos.x()-302, globalPos.y()+50);
@@ -495,14 +511,18 @@ void MainWindow::on_toolButton_3_clicked()
 
 void MainWindow::on_widget_clicked(int i)
 {
-    if(this->iswidget[i]==true)
+    if(this->iswidget[i]==true)//闭合
     {
         this->listwidget[i]->setVisible(false);
         this->iswidget[i]=false;
+        this->listbtn[i]->setIcon(QIcon(":/lib/jietou2.png"));
         return;
     }
+    //展开
     this->listwidget[i]->setVisible(true);
     this->iswidget[i]=true;
+    this->listbtn[i]->setIcon(QIcon(":/lib/jietou.png"));
+
 }
 
 void MainWindow::on_Double_widget_clicked(QListWidgetItem * witem)
@@ -566,7 +586,7 @@ void MainWindow::onConnected()
     //发送自己的帐户
     QByteArray straccount = this->account.toUtf8();
     tcpClient->write(straccount);
-    qDebug()<<"写入";
+    //qDebug()<<"写入";
     //发送信号
     //ui->plainTextEdit->appendPlainText("已连接服务器");
     //ui->plainTextEdit->appendPlainText("**peer address"+tcpClient->peerAddress().toString());
@@ -622,17 +642,17 @@ void MainWindow::onSocketReadyRead() //接收消息
             for(int i = 0;i<this->stringlistdata.length();i++)
             {
                 QString str = stringlistdata[i];
-                qDebug()<<"str.mid(0,8)"<<str.mid(0,8);
-                qDebug()<<"data.mid(0,8)"<<data.mid(0,8);
+                //qDebug()<<"str.mid(0,8)"<<str.mid(0,8);
+                //qDebug()<<"data.mid(0,8)"<<data.mid(0,8);
                 if(str.mid(0,8)==data.mid(0,8))
                 {
                     isstr =true;
                     //后续设置显示条数
-                    qDebug()<<"找到相同数";
+                    //qDebug()<<"找到相同数";
                     break;
                 }
             }
-            qDebug()<<"真假"<<isstr;
+            //qDebug()<<"真假"<<isstr;
             if(isstr==false)
             {
                 datawidget(QPixmap(sqconn.getPixmapIcon(data.mid(0,8))),sqconn.getOtherAccountName(data.mid(0,8)));
@@ -642,13 +662,13 @@ void MainWindow::onSocketReadyRead() //接收消息
            Globalinfo.append(1);
            for(int i = 0;i<listchat.length();i++)
            {
-               qDebug()<<"getname:"<<listchat[i]->getOtheraccount()<<"   data.mid"<<data.mid(0,8);
+               //qDebug()<<"getname:"<<listchat[i]->getOtheraccount()<<"   data.mid"<<data.mid(0,8);
                if(listchat[i]->getOtheraccount()==data.mid(0,8))
                {
-                   qDebug()<<"找到正确窗口:"<<data.mid(0,8);
+                   //qDebug()<<"找到正确窗口:"<<data.mid(0,8);
                    listchat[i]->setIsread(true);
                    emit sendChatData(data);
-                   qDebug()<<"成功发送信号";
+                   //qDebug()<<"成功发送信号";
                }
            }
         }
@@ -671,7 +691,7 @@ void MainWindow::MainSendData(QString str)//发送聊天信息
 
 void MainWindow::MainSendAddData(QString str)//发送验证信息
 {
-    qDebug()<<"我是主窗口,我接收到了来做您的验证消息："<<str;
+    //qDebug()<<"我是主窗口,我接收到了来做您的验证消息："<<str;
     QByteArray strdata = str.toUtf8();
     strdata.append('\n');
     tcpClient->write(strdata);

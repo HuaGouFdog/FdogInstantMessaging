@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -33,6 +32,8 @@ class Ui_Chat
 public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
+    QWidget *widget_4;
+    QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer_2;
     QLabel *label;
     QSpacerItem *horizontalSpacer_3;
@@ -47,20 +48,23 @@ public:
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_5;
     QPlainTextEdit *plainTextEdit;
-    QFrame *line;
     QWidget *widget_3;
     QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer_5;
     QToolButton *toolButton_4;
     QToolButton *toolButton_5;
     QToolButton *toolButton_6;
     QSpacerItem *horizontalSpacer_4;
     QToolButton *toolButton_7;
     QToolButton *toolButton_8;
+    QSpacerItem *horizontalSpacer_6;
     QLineEdit *lineEdit;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_4;
     QPushButton *pushButton_3;
+    QSpacerItem *horizontalSpacer_7;
+    QLabel *label_3;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_3;
     QSpacerItem *verticalSpacer;
@@ -71,43 +75,54 @@ public:
     {
         if (Chat->objectName().isEmpty())
             Chat->setObjectName(QStringLiteral("Chat"));
-        Chat->resize(707, 647);
+        Chat->resize(684, 611);
         QFont font;
-        font.setPointSize(5);
+        font.setFamily(QStringLiteral("Microsoft YaHei"));
         Chat->setFont(font);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/icon2505897252.png"), QSize(), QIcon::Normal, QIcon::Off);
         Chat->setWindowIcon(icon);
-        Chat->setStyleSheet(QLatin1String("#Chat{\n"
+        Chat->setStyleSheet(QLatin1String("*{font-family:Microsoft YaHei;}\n"
+"#Chat{\n"
 "background-color: rgb(0, 0, 0);\n"
 "}"));
         verticalLayout = new QVBoxLayout(Chat);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 1, 0, 0);
+        verticalLayout->setContentsMargins(8, 7, 8, 8);
         horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 2, 8, 6);
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalLayout->setContentsMargins(-1, 0, 0, 0);
+        widget_4 = new QWidget(Chat);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        widget_4->setMinimumSize(QSize(319, 37));
+        widget_4->setMaximumSize(QSize(16777215, 34));
+        widget_4->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 0);"));
+        horizontalLayout_5 = new QHBoxLayout(widget_4);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(260, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer_2);
+        horizontalLayout_5->addItem(horizontalSpacer_2);
 
-        label = new QLabel(Chat);
+        label = new QLabel(widget_4);
         label->setObjectName(QStringLiteral("label"));
+        label->setMinimumSize(QSize(0, 33));
         QFont font1;
-        font1.setPointSize(12);
-        font1.setBold(false);
-        font1.setWeight(50);
+        font1.setFamily(QStringLiteral("Microsoft YaHei"));
+        font1.setPointSize(13);
+        font1.setStyleStrategy(QFont::PreferAntialias);
         label->setFont(font1);
         label->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        horizontalLayout->addWidget(label);
+        horizontalLayout_5->addWidget(label);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer_3);
+        horizontalLayout_5->addItem(horizontalSpacer_3);
 
-        toolButton = new QToolButton(Chat);
+        toolButton = new QToolButton(widget_4);
         toolButton->setObjectName(QStringLiteral("toolButton"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/zuixiaohua.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -115,9 +130,9 @@ public:
         toolButton->setIconSize(QSize(20, 20));
         toolButton->setAutoRaise(true);
 
-        horizontalLayout->addWidget(toolButton);
+        horizontalLayout_5->addWidget(toolButton);
 
-        toolButton_2 = new QToolButton(Chat);
+        toolButton_2 = new QToolButton(widget_4);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/max.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -125,9 +140,9 @@ public:
         toolButton_2->setIconSize(QSize(20, 20));
         toolButton_2->setAutoRaise(true);
 
-        horizontalLayout->addWidget(toolButton_2);
+        horizontalLayout_5->addWidget(toolButton_2);
 
-        toolButton_3 = new QToolButton(Chat);
+        toolButton_3 = new QToolButton(widget_4);
         toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/lib/guanbi.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -135,7 +150,10 @@ public:
         toolButton_3->setIconSize(QSize(20, 20));
         toolButton_3->setAutoRaise(true);
 
-        horizontalLayout->addWidget(toolButton_3);
+        horizontalLayout_5->addWidget(toolButton_3);
+
+
+        horizontalLayout->addWidget(widget_4);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -145,30 +163,34 @@ public:
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         widget = new QWidget(Chat);
         widget->setObjectName(QStringLiteral("widget"));
-        QFont font2;
-        font2.setBold(false);
-        font2.setWeight(50);
-        widget->setFont(font2);
+        widget->setFont(font);
         widget->setStyleSheet(QStringLiteral("background-color: rgb(191, 191, 191);"));
         verticalLayout_4 = new QVBoxLayout(widget);
+        verticalLayout_4->setSpacing(3);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         scrollArea = new QScrollArea(widget);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setStyleSheet(QLatin1String("background-color:transparent;\n"
+"border-width:0;\n"
+"border-style:outset;"));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 546, 361));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 527, 275));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral(""));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_5->setContentsMargins(10, 10, 10, 10);
         plainTextEdit = new QPlainTextEdit(scrollAreaWidgetContents);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        QFont font3;
-        font3.setPointSize(12);
-        plainTextEdit->setFont(font3);
+        QFont font2;
+        font2.setFamily(QStringLiteral("Microsoft YaHei"));
+        font2.setPointSize(14);
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        plainTextEdit->setFont(font2);
         plainTextEdit->setStyleSheet(QLatin1String("background-color:transparent;\n"
 "border-width:0;\n"
 "border-style:outset;"));
@@ -183,48 +205,51 @@ public:
 
         verticalLayout_4->addLayout(verticalLayout_2);
 
-        line = new QFrame(widget);
-        line->setObjectName(QStringLiteral("line"));
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-
-        verticalLayout_4->addWidget(line);
-
         widget_3 = new QWidget(widget);
         widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setStyleSheet(QStringLiteral(""));
+        widget_3->setStyleSheet(QLatin1String("background-color: rgb(191, 191, 191);\n"
+"border-width:1px;\n"
+"border-style:solid;\n"
+"border-top-color: rgb(166, 166, 166);"));
         horizontalLayout_4 = new QHBoxLayout(widget_3);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_5 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_5);
+
         toolButton_4 = new QToolButton(widget_3);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
-        toolButton_4->setMinimumSize(QSize(20, 20));
-        toolButton_4->setMaximumSize(QSize(20, 20));
+        toolButton_4->setMinimumSize(QSize(30, 30));
+        toolButton_4->setMaximumSize(QSize(30, 30));
         QIcon icon4;
         icon4.addFile(QStringLiteral(":/lib/weixiao.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_4->setIcon(icon4);
+        toolButton_4->setIconSize(QSize(20, 20));
         toolButton_4->setAutoRaise(true);
 
         horizontalLayout_4->addWidget(toolButton_4);
 
         toolButton_5 = new QToolButton(widget_3);
         toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
-        toolButton_5->setMinimumSize(QSize(20, 20));
-        toolButton_5->setMaximumSize(QSize(20, 20));
+        toolButton_5->setMinimumSize(QSize(30, 30));
+        toolButton_5->setMaximumSize(QSize(30, 30));
         QIcon icon5;
         icon5.addFile(QStringLiteral(":/lib/caijian.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_5->setIcon(icon5);
+        toolButton_5->setIconSize(QSize(20, 20));
         toolButton_5->setAutoRaise(true);
 
         horizontalLayout_4->addWidget(toolButton_5);
 
         toolButton_6 = new QToolButton(widget_3);
         toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
-        toolButton_6->setMinimumSize(QSize(20, 20));
-        toolButton_6->setMaximumSize(QSize(20, 20));
+        toolButton_6->setMinimumSize(QSize(30, 30));
+        toolButton_6->setMaximumSize(QSize(30, 30));
         QIcon icon6;
         icon6.addFile(QStringLiteral(":/lib/mianxingtubiao_zhendong.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_6->setIcon(icon6);
+        toolButton_6->setIconSize(QSize(20, 20));
         toolButton_6->setAutoRaise(true);
 
         horizontalLayout_4->addWidget(toolButton_6);
@@ -235,33 +260,39 @@ public:
 
         toolButton_7 = new QToolButton(widget_3);
         toolButton_7->setObjectName(QStringLiteral("toolButton_7"));
-        toolButton_7->setMinimumSize(QSize(20, 20));
-        toolButton_7->setMaximumSize(QSize(20, 20));
+        toolButton_7->setMinimumSize(QSize(30, 30));
+        toolButton_7->setMaximumSize(QSize(30, 30));
         QIcon icon7;
         icon7.addFile(QStringLiteral(":/lib/fangda.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_7->setIcon(icon7);
+        toolButton_7->setIconSize(QSize(20, 20));
         toolButton_7->setAutoRaise(true);
 
         horizontalLayout_4->addWidget(toolButton_7);
 
         toolButton_8 = new QToolButton(widget_3);
         toolButton_8->setObjectName(QStringLiteral("toolButton_8"));
-        toolButton_8->setMinimumSize(QSize(20, 20));
-        toolButton_8->setMaximumSize(QSize(20, 20));
+        toolButton_8->setMinimumSize(QSize(30, 30));
+        toolButton_8->setMaximumSize(QSize(30, 30));
         QIcon icon8;
         icon8.addFile(QStringLiteral(":/lib/shijian.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_8->setIcon(icon8);
+        toolButton_8->setIconSize(QSize(20, 20));
         toolButton_8->setAutoRaise(true);
 
         horizontalLayout_4->addWidget(toolButton_8);
+
+        horizontalSpacer_6 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_6);
 
 
         verticalLayout_4->addWidget(widget_3);
 
         lineEdit = new QLineEdit(widget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setMinimumSize(QSize(0, 141));
-        lineEdit->setFont(font3);
+        lineEdit->setMinimumSize(QSize(0, 190));
+        lineEdit->setFont(font2);
         lineEdit->setStyleSheet(QLatin1String("background-color:transparent;\n"
 "border-width:0;\n"
 "border-style:outset;"));
@@ -277,10 +308,12 @@ public:
 
         pushButton_4 = new QPushButton(widget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setMinimumSize(QSize(70, 25));
-        QFont font4;
-        font4.setPointSize(10);
-        pushButton_4->setFont(font4);
+        pushButton_4->setMinimumSize(QSize(74, 26));
+        QFont font3;
+        font3.setFamily(QStringLiteral("Microsoft YaHei"));
+        font3.setPointSize(10);
+        font3.setStyleStrategy(QFont::PreferAntialias);
+        pushButton_4->setFont(font3);
         pushButton_4->setStyleSheet(QLatin1String("border-style:solid;\n"
 "background-color: rgb(203, 203, 203);\n"
 "border-width:1px;\n"
@@ -290,8 +323,8 @@ public:
 
         pushButton_3 = new QPushButton(widget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setMinimumSize(QSize(70, 25));
-        pushButton_3->setFont(font4);
+        pushButton_3->setMinimumSize(QSize(74, 26));
+        pushButton_3->setFont(font3);
         pushButton_3->setStyleSheet(QLatin1String("border-style:solid;\n"
 "border-color: rgb(68, 68, 68);\n"
 "background-color: rgb(68, 68, 68);\n"
@@ -302,8 +335,18 @@ public:
 
         horizontalLayout_2->addWidget(pushButton_3);
 
+        horizontalSpacer_7 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_7);
+
 
         verticalLayout_4->addLayout(horizontalLayout_2);
+
+        label_3 = new QLabel(widget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setMinimumSize(QSize(0, 18));
+
+        verticalLayout_4->addWidget(label_3);
 
 
         horizontalLayout_3->addWidget(widget);
@@ -314,6 +357,7 @@ public:
         widget_2->setMaximumSize(QSize(120, 16777215));
         widget_2->setStyleSheet(QLatin1String("background-color: rgb(191, 191, 191);\n"
 "border-width:1px;\n"
+"border-style:solid;\n"
 "border-left-color: rgb(166, 166, 166);"));
         verticalLayout_3 = new QVBoxLayout(widget_2);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -323,8 +367,8 @@ public:
 
         label_2 = new QLabel(widget_2);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setMinimumSize(QSize(120, 310));
-        label_2->setMaximumSize(QSize(120, 310));
+        label_2->setMinimumSize(QSize(120, 318));
+        label_2->setMaximumSize(QSize(120, 318));
         label_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/body.png);"));
 
         verticalLayout_3->addWidget(label_2);
@@ -340,11 +384,8 @@ public:
         verticalLayout->addLayout(horizontalLayout_3);
 
         verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(1, 13);
+        verticalLayout->setStretch(1, 20);
         QWidget::setTabOrder(pushButton_3, pushButton_4);
-        QWidget::setTabOrder(pushButton_4, toolButton);
-        QWidget::setTabOrder(toolButton, toolButton_2);
-        QWidget::setTabOrder(toolButton_2, toolButton_3);
 
         retranslateUi(Chat);
 
@@ -372,6 +413,7 @@ public:
 #ifndef QT_NO_SHORTCUT
         pushButton_3->setShortcut(QApplication::translate("Chat", "Return", nullptr));
 #endif // QT_NO_SHORTCUT
+        label_3->setText(QString());
         label_2->setText(QString());
     } // retranslateUi
 

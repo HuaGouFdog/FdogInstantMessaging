@@ -12,6 +12,8 @@ Chat::Chat(QPixmap pixmap,QString otheraccount,QString name,MainWindow * main,QW
     ui(new Ui::Chat)
 {
     ui->setupUi(this);
+    setWindowFlags (Qt::FramelessWindowHint);//隐藏标题栏
+    setAttribute(Qt::WA_TranslucentBackground);
     this->otheraccount=otheraccount;
     this->name=name;
     this->setWindowTitle(name);
@@ -51,6 +53,41 @@ QWidget *Chat::CreateWidgetR()
     return datawidget;
 }
 
+void Chat::paintEvent(QPaintEvent *e)
+{
+    Q_UNUSED(e)
+        QPainter painter(this);
+        QPixmap pixmap(":/lib/background.png");//做好的图
+        qDrawBorderPixmap(&painter, this->rect(), QMargins(0, 0, 0, 0), pixmap);
+        QRect rect(this->rect().x()+8, this->rect().y()+8, this->rect().width()-16, this->rect().height()-16);
+        painter.fillRect(rect, QColor(255, 255, 255));
+}
+
+void Chat::mousePressEvent(QMouseEvent *event)
+{
+    isPressedWidget = true; // 当前鼠标按下的即是QWidget而非界面上布局的其它控件
+    last = event->globalPos();
+}
+
+void Chat::mouseMoveEvent(QMouseEvent *event)
+{
+    if (isPressedWidget)
+        {
+            int dx = event->globalX() - last.x();
+            int dy = event->globalY() - last.y();
+            last = event->globalPos();
+            move(x()+dx, y()+dy);
+        }
+}
+
+void Chat::mouseReleaseEvent(QMouseEvent *event)
+{
+    int dx = event->globalX() - last.x();
+    int dy = event->globalY() - last.y();
+    move(x()+dx, y()+dy);
+    isPressedWidget = false; // 鼠标松开时，置为false
+}
+
 Chat::~Chat()
 {
     delete ui;
@@ -59,7 +96,7 @@ Chat::~Chat()
 
 void Chat::closeEvent(QCloseEvent *e)
 {
-    qDebug()<<"关不掉";
+    //qDebug()<<"关不掉";
     //this->hide();
     e->ignore();
     e->accept();
@@ -194,8 +231,8 @@ void Chat::onDisconnected()
 
 void Chat::onSocketReadyRead(QString data)
 {
-    qDebug()<<"接收到信号";
-    qDebug()<<"是真是假："<<this->isread;
+    //qDebug()<<"接收到信号";
+    //qDebug()<<"是真是假："<<this->isread;
     QDateTime curDateTime=QDateTime::currentDateTime();
     QString time = curDateTime.toString("hh:mm:ss");
     if(this->isread==true)

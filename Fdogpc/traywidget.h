@@ -2,7 +2,8 @@
 #define TRAYWIDGET_H
 
 #include <QWidget>
-
+#include<qdrawutil.h>
+#include<QPainter>
 namespace Ui {
 class Traywidget;
 }
@@ -17,7 +18,7 @@ public:
     ~Traywidget();
     void setTrayWidgetItem(QPixmap pixmap,const QString &str);
     void deleteItem();//清空列表
-
+    void paintEvent(QPaintEvent *e);
     QString getName() const;
     void setName(const QString &value);
 

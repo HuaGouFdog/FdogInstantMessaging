@@ -49,6 +49,7 @@
        <font>
         <family>Microsoft YaHei</family>
         <pointsize>11</pointsize>
+        <stylestrategy>PreferAntialias</stylestrategy>
        </font>
       </property>
       <property name="styleSheet">
@@ -91,6 +92,12 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
          </property>
          <item>
           <spacer name="horizontalSpacer_4">
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -119,6 +126,12 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
              <height>20</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -127,7 +140,7 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
            </property>
            <property name="icon">
             <iconset resource="libres.qrc">
-             <normaloff>:/lib/fdog.png</normaloff>:/lib/fdog.png</iconset>
+             <normaloff>:/lib/fdog2.png</normaloff>:/lib/fdog2.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -148,6 +161,12 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
          </item>
          <item>
           <spacer name="horizontalSpacer">
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -172,6 +191,12 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
              <width>25</width>
              <height>25</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true"/>
@@ -208,6 +233,12 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
              <height>25</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="text">
             <string>...</string>
            </property>
@@ -240,6 +271,12 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
              <height>25</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="text">
             <string>...</string>
            </property>
@@ -260,6 +297,12 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
          </item>
          <item>
           <spacer name="horizontalSpacer_2">
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -281,7 +324,7 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
          <property name="minimumSize">
           <size>
            <width>250</width>
-           <height>71</height>
+           <height>75</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -289,6 +332,12 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
            <width>301</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <widget class="QLabel" name="signature_label">
           <property name="geometry">
@@ -305,6 +354,7 @@ background-color: qlineargradient(spread:pad, x1:0.517, y1:0.0227273, x2:0.51136
             <pointsize>9</pointsize>
             <weight>50</weight>
             <bold>false</bold>
+            <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
           <property name="styleSheet">
@@ -347,6 +397,7 @@ border-color: rgb(108, 108, 108);
            <font>
             <family>Microsoft YaHei</family>
             <pointsize>3</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
           <property name="styleSheet">
@@ -386,9 +437,10 @@ background-color: rgba(255, 255, 255, 0);
           <property name="font">
            <font>
             <family>Microsoft YaHei</family>
-            <pointsize>11</pointsize>
+            <pointsize>12</pointsize>
             <weight>75</weight>
             <bold>true</bold>
+            <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
           <property name="styleSheet">
@@ -407,6 +459,12 @@ background-color: rgba(255, 255, 255, 0);
             <height>52</height>
            </rect>
           </property>
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei</family>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
@@ -421,7 +479,7 @@ border-color: rgba(255, 255, 255,20);
 border-radius:26px;
 border-style:solid;
 border-width:4px;
-border-color: rgb(255, 255, 255);
+border-color: rgba(255, 255, 255,20);
 }
 
 
@@ -452,6 +510,7 @@ border-color: rgb(255, 255, 255);
             <family>Microsoft YaHei</family>
             <weight>75</weight>
             <bold>true</bold>
+            <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
           <property name="styleSheet">
@@ -495,6 +554,12 @@ border-color: rgb(255, 255, 255);
             <height>17</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei</family>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
@@ -530,6 +595,7 @@ border-color: rgb(255, 255, 255);
             <pointsize>7</pointsize>
             <weight>75</weight>
             <bold>true</bold>
+            <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
           <property name="styleSheet">
@@ -561,14 +627,20 @@ border-color: rgb(255, 255, 255);
            <property name="minimumSize">
             <size>
              <width>27</width>
-             <height>26</height>
+             <height>28</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>27</width>
-             <height>31</height>
+             <height>29</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgba(255, 255, 255,50);</string>
@@ -596,16 +668,17 @@ border-color: rgb(255, 255, 255);
            <property name="minimumSize">
             <size>
              <width>272</width>
-             <height>26</height>
+             <height>28</height>
             </size>
            </property>
            <property name="font">
             <font>
-             <family>黑体</family>
-             <pointsize>-1</pointsize>
+             <family>Microsoft YaHei</family>
+             <pointsize>10</pointsize>
              <weight>50</weight>
              <italic>false</italic>
              <bold>false</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
             </font>
            </property>
            <property name="styleSheet">
@@ -614,8 +687,7 @@ border-color:rgba(0,0,0,255);
 color: rgba(9, 0, 3,0);
 border-style:none;
 border-width:1px;
-border-radius:0px;
-font:15px &quot;黑体&quot;;</string>
+border-radius:0px;</string>
            </property>
            <property name="placeholderText">
             <string>搜索</string>
@@ -641,7 +713,10 @@ font:15px &quot;黑体&quot;;</string>
          <property name="font">
           <font>
            <family>Microsoft YaHei</family>
-           <pointsize>9</pointsize>
+           <pointsize>11</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <stylestrategy>PreferAntialias</stylestrategy>
           </font>
          </property>
          <property name="styleSheet">
@@ -649,9 +724,8 @@ font:15px &quot;黑体&quot;;</string>
 background-color: rgb(255, 255, 255);
 border-style:solid;
 border-width:2px;
-font:18px &quot;宋体&quot;;
-border-radius:2px;
-height:38px;
+border-radius:0px;
+height:32px;
 width:102px;
 color: rgb(100, 100, 100);
 	border-color: rgb(255, 255, 255);
@@ -659,11 +733,11 @@ border-bottom-color: rgba(255, 255, 255, 0);
 }
 QWidget::tab:selected{
 border-bottom-color: rgb(127, 127, 127);
-border-radius:2px;
+border-radius-:2px;
 }</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab">
           <property name="font">
@@ -690,6 +764,12 @@ border-radius:2px;
            </property>
            <item>
             <widget class="QScrollArea" name="scrollArea_3">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei</family>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
              <property name="widgetResizable">
               <bool>true</bool>
              </property>
@@ -717,6 +797,12 @@ border-radius:2px;
                </property>
                <item row="0" column="0">
                 <widget class="QListWidget" name="listWidget">
+                 <property name="font">
+                  <font>
+                   <family>Microsoft YaHei</family>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
@@ -737,7 +823,7 @@ border-radius:2px;
             <number>0</number>
            </property>
            <property name="topMargin">
-            <number>0</number>
+            <number>4</number>
            </property>
            <property name="rightMargin">
             <number>0</number>
@@ -747,15 +833,21 @@ border-radius:2px;
            </property>
            <item row="0" column="0">
             <widget class="QTabWidget" name="tabWidget_2">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei</family>
+               <pointsize>9</pointsize>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
              <property name="styleSheet">
               <string notr="true">::tab{
 background-color: rgb(255, 255, 255);
 border-style:solid;
 border-width:0px;
-font:14px &quot;宋体&quot;;
 border-radius:2px;
 height:25px;
-width:70px;
+width:50px;
 color: rgb(100, 100, 100);
 border-color: rgb(255, 255, 255);
 }
@@ -787,6 +879,12 @@ border-radius:2px;
                </property>
                <item row="0" column="0">
                 <widget class="QScrollArea" name="scrollArea">
+                 <property name="font">
+                  <font>
+                   <family>Microsoft YaHei</family>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QScrollBar:vertical{
 background-color:rgba(0,0,0,0);
@@ -825,7 +923,7 @@ QScrollBar::sub-page:vertical,QScrollBar::sub-page:vertical{background:rgba(0,0,
                     <x>0</x>
                     <y>0</y>
                     <width>310</width>
-                    <height>387</height>
+                    <height>383</height>
                    </rect>
                   </property>
                   <property name="cursor">
@@ -863,6 +961,12 @@ background-color: rgb(203, 203, 203);
              <height>411</height>
             </rect>
            </property>
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="verticalScrollBarPolicy">
             <enum>Qt::ScrollBarAlwaysOff</enum>
            </property>
@@ -893,6 +997,12 @@ background-color: rgb(203, 203, 203);
              </property>
              <item>
               <widget class="QListWidget" name="listWidget_2">
+               <property name="font">
+                <font>
+                 <family>Microsoft YaHei</family>
+                 <stylestrategy>PreferAntialias</stylestrategy>
+                </font>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QListWidget::Item{
 background-color: rgb(173, 173, 173);
@@ -902,41 +1012,6 @@ QListWidget::Item:hover{
 background-color: rgba(203, 203, 203, 100);
 }</string>
                </property>
-               <item>
-                <property name="text">
-                 <string>新建项目</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>新建项目</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>新建项目</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>新建项目</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>新建项目</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>新建项目</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>新建项目</string>
-                </property>
-               </item>
               </widget>
              </item>
             </layout>
@@ -955,6 +1030,12 @@ background-color: rgba(203, 203, 203, 100);
          </property>
          <item>
           <spacer name="horizontalSpacer_5">
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -982,6 +1063,12 @@ background-color: rgba(203, 203, 203, 100);
              <width>30</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true"/>
@@ -1018,6 +1105,12 @@ background-color: rgba(203, 203, 203, 100);
              <height>30</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -1041,6 +1134,12 @@ background-color: rgba(203, 203, 203, 100);
          </item>
          <item>
           <spacer name="horizontalSpacer_3">
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei</family>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>

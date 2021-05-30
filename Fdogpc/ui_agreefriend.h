@@ -37,11 +37,14 @@ public:
         if (Agreefriend->objectName().isEmpty())
             Agreefriend->setObjectName(QStringLiteral("Agreefriend"));
         Agreefriend->resize(322, 183);
+        QFont font;
+        font.setFamily(QStringLiteral("Microsoft YaHei"));
+        font.setStyleStrategy(QFont::PreferAntialias);
+        Agreefriend->setFont(font);
+        Agreefriend->setStyleSheet(QStringLiteral("*{font-family:Microsoft YaHei;}"));
         label = new QLabel(Agreefriend);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(40, 20, 61, 31));
-        QFont font;
-        font.setPointSize(12);
         label->setFont(font);
         label_2 = new QLabel(Agreefriend);
         label_2->setObjectName(QStringLiteral("label_2"));
@@ -50,15 +53,19 @@ public:
         comboBox = new QComboBox(Agreefriend);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setGeometry(QRect(100, 60, 151, 31));
+        comboBox->setFont(font);
         lineEdit = new QLineEdit(Agreefriend);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(100, 20, 151, 31));
+        lineEdit->setFont(font);
         pushButton = new QPushButton(Agreefriend);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(50, 120, 91, 31));
+        pushButton->setFont(font);
         pushButton_2 = new QPushButton(Agreefriend);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(170, 120, 91, 31));
+        pushButton_2->setFont(font);
 
         retranslateUi(Agreefriend);
 

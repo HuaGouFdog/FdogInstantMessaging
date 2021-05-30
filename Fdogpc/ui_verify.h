@@ -49,7 +49,8 @@ public:
         if (Verify->objectName().isEmpty())
             Verify->setObjectName(QStringLiteral("Verify"));
         Verify->resize(575, 447);
-        Verify->setStyleSheet(QLatin1String("#Verify{\n"
+        Verify->setStyleSheet(QLatin1String("*{font-family:Microsoft YaHei;}\n"
+"#Verify{\n"
 "background-color: rgb(116, 195, 255);\n"
 "}"));
         verticalLayout = new QVBoxLayout(Verify);
@@ -60,17 +61,23 @@ public:
         label = new QLabel(Verify);
         label->setObjectName(QStringLiteral("label"));
         label->setMaximumSize(QSize(15, 15));
+        QFont font;
+        font.setFamily(QStringLiteral("Microsoft YaHei"));
+        font.setStyleStrategy(QFont::PreferAntialias);
+        label->setFont(font);
         label->setStyleSheet(QStringLiteral("border-image: url(:/lib/yinshenim.png);"));
 
         horizontalLayout->addWidget(label);
 
         label_2 = new QLabel(Verify);
         label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setFont(font);
 
         horizontalLayout->addWidget(label_2);
 
         toolButton = new QToolButton(Verify);
         toolButton->setObjectName(QStringLiteral("toolButton"));
+        toolButton->setFont(font);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/zuixiaohua.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton->setIcon(icon);
@@ -80,6 +87,7 @@ public:
 
         toolButton_2 = new QToolButton(Verify);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
+        toolButton_2->setFont(font);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/guanbi.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_2->setIcon(icon1);
@@ -93,30 +101,38 @@ public:
         widget = new QWidget(Verify);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setMinimumSize(QSize(0, 417));
+        widget->setFont(font);
         widget->setStyleSheet(QStringLiteral("background-color: rgb(179, 255, 250);"));
         tabWidget = new QTabWidget(widget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setGeometry(QRect(10, 0, 551, 401));
+        tabWidget->setFont(font);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         label_3 = new QLabel(tab);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(20, 10, 54, 12));
+        label_3->setFont(font);
         label_5 = new QLabel(tab);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setGeometry(QRect(110, 32, 54, 20));
+        label_5->setFont(font);
         label_6 = new QLabel(tab);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(110, 60, 54, 16));
+        label_6->setFont(font);
         label_7 = new QLabel(tab);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setGeometry(QRect(110, 80, 54, 21));
+        label_7->setFont(font);
         pushButton = new QPushButton(tab);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(400, 70, 91, 31));
+        pushButton->setFont(font);
         pushButton_3 = new QPushButton(tab);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(20, 40, 61, 61));
+        pushButton_3->setFont(font);
         pushButton_3->setIconSize(QSize(55, 55));
         pushButton_3->setAutoDefault(false);
         pushButton_3->setFlat(true);

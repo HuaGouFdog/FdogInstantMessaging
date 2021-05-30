@@ -43,7 +43,7 @@ public:
     QComboBox *comboBox;
     QCheckBox *checkBox;
     QLineEdit *lineEdit;
-    QWidget *widget1;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_3;
     QToolButton *toolButton;
     QLabel *label;
@@ -59,45 +59,47 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/fdogicon.png"), QSize(), QIcon::Normal, QIcon::Off);
         Query->setWindowIcon(icon);
-        Query->setStyleSheet(QLatin1String("#Query{\n"
+        Query->setStyleSheet(QLatin1String("*{font-family:Microsoft YaHei;}\n"
+"#Query{\n"
 "background-color: rgb(193, 255, 183);\n"
 "}"));
         line = new QFrame(Query);
         line->setObjectName(QStringLiteral("line"));
         line->setGeometry(QRect(0, 179, 901, 21));
+        QFont font;
+        font.setFamily(QStringLiteral("Microsoft YaHei"));
+        font.setStyleStrategy(QFont::PreferAntialias);
+        line->setFont(font);
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
         widget = new QWidget(Query);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setGeometry(QRect(10, 199, 881, 391));
         widget->setMinimumSize(QSize(0, 300));
+        widget->setFont(font);
         widget->setStyleSheet(QLatin1String("#widget{\n"
 "background-color: rgb(160, 255, 200);\n"
 "}"));
         lineEdit_4 = new QLineEdit(widget);
         lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
         lineEdit_4->setGeometry(QRect(80, 20, 131, 31));
-        QFont font;
-        font.setPointSize(12);
         lineEdit_4->setFont(font);
         lineEdit_4->setReadOnly(true);
         pushButton_3 = new QPushButton(widget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(80, 60, 81, 21));
+        pushButton_3->setFont(font);
         pushButton_4 = new QPushButton(widget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
         pushButton_4->setGeometry(QRect(20, 20, 51, 51));
+        pushButton_4->setFont(font);
         pushButton_4->setStyleSheet(QStringLiteral("border-radius:25px;"));
         pushButton_4->setIconSize(QSize(50, 50));
         pushButton = new QPushButton(Query);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(600, 110, 121, 41));
         pushButton->setMinimumSize(QSize(90, 30));
-        QFont font1;
-        font1.setPointSize(12);
-        font1.setBold(false);
-        font1.setWeight(50);
-        pushButton->setFont(font1);
+        pushButton->setFont(font);
         pushButton->setStyleSheet(QLatin1String("background-color: rgb(111, 188, 255);\n"
 "border-style:solid;\n"
 "color: rgb(255, 255, 255);\n"
@@ -105,15 +107,14 @@ public:
         label_2 = new QLabel(Query);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(-10, 70, 911, 531));
+        label_2->setFont(font);
         label_2->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         lineEdit_2 = new QLineEdit(Query);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
         lineEdit_2->setGeometry(QRect(20, 130, 150, 30));
         lineEdit_2->setMinimumSize(QSize(0, 30));
         lineEdit_2->setMaximumSize(QSize(150, 16777215));
-        QFont font2;
-        font2.setPointSize(11);
-        lineEdit_2->setFont(font2);
+        lineEdit_2->setFont(font);
         lineEdit_2->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
 "border-style:solid;\n"
 "border-width:1px;\n"
@@ -123,7 +124,7 @@ public:
         lineEdit_3->setGeometry(QRect(178, 130, 150, 30));
         lineEdit_3->setMinimumSize(QSize(0, 30));
         lineEdit_3->setMaximumSize(QSize(150, 16777215));
-        lineEdit_3->setFont(font2);
+        lineEdit_3->setFont(font);
         lineEdit_3->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
 "border-style:solid;\n"
 "border-width:1px;\n"
@@ -137,6 +138,7 @@ public:
         comboBox_2->setGeometry(QRect(424, 130, 80, 30));
         comboBox_2->setMinimumSize(QSize(70, 30));
         comboBox_2->setMaximumSize(QSize(80, 16777215));
+        comboBox_2->setFont(font);
         comboBox_2->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
 "border-style:solid;\n"
 "border-width:1px;\n"
@@ -149,6 +151,7 @@ public:
         comboBox->setGeometry(QRect(336, 130, 80, 30));
         comboBox->setMinimumSize(QSize(70, 30));
         comboBox->setMaximumSize(QSize(80, 16777215));
+        comboBox->setFont(font);
         comboBox->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
 "border-style:solid;\n"
 "border-width:1px;\n"
@@ -157,39 +160,37 @@ public:
         checkBox->setObjectName(QStringLiteral("checkBox"));
         checkBox->setGeometry(QRect(526, 90, 57, 30));
         checkBox->setMinimumSize(QSize(0, 30));
-        QFont font3;
-        font3.setPointSize(13);
-        checkBox->setFont(font3);
+        checkBox->setFont(font);
         checkBox->setStyleSheet(QStringLiteral(""));
         lineEdit = new QLineEdit(Query);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(16, 90, 489, 30));
         lineEdit->setMinimumSize(QSize(0, 30));
         lineEdit->setMaximumSize(QSize(489, 16777215));
-        lineEdit->setFont(font2);
+        lineEdit->setFont(font);
         lineEdit->setStyleSheet(QLatin1String("border-color: rgb(110, 149, 255);\n"
 "border-style:solid;\n"
 "border-width:1px;\n"
 "border-radius:5px;"));
-        widget1 = new QWidget(Query);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 5, 881, 28));
-        horizontalLayout_3 = new QHBoxLayout(widget1);
+        layoutWidget = new QWidget(Query);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 5, 881, 28));
+        layoutWidget->setFont(font);
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        toolButton = new QToolButton(widget1);
+        toolButton = new QToolButton(layoutWidget);
         toolButton->setObjectName(QStringLiteral("toolButton"));
+        toolButton->setFont(font);
         toolButton->setIcon(icon);
         toolButton->setIconSize(QSize(20, 20));
         toolButton->setAutoRaise(true);
 
         horizontalLayout_3->addWidget(toolButton);
 
-        label = new QLabel(widget1);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
-        QFont font4;
-        font4.setPointSize(10);
-        label->setFont(font4);
+        label->setFont(font);
 
         horizontalLayout_3->addWidget(label);
 
@@ -197,8 +198,9 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer);
 
-        toolButton_2 = new QToolButton(widget1);
+        toolButton_2 = new QToolButton(layoutWidget);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
+        toolButton_2->setFont(font);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/zuixiaohua.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_2->setIcon(icon1);
@@ -207,8 +209,9 @@ public:
 
         horizontalLayout_3->addWidget(toolButton_2);
 
-        toolButton_4 = new QToolButton(widget1);
+        toolButton_4 = new QToolButton(layoutWidget);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
+        toolButton_4->setFont(font);
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/guanbi.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_4->setIcon(icon2);
@@ -217,6 +220,7 @@ public:
 
         horizontalLayout_3->addWidget(toolButton_4);
 
+        layoutWidget->raise();
         label_2->raise();
         line->raise();
         widget->raise();

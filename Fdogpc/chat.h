@@ -22,12 +22,17 @@ private:
     bool isread = false;
     int isdown;
     QPixmap pixmap;
-    QString getLocalIP();
+    QPoint last;                        //窗口拖动用变量
+    bool isPressedWidget;
 public:
-
     explicit Chat(QPixmap pixmap,QString otheraccount,QString name,MainWindow * main, QWidget *parent = 0);
+    QString getLocalIP();
     QWidget * CreateWidgetL();
     QWidget * CreateWidgetR();
+    void paintEvent(QPaintEvent *e);
+    void mousePressEvent(QMouseEvent *event);//鼠标点击
+    void mouseMoveEvent(QMouseEvent *event);//鼠标移动
+    void mouseReleaseEvent(QMouseEvent *event);//鼠标释放
     ~Chat();
 
     QString getName() const;

@@ -8,7 +8,12 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-
+//    QFont font;
+//    font.setFamily("Microsoft YaHei");
+//    font.setPointSize(12);
+//    font.setBold(true);
+//    font.setStyleStrategy(QFont::PreferAntialias);
+//    ui->pushButton->setFont(font);
     //this->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint);
     //窗体风格
     this->setWindowFlags(Qt::SplashScreen|Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);//WindowStaysOnTopHint窗口顶置
@@ -33,7 +38,7 @@ Login::Login(QWidget *parent) :
     systemtrayicon->setContextMenu(menu);
     systemtrayicon->show();
     //加载动态图
-    m_movie = new QMovie(":/lib/mian.gif");
+    m_movie = new QMovie(":/lib/mian2.gif");
     //设置动态图大小
     m_si.setWidth(431);
     m_si.setHeight(151);
@@ -72,9 +77,14 @@ Login::Login(QWidget *parent) :
     ui->comboBox->setModel(m_AccountList->model());
     ui->comboBox->setView(m_AccountList);
     //创建信息
-    qDebug()<<"数据长度："<<infoList.size();
+    //qDebug()<<"数据长度："<<infoList.size();
     int infosize =0;
     myMapper = new QSignalMapper(this);
+    QFont font;
+    font.setFamily("Microsoft YaHei");
+    font.setPointSize(9);
+    //font.setBold(true);
+    font.setStyleStrategy(QFont::PreferAntialias);
     for(int i =0;i<infoList.size();i++)
     {
         //获取帐号
@@ -87,7 +97,7 @@ Login::Login(QWidget *parent) :
         QString ic = fileName1+QString("//%1//%2.jpg").arg(infoList.at(i)).arg(infoList.at(i));
         //qDebug()<<"保存的图片"<<ic;
         this->icon.append(ic);
-        QIcon local_icon(ic);
+        //QIcon local_icon(ic);
         //qDebug()<<local_icon;
         QFile file_my(fileName1+QString("//%1//data.txt").arg(infoList.at(i)));
         //qDebug()<<file_my;
@@ -116,14 +126,21 @@ Login::Login(QWidget *parent) :
                 local_name.append(str);
                 this->ispasswd =true;
             }
-            qDebug()<<infopasswd;
+            //qDebug()<<infopasswd;
         }
         QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
-        QLabel * la = new QLabel();
-        QString s = ic;
-        la->setStyleSheet(QString("border-image: url(%1);border-radius:17px;").arg(s));
+        QPushButton * la = new QPushButton();
+        //QString s = ic;
+        QPixmap pixicon(ic);
+        pixicon=pixicon.scaled(QSize(pixicon.width(), pixicon.height()), Qt::IgnoreAspectRatio);
+        pixicon=Globalobserver::PixmapToRound(pixicon,pixicon.width()/2);
+        //qDebug()<<"图片大小为"<<pixicon.width();
+        la->setIcon(pixicon);
+        la->setIconSize(QSize(34,34));
+        la->setStyleSheet("background:rgba(0,0,0,0)");
         la->setFixedSize(34,34);
         QLabel * la2 = new QLabel(QString("%1\n%2").arg(local_name.left(local_name.length()-1),local_account));
+        la2->setFont(font);
         QPushButton * b1 = new QPushButton();
         b1->setFixedSize(32,32);
         b1->setStyleSheet("QPushButton{background:rgba(200,200,200,0);border-style:solid;border-image: url(:/lib/delete.png);}"
@@ -131,7 +148,7 @@ Login::Login(QWidget *parent) :
         connect(b1,SIGNAL(clicked(bool)),myMapper,SLOT(map()));
         myMapper->setMapping(b1,infosize);
         infoListsign.append(infosize);
-        qDebug()<<"按钮值为："<<infosize;
+        //qDebug()<<"按钮值为："<<infosize;
         infosize++;
         horLayout->addWidget(la);
         horLayout->addWidget(la2);
@@ -249,8 +266,12 @@ void Login::on_comboBox_currentIndexChanged(int index)
         ui->checkBox_2->setChecked(true);
     }
     QString icon1 = icon.at(index);
-    ui->label_4->setStyleSheet(QString("border-image: url(%1);border-width:0px;border-style:solid;border-color: rgb(255, 255, 255);border-radius:33px;").arg(icon1));
-    //开始考虑用户是否选择记住密码
+    QPixmap pixicon(icon1);
+    pixicon=pixicon.scaled(QSize(pixicon.width(), pixicon.height()), Qt::IgnoreAspectRatio);
+    pixicon=Globalobserver::PixmapToRound(pixicon,pixicon.width()/2);
+    ui->pushButton_3->setIcon(pixicon);
+    ui->pushButton_3->setIconSize(QSize(66,66));
+    //ui->label_4->setStyleSheet(QString("border-image: url(%1);border-width:0px;border-style:solid;border-color: rgb(255, 255, 255);border-radius:33px;").arg(icon1));
 }
 
 void Login::on_pushButton_clicked()
@@ -285,7 +306,7 @@ void Login::on_pushButton_clicked()
         {
             //qDebug()<<"创建";
             QFile file(fileName +"//data.txt");
-            qDebug()<<fileName +"//data.txt";
+            //qDebug()<<fileName +"//data.txt";
             if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
             {
                 //qDebug()<<"txt文件创建成功";
@@ -305,7 +326,7 @@ void Login::on_pushButton_clicked()
             {
                 //qDebug()<<"创建";
                 QFile file(fileName +"//data.txt");
-                qDebug()<<fileName +"//data.txt";
+                //qDebug()<<fileName +"//data.txt";
                 if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
                 {
                     //qDebug()<<"txt文件创建成功";
@@ -339,11 +360,13 @@ void Login::on_pushButton_clicked()
 void Login::showwidget()
 {
     this->show();
+
 }
 
 void Login::closewidget()
 {
     this->close();
+    systemtrayicon->hide();
 }
 
 void Login::deleteaccount(int i) //传进来的是标记数字
@@ -376,9 +399,12 @@ void Login::deleteaccount(int i) //传进来的是标记数字
         {
             ui->lineEdit_2->setText("");
             ui->lineEdit->setText("");
-            QPixmap map(":/lib/fdogicon.png");
-            //ui->label_4->setPixmap(map);
-            ui->label_4->setStyleSheet("border-image: url(:/lib/fdogicon.png);border-width:0px;border-style:solid;border-color: rgb(255, 255, 255);border-radius:33px;");
+            QPixmap pixicon(":/lib/fdogicon.png");
+            pixicon=pixicon.scaled(QSize(pixicon.width(), pixicon.height()), Qt::IgnoreAspectRatio);
+            pixicon=Globalobserver::PixmapToRound(pixicon,pixicon.width()/2);
+            ui->pushButton_3->setIcon(pixicon);
+            ui->pushButton_3->setIconSize(QSize(66,66));
+            //ui->label_4->setStyleSheet("border-image: url(:/lib/fdogicon.png);border-width:0px;border-style:solid;border-color: rgb(255, 255, 255);border-radius:33px;");
             this->m_AccountList->setItemHidden(this->m_AccountList->item(0),true);
             return;
         }

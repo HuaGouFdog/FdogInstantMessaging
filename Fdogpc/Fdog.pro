@@ -69,3 +69,7 @@ QT +=sql
 
 QT += network
 
+CONFIG += resources_big
+
+QMAKE_CXXFLAGS += /MP
+

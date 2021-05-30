@@ -66,7 +66,10 @@ public:
         if (Addfriend->objectName().isEmpty())
             Addfriend->setObjectName(QStringLiteral("Addfriend"));
         Addfriend->resize(453, 300);
-        Addfriend->setStyleSheet(QLatin1String("#Addfriend{\n"
+        Addfriend->setStyleSheet(QLatin1String("*{font-family:Microsoft YaHei;\n"
+"\n"
+"}\n"
+"#Addfriend{\n"
 "background-color: rgb(61, 155, 255);\n"
 "}"));
         verticalLayout = new QVBoxLayout(Addfriend);
@@ -89,6 +92,11 @@ public:
         label = new QLabel(Addfriend);
         label->setObjectName(QStringLiteral("label"));
         label->setMinimumSize(QSize(0, 34));
+        QFont font;
+        font.setFamily(QStringLiteral("Microsoft YaHei"));
+        font.setPointSize(9);
+        font.setStyleStrategy(QFont::PreferAntialias);
+        label->setFont(font);
         label->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
         horizontalLayout->addWidget(label);
@@ -135,18 +143,26 @@ public:
         label_8 = new QLabel(widget_2);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setGeometry(QRect(20, 120, 61, 16));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Microsoft YaHei"));
+        font1.setStyleStrategy(QFont::PreferAntialias);
+        label_8->setFont(font1);
         label_9 = new QLabel(widget_2);
         label_9->setObjectName(QStringLiteral("label_9"));
         label_9->setGeometry(QRect(20, 140, 61, 16));
+        label_9->setFont(font1);
         label_10 = new QLabel(widget_2);
         label_10->setObjectName(QStringLiteral("label_10"));
         label_10->setGeometry(QRect(20, 160, 71, 16));
+        label_10->setFont(font1);
         label_11 = new QLabel(widget_2);
         label_11->setObjectName(QStringLiteral("label_11"));
         label_11->setGeometry(QRect(20, 180, 71, 16));
+        label_11->setFont(font1);
         label_12 = new QLabel(widget_2);
         label_12->setObjectName(QStringLiteral("label_12"));
         label_12->setGeometry(QRect(20, 200, 111, 16));
+        label_12->setFont(font1);
         pushButton_3 = new QPushButton(widget_2);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(20, 20, 81, 81));
@@ -159,9 +175,11 @@ public:
         pushButton = new QPushButton(widget_3);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(290, 10, 75, 25));
+        pushButton->setFont(font1);
         pushButton_2 = new QPushButton(widget_3);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(370, 10, 75, 25));
+        pushButton_2->setFont(font1);
         stackedWidget = new QStackedWidget(widget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setGeometry(QRect(130, 0, 321, 221));
@@ -170,16 +188,19 @@ public:
         lineEdit = new QLineEdit(page);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(10, 60, 301, 71));
+        lineEdit->setFont(font1);
         lineEdit->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_3 = new QLabel(page);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(10, 30, 121, 20));
+        label_3->setFont(font1);
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
         label_4 = new QLabel(page_2);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(20, 10, 54, 31));
+        label_4->setFont(font1);
         comboBox = new QComboBox(page_2);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setGeometry(QRect(90, 10, 171, 31));
@@ -191,6 +212,7 @@ public:
         label_5 = new QLabel(page_2);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setGeometry(QRect(20, 50, 54, 31));
+        label_5->setFont(font1);
         stackedWidget->addWidget(page_2);
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
@@ -201,9 +223,7 @@ public:
         label_7 = new QLabel(page_3);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setGeometry(QRect(50, 10, 261, 51));
-        QFont font;
-        font.setPointSize(10);
-        label_7->setFont(font);
+        label_7->setFont(font1);
         stackedWidget->addWidget(page_3);
 
         verticalLayout->addWidget(widget);

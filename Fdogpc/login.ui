@@ -10,6 +10,13 @@
     <height>344</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Microsoft YaHei</family>
+    <pointsize>10</pointsize>
+    <stylestrategy>PreferAntialias</stylestrategy>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -54,6 +61,12 @@ background-color: rgb(84, 62, 255);
        <height>330</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <family>Microsoft YaHei</family>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">#widet{
 border-radius: 10px;
@@ -70,6 +83,12 @@ background-color: rgba(255, 255, 255, 0);
         <height>131</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(0, 0, 0);
 border-top-left-radius:10px;
@@ -83,16 +102,22 @@ border-top-right-radius:10px;</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>124</y>
+        <y>129</y>
         <width>431</width>
-        <height>204</height>
+        <height>200</height>
        </rect>
       </property>
       <property name="minimumSize">
        <size>
         <width>431</width>
-        <height>204</height>
+        <height>200</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);
@@ -111,6 +136,12 @@ border-bottom-right-radius: 10px;</string>
         <width>71</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">#register_btn{
@@ -142,6 +173,12 @@ color: rgb(120, 120, 120);
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
+      </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QCheckBox" name="checkBox">
@@ -150,6 +187,12 @@ color: rgb(120, 120, 120);
            <width>78</width>
            <height>25</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">#checkBox{
@@ -171,6 +214,12 @@ color: rgb(120, 120, 120);
            <width>78</width>
            <height>25</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">#checkBox_2{
@@ -198,6 +247,12 @@ color: rgb(120, 120, 120);
            <width>57</width>
            <height>20</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">#pushButton_2{
@@ -282,11 +337,17 @@ border-image: url(:/lib/jietou1.png);
      <widget class="QToolButton" name="toolButton_3">
       <property name="geometry">
        <rect>
-        <x>226</x>
-        <y>130</y>
-        <width>17</width>
-        <height>17</height>
+        <x>229</x>
+        <y>134</y>
+        <width>16</width>
+        <height>16</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">border-width:2px;
@@ -308,18 +369,23 @@ border-color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>179</x>
-        <y>78</y>
-        <width>74</width>
-        <height>74</height>
+        <x>180</x>
+        <y>79</y>
+        <width>72</width>
+        <height>72</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(71, 231, 255);
-border-width:5px;
+       <string notr="true">
 border-style:solid;
-border-radius: 37px;
-border-color: rgb(255, 255, 255);</string>
+border-radius: 36px;
+background-color: rgba(255, 255, 255,200);</string>
       </property>
       <property name="text">
        <string/>
@@ -338,6 +404,7 @@ border-color: rgb(255, 255, 255);</string>
        <font>
         <family>Microsoft YaHei</family>
         <pointsize>12</pointsize>
+        <stylestrategy>PreferAntialias</stylestrategy>
        </font>
       </property>
       <property name="styleSheet">
@@ -355,26 +422,6 @@ border-bottom-color: rgb(129, 129, 129);
        <string>Fdog号码/邮箱/手机号</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>183</x>
-        <y>82</y>
-        <width>66</width>
-        <height>66</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-image: url(:/lib/icon2505897252.png);
-border-width:0px;
-border-radius:33px;
-border-style:solid;
-border-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
@@ -388,6 +435,7 @@ border-color: rgb(255, 255, 255);</string>
        <font>
         <family>Microsoft YaHei</family>
         <pointsize>14</pointsize>
+        <stylestrategy>PreferAntialias</stylestrategy>
        </font>
       </property>
       <property name="styleSheet">
@@ -417,15 +465,30 @@ border-bottom-color: rgb(129, 129, 129);</string>
       <property name="font">
        <font>
         <family>Microsoft YaHei</family>
-        <pointsize>-1</pointsize>
+        <pointsize>13</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
        </font>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
+      <property name="tabletTracking">
+       <bool>false</bool>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="toolTipDuration">
+       <number>-1</number>
       </property>
       <property name="styleSheet">
        <string notr="true">#pushButton{
 background-color: rgb(99, 188, 255);
 color: rgb(255, 255, 255);
 border-radius: 5px;
-font-size:14px;
 }
 #pushButton:hover{
 background-color: rgb(99, 170, 255);
@@ -458,53 +521,63 @@ padding-top:2px;
      <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>4</x>
         <y>0</y>
-        <width>431</width>
-        <height>42</height>
+        <width>421</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>5</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="label">
+        <widget class="QToolButton" name="toolButton_4">
          <property name="minimumSize">
           <size>
-           <width>90</width>
-           <height>34</height>
+           <width>83</width>
+           <height>39</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>75</width>
-           <height>27</height>
+           <width>83</width>
+           <height>39</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-image: url(:/lib/mainicon.png);</string>
+          <string notr="true">border-style:solid;
+background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
-          <string/>
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="libres.qrc">
+           <normaloff>:/lib/mainicon.png</normaloff>:/lib/mainicon.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
         <spacer name="horizontalSpacer">
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -536,12 +609,28 @@ padding-top:2px;
            <height>25</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-style:solid;
+background-color: rgba(255, 255, 255, 0);</string>
+         </property>
          <property name="text">
           <string>...</string>
          </property>
          <property name="icon">
           <iconset resource="libres.qrc">
            <normaloff>:/lib/zuixiaohua.png</normaloff>:/lib/zuixiaohua.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
          </property>
          <property name="autoRaise">
           <bool>true</bool>
@@ -562,6 +651,16 @@ padding-top:2px;
            <height>25</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-style:solid;
+background-color: rgba(255, 255, 255, 0);</string>
+         </property>
          <property name="text">
           <string>...</string>
          </property>
@@ -569,28 +668,65 @@ padding-top:2px;
           <iconset resource="libres.qrc">
            <normaloff>:/lib/guanbi.png</normaloff>:/lib/guanbi.png</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
          <property name="autoRaise">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>5</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
       </layout>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>183</x>
+        <y>82</y>
+        <width>66</width>
+        <height>66</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/lib/icon2505897252.png);
+border-width:0px;
+border-style:solid;
+border-radius:32px;
+border-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="toolButton_5">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>290</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style:solid;
+background-color: rgba(255, 255, 255, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="libres.qrc">
+        <normaloff>:/lib/erweima.png</normaloff>:/lib/erweima.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
      </widget>
      <zorder>mian_label</zorder>
      <zorder>label_2</zorder>
@@ -599,11 +735,12 @@ padding-top:2px;
      <zorder>comboBox</zorder>
      <zorder>label_5</zorder>
      <zorder>lineEdit_2</zorder>
-     <zorder>label_4</zorder>
      <zorder>lineEdit</zorder>
      <zorder>pushButton</zorder>
-     <zorder>toolButton_3</zorder>
      <zorder>horizontalLayoutWidget</zorder>
+     <zorder>pushButton_3</zorder>
+     <zorder>toolButton_3</zorder>
+     <zorder>toolButton_5</zorder>
     </widget>
    </item>
   </layout>

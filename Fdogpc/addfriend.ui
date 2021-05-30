@@ -14,7 +14,10 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#Addfriend{
+   <string notr="true">*{font-family:Microsoft YaHei;
+
+}
+#Addfriend{
 background-color: rgb(61, 155, 255);
 }</string>
   </property>
@@ -69,6 +72,13 @@ background-color: rgb(61, 155, 255);
          <width>0</width>
          <height>34</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <pointsize>9</pointsize>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(255, 255, 255);</string>
@@ -192,6 +202,12 @@ background-color: rgb(61, 155, 255);
          <height>16</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
        <property name="text">
         <string>今夜无风</string>
        </property>
@@ -204,6 +220,12 @@ background-color: rgb(61, 155, 255);
          <width>61</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
        </property>
        <property name="text">
         <string>12346578</string>
@@ -218,6 +240,12 @@ background-color: rgb(61, 155, 255);
          <height>16</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
        <property name="text">
         <string>性别：男</string>
        </property>
@@ -231,6 +259,12 @@ background-color: rgb(61, 155, 255);
          <height>16</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
        <property name="text">
         <string>年龄：20岁</string>
        </property>
@@ -243,6 +277,12 @@ background-color: rgb(61, 155, 255);
          <width>111</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
        </property>
        <property name="text">
         <string>所在地：江苏 宿迁</string>
@@ -292,6 +332,12 @@ background-color: rgb(61, 155, 255);
          <height>25</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
        <property name="text">
         <string>下一步</string>
        </property>
@@ -304,6 +350,12 @@ background-color: rgb(61, 155, 255);
          <width>75</width>
          <height>25</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
        </property>
        <property name="text">
         <string>关闭</string>
@@ -332,6 +384,12 @@ background-color: rgb(61, 155, 255);
           <height>71</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
         </property>
@@ -348,6 +406,12 @@ background-color: rgb(61, 155, 255);
           <height>20</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
         <property name="text">
          <string>请输入验证信息：</string>
         </property>
@@ -362,6 +426,12 @@ background-color: rgb(61, 155, 255);
           <width>54</width>
           <height>31</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
         </property>
         <property name="text">
          <string>备注姓名：</string>
@@ -402,6 +472,12 @@ background-color: rgb(61, 155, 255);
           <height>31</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
         <property name="text">
          <string>分组：</string>
         </property>
@@ -435,7 +511,8 @@ background-color: rgb(61, 155, 255);
         </property>
         <property name="font">
          <font>
-          <pointsize>10</pointsize>
+          <family>Microsoft YaHei</family>
+          <stylestrategy>PreferAntialias</stylestrategy>
          </font>
         </property>
         <property name="text">

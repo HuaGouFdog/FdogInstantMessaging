@@ -25,7 +25,7 @@ void Usersql::conndata()
    this-> dbconn.setDatabaseName("fdogsql");//数据库名字
     //dbconn.open("root", "xxxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
     //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "xxxxx"))
+    if(this->dbconn.open("root", "xxxx"))
     {
     //如果判断为真，则连接成功
         //qDebug()<<"success";
@@ -185,9 +185,9 @@ void Usersql::conndataOther(QString mysqlname)
     }
    this-> dbconn.setHostName("82.156.111.139");//主机名字
    this-> dbconn.setDatabaseName(mysqlname);//数据库名字
-    //dbconn.open("root", "xxxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
+    //dbconn.open("root", "xxxxxxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
     //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "xxxxx"))
+    if(this->dbconn.open("root", "xxxxxxxxxx"))
     {
     //如果判断为真，则连接成功
         qDebug()<<"success";
@@ -198,15 +198,15 @@ void Usersql::conndataOther(QString mysqlname)
 QStringList Usersql::getGroupname_Groupcount()
 {
     QStringList GG;
-    qDebug()<<QString("select * from `%1`").arg(this->getAccount());
+    //qDebug()<<QString("select * from `%1`").arg(this->getAccount());
     this->query.exec(QString("select * from `%1`").arg(this->getAccount()));
         while(query.next())
         {
-            qDebug()<<this->query.value(0).toString();
+            //qDebug()<<this->query.value(0).toString();
             GG.append(this->query.value(0).toString());
             GG.append(this->query.value(1).toString());
         }
-        qDebug()<<"分组信息已经获取";
+        //qDebug()<<"分组信息已经获取";
         return GG;
 }
 
@@ -255,7 +255,7 @@ QString Usersql::getOtherAccountAge(QString otheraccount)
     {
         if(otheraccount==(this->query.value(0).toString()))
         {
-            qDebug()<<"年龄是"<<query.value(9).toString();
+            //qDebug()<<"年龄是"<<query.value(9).toString();
             return this->query.value(9).toString();
         }
     }

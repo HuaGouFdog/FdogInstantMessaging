@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>707</width>
-    <height>647</height>
+    <width>684</width>
+    <height>611</height>
    </rect>
   </property>
   <property name="font">
    <font>
-    <pointsize>5</pointsize>
+    <family>Microsoft YaHei</family>
    </font>
   </property>
   <property name="windowTitle">
@@ -23,138 +23,181 @@
     <normaloff>:/lib/icon2505897252.png</normaloff>:/lib/icon2505897252.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">#Chat{
+   <string notr="true">*{font-family:Microsoft YaHei;}
+#Chat{
 background-color: rgb(0, 0, 0);
 }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,13">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,20">
    <property name="spacing">
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>8</number>
    </property>
    <property name="topMargin">
-    <number>1</number>
+    <number>7</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>8</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>8</number>
    </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <property name="topMargin">
-      <number>2</number>
+      <number>0</number>
      </property>
      <property name="rightMargin">
-      <number>8</number>
+      <number>0</number>
      </property>
      <property name="bottomMargin">
-      <number>6</number>
+      <number>0</number>
      </property>
      <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
+      <widget class="QWidget" name="widget_4" native="true">
+       <property name="minimumSize">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>319</width>
+         <height>37</height>
         </size>
        </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>34</height>
+        </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: rgb(0, 0, 0);</string>
        </property>
-       <property name="text">
-        <string>今夜无风</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButton">
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="libres.qrc">
-         <normaloff>:/lib/zuixiaohua.png</normaloff>:/lib/zuixiaohua.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="autoRaise">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButton_2">
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="libres.qrc">
-         <normaloff>:/lib/max.png</normaloff>:/lib/max.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="autoRaise">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButton_3">
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="libres.qrc">
-         <normaloff>:/lib/guanbi.png</normaloff>:/lib/guanbi.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="autoRaise">
-        <bool>true</bool>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>260</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>33</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei</family>
+            <pointsize>13</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>今夜无风</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="libres.qrc">
+            <normaloff>:/lib/zuixiaohua.png</normaloff>:/lib/zuixiaohua.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="autoRaise">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_2">
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="libres.qrc">
+            <normaloff>:/lib/max.png</normaloff>:/lib/max.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="autoRaise">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_3">
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="libres.qrc">
+            <normaloff>:/lib/guanbi.png</normaloff>:/lib/guanbi.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="autoRaise">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
     </layout>
@@ -168,18 +211,37 @@ background-color: rgb(0, 0, 0);
       <widget class="QWidget" name="widget" native="true">
        <property name="font">
         <font>
-         <weight>50</weight>
-         <bold>false</bold>
+         <family>Microsoft YaHei</family>
         </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(191, 191, 191);</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0,0,0">
+        <property name="spacing">
+         <number>3</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <widget class="QScrollArea" name="scrollArea">
+            <property name="styleSheet">
+             <string notr="true">background-color:transparent;
+border-width:0;
+border-style:outset;</string>
+            </property>
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
@@ -188,8 +250,8 @@ background-color: rgb(0, 0, 0);
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>546</width>
-               <height>361</height>
+               <width>527</width>
+               <height>275</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -197,22 +259,24 @@ background-color: rgb(0, 0, 0);
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <property name="leftMargin">
-               <number>0</number>
+               <number>10</number>
               </property>
               <property name="topMargin">
-               <number>0</number>
+               <number>10</number>
               </property>
               <property name="rightMargin">
-               <number>0</number>
+               <number>10</number>
               </property>
               <property name="bottomMargin">
-               <number>0</number>
+               <number>10</number>
               </property>
               <item>
                <widget class="QPlainTextEdit" name="plainTextEdit">
                 <property name="font">
                  <font>
-                  <pointsize>12</pointsize>
+                  <family>Microsoft YaHei</family>
+                  <pointsize>14</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -232,16 +296,12 @@ border-style:outset;</string>
          </layout>
         </item>
         <item>
-         <widget class="Line" name="line">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QWidget" name="widget_3" native="true">
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">background-color: rgb(191, 191, 191);
+border-width:1px;
+border-style:solid;
+border-top-color: rgb(166, 166, 166);</string>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <property name="leftMargin">
@@ -257,17 +317,33 @@ border-style:outset;</string>
             <number>0</number>
            </property>
            <item>
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>10</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <widget class="QToolButton" name="toolButton_4">
              <property name="minimumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="text">
@@ -276,6 +352,12 @@ border-style:outset;</string>
              <property name="icon">
               <iconset resource="libres.qrc">
                <normaloff>:/lib/weixiao.png</normaloff>:/lib/weixiao.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
              </property>
              <property name="autoRaise">
               <bool>true</bool>
@@ -286,14 +368,14 @@ border-style:outset;</string>
             <widget class="QToolButton" name="toolButton_5">
              <property name="minimumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="text">
@@ -302,6 +384,12 @@ border-style:outset;</string>
              <property name="icon">
               <iconset resource="libres.qrc">
                <normaloff>:/lib/caijian.png</normaloff>:/lib/caijian.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
              </property>
              <property name="autoRaise">
               <bool>true</bool>
@@ -312,14 +400,14 @@ border-style:outset;</string>
             <widget class="QToolButton" name="toolButton_6">
              <property name="minimumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="text">
@@ -328,6 +416,12 @@ border-style:outset;</string>
              <property name="icon">
               <iconset resource="libres.qrc">
                <normaloff>:/lib/mianxingtubiao_zhendong.png</normaloff>:/lib/mianxingtubiao_zhendong.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
              </property>
              <property name="autoRaise">
               <bool>true</bool>
@@ -351,14 +445,14 @@ border-style:outset;</string>
             <widget class="QToolButton" name="toolButton_7">
              <property name="minimumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="text">
@@ -367,6 +461,12 @@ border-style:outset;</string>
              <property name="icon">
               <iconset resource="libres.qrc">
                <normaloff>:/lib/fangda.png</normaloff>:/lib/fangda.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
              </property>
              <property name="autoRaise">
               <bool>true</bool>
@@ -377,14 +477,14 @@ border-style:outset;</string>
             <widget class="QToolButton" name="toolButton_8">
              <property name="minimumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>30</width>
+               <height>30</height>
               </size>
              </property>
              <property name="text">
@@ -394,10 +494,32 @@ border-style:outset;</string>
               <iconset resource="libres.qrc">
                <normaloff>:/lib/shijian.png</normaloff>:/lib/shijian.png</iconset>
              </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
              <property name="autoRaise">
               <bool>true</bool>
              </property>
             </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>10</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -407,12 +529,14 @@ border-style:outset;</string>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>141</height>
+            <height>190</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <pointsize>12</pointsize>
+            <family>Microsoft YaHei</family>
+            <pointsize>14</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
           <property name="styleSheet">
@@ -447,13 +571,15 @@ border-style:outset;</string>
            <widget class="QPushButton" name="pushButton_4">
             <property name="minimumSize">
              <size>
-              <width>70</width>
-              <height>25</height>
+              <width>74</width>
+              <height>26</height>
              </size>
             </property>
             <property name="font">
              <font>
+              <family>Microsoft YaHei</family>
               <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
             <property name="styleSheet">
@@ -474,13 +600,15 @@ border-radius:3px;</string>
            <widget class="QPushButton" name="pushButton_3">
             <property name="minimumSize">
              <size>
-              <width>70</width>
-              <height>25</height>
+              <width>74</width>
+              <height>26</height>
              </size>
             </property>
             <property name="font">
              <font>
+              <family>Microsoft YaHei</family>
               <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
             <property name="styleSheet">
@@ -502,7 +630,36 @@ color: rgb(255, 255, 255);</string>
             </property>
            </widget>
           </item>
+          <item>
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>30</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>18</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -524,6 +681,7 @@ color: rgb(255, 255, 255);</string>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(191, 191, 191);
 border-width:1px;
+border-style:solid;
 border-left-color: rgb(166, 166, 166);</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -548,13 +706,13 @@ border-left-color: rgb(166, 166, 166);</string>
           <property name="minimumSize">
            <size>
             <width>120</width>
-            <height>310</height>
+            <height>318</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>120</width>
-            <height>310</height>
+            <height>318</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -588,9 +746,6 @@ border-left-color: rgb(166, 166, 166);</string>
  <tabstops>
   <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton_4</tabstop>
-  <tabstop>toolButton</tabstop>
-  <tabstop>toolButton_2</tabstop>
-  <tabstop>toolButton_3</tabstop>
  </tabstops>
  <resources>
   <include location="libres.qrc"/>

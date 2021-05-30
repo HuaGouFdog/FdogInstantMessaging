@@ -48,11 +48,13 @@ public:
     {
         if (Traywidget->objectName().isEmpty())
             Traywidget->setObjectName(QStringLiteral("Traywidget"));
-        Traywidget->resize(258, 146);
+        Traywidget->resize(205, 150);
+        Traywidget->setMaximumSize(QSize(205, 16777215));
         QFont font;
-        font.setPointSize(10);
+        font.setFamily(QStringLiteral("Microsoft YaHei"));
         Traywidget->setFont(font);
-        Traywidget->setStyleSheet(QLatin1String("#Traywidget{\n"
+        Traywidget->setStyleSheet(QLatin1String("*{font-family:Microsoft YaHei;}\n"
+"#Traywidget{\n"
 "background-color: rgb(255, 255, 255);\n"
 "}"));
         verticalLayout = new QVBoxLayout(Traywidget);
@@ -66,9 +68,11 @@ public:
         label = new QLabel(Traywidget);
         label->setObjectName(QStringLiteral("label"));
         QFont font1;
+        font1.setFamily(QStringLiteral("Microsoft YaHei"));
         font1.setPointSize(10);
         font1.setBold(true);
         font1.setWeight(75);
+        font1.setStyleStrategy(QFont::PreferAntialias);
         label->setFont(font1);
         label->setStyleSheet(QStringLiteral(""));
 
@@ -80,6 +84,10 @@ public:
 
         toolButton = new QToolButton(Traywidget);
         toolButton->setObjectName(QStringLiteral("toolButton"));
+        QFont font2;
+        font2.setFamily(QStringLiteral("Microsoft YaHei"));
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        toolButton->setFont(font2);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/setting.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton->setIcon(icon);
@@ -92,13 +100,12 @@ public:
 
         widget = new QWidget(Traywidget);
         widget->setObjectName(QStringLiteral("widget"));
+        widget->setFont(font2);
         gridLayout = new QGridLayout(widget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         listWidget = new QListWidget(widget);
         listWidget->setObjectName(QStringLiteral("listWidget"));
         listWidget->setMaximumSize(QSize(16777215, 16777215));
-        QFont font2;
-        font2.setPointSize(9);
         listWidget->setFont(font2);
         listWidget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
 
@@ -109,6 +116,8 @@ public:
 
         line = new QFrame(Traywidget);
         line->setObjectName(QStringLiteral("line"));
+        line->setMaximumSize(QSize(206, 16777215));
+        line->setFont(font2);
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
 
@@ -120,12 +129,7 @@ public:
         pushButton = new QPushButton(Traywidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setMaximumSize(QSize(55, 20));
-        QFont font3;
-        font3.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
-        font3.setPointSize(9);
-        font3.setBold(false);
-        font3.setWeight(50);
-        pushButton->setFont(font3);
+        pushButton->setFont(font2);
         pushButton->setStyleSheet(QStringLiteral("color: rgb(44, 164, 255);"));
         pushButton->setAutoDefault(false);
         pushButton->setFlat(true);
@@ -139,11 +143,7 @@ public:
         pushButton_2 = new QPushButton(Traywidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setMaximumSize(QSize(55, 80));
-        QFont font4;
-        font4.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
-        font4.setBold(false);
-        font4.setWeight(50);
-        pushButton_2->setFont(font4);
+        pushButton_2->setFont(font2);
         pushButton_2->setStyleSheet(QStringLiteral("color: rgb(44, 164, 255);"));
         pushButton_2->setFlat(true);
 

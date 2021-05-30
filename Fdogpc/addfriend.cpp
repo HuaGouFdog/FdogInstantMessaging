@@ -83,10 +83,10 @@ void Addfriend::on_pushButton_clicked()
         //消息格式：接收方+添加方+验证信息+备注名字（默认网名）+分组+消息类型
         QString data = account+otheraccount+info+":"+name+":"+grouping+"yan";
         sqconn.setverify(time,account,"等待同意",name,grouping,otheraccount);
-        qDebug()<<"发送验证消息"<<data;
-        qDebug()<<"完成后：全局函数值：";
-        qDebug()<<Globalobserver::getAddfriendp();
-        qDebug()<<Globalobserver::getMainwindowp();
+        //qDebug()<<"发送验证消息"<<data;
+        //qDebug()<<"完成后：全局函数值：";
+        //qDebug()<<Globalobserver::getAddfriendp();
+        //qDebug()<<Globalobserver::getMainwindowp();
         //发送消息
         emit sendaddinfo(data);
     break;
