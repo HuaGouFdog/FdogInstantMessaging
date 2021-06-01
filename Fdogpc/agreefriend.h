@@ -20,8 +20,8 @@ public:
     ~Agreefriend();
 
 signals:
+    void updategrouping(QString otheraccount,QString account,QString name,QString grouping);
     void updateverify(QString otheraccount,QString account);
-
 private slots:
     void on_pushButton_clicked();
 

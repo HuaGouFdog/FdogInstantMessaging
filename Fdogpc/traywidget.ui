@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>205</width>
+    <width>229</width>
     <height>150</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>205</width>
+    <width>229</width>
     <height>16777215</height>
    </size>
   </property>
@@ -38,7 +38,7 @@ background-color: rgb(255, 255, 255);
     <number>0</number>
    </property>
    <property name="topMargin">
-    <number>2</number>
+    <number>5</number>
    </property>
    <property name="rightMargin">
     <number>0</number>

@@ -208,6 +208,7 @@ release\qrc_libres.obj: libres.qrc \
 		lib\mainicon.png \
 		lib\mian2.gif \
 		lib\kaisuo.png \
+		lib\add.png \
 		lib\guanbi.png \
 		lib\fangda.png \
 		lib\wurao.png \
@@ -219,6 +220,7 @@ release\qrc_libres.obj: libres.qrc \
 		lib\qusefdogicon.png \
 		lib\fdogicon.png \
 		lib\max.png \
+		lib\down.png \
 		lib\weixiao.png \
 		lib\setting.png \
 		lib\zuixiaohua.png \
@@ -227,6 +229,7 @@ release\qrc_libres.obj: libres.qrc \
 		lib\kaifdog.png \
 		lib\sangangy.png \
 		lib\dengji.png \
+		lib\jietou2.png \
 		lib\min.png \
 		lib\svip.png \
 		lib\fdog.png \
@@ -240,6 +243,7 @@ release\qrc_libres.obj: libres.qrc \
 		lib\delete.png \
 		lib\lixianim.png \
 		lib\shijian.png \
+		lib\fdog2.png \
 		lib\delete2.png \
 		lib\search.png \
 		lib\xiaolian.png \
@@ -2820,12 +2824,12 @@ release\query.obj: query.cpp query.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QFrame \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
@@ -2844,6 +2848,7 @@ release\query.obj: query.cpp query.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QPainter \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qpainter.h \
@@ -3264,7 +3269,11 @@ release\settingcolor.obj: settingcolor.cpp settingcolor.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QTabWidget
 
 release\addfriend.obj: addfriend.cpp addfriend.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -3883,13 +3892,15 @@ release\verify.obj: verify.cpp verify.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QTabWidget \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \

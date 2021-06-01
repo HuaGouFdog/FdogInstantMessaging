@@ -42,8 +42,11 @@ public:
     QString getOtherAccountName(QString otheraccount);//根据账号获取名字
     QString getOtherAccountSex(QString otheraccount);//根据账号获取性别
     QString getOtherAccountAge(QString otheraccount);//根据账号获取年龄
-    void setverify(QString time,QString account,QString sate,QString name,QString grouping,QString otheraccount);
-    void getverify(QString time,QString otheraccount,QString sate,QString name,QString grouping,QString account);
+    QString getOtherAccountProfession(QString otheraccount);//根据账号获取职业
+    void setverify(QString time,QString account,QString sate,QString name,QString grouping,QString otheraccount);//添加好友数据
+    void getverify(QString time,QString otheraccount,QString sate,QString name,QString grouping,QString account);//添加好友数据
+    QString getverifygrouping(QString account,QString otheraccount);//获取主动添加方设置的分组
+    void updatagrouping(QString otheraccount,QString account);
 
     //getset
     QPixmap getIcon() const;

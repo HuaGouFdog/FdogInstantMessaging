@@ -23,9 +23,9 @@ void Usersql::conndata()
     }
    this-> dbconn.setHostName("82.156.111.139");//主机名字
    this-> dbconn.setDatabaseName("fdogsql");//数据库名字
-    //dbconn.open("root", "xxxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
+    //dbconn.open("root", "3226960*"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
     //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "xxxx"))
+    if(this->dbconn.open("root", "3226960*"))
     {
     //如果判断为真，则连接成功
         //qDebug()<<"success";
@@ -185,9 +185,9 @@ void Usersql::conndataOther(QString mysqlname)
     }
    this-> dbconn.setHostName("82.156.111.139");//主机名字
    this-> dbconn.setDatabaseName(mysqlname);//数据库名字
-    //dbconn.open("root", "xxxxxxxxx"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
+    //dbconn.open("root", "3226960*"); //第一个参数写用户名，这里我们就写root就可以，第二个参数密码是mysql的登陆密码。
     //可以使用如下语句判断是否连接成功
-    if(this->dbconn.open("root", "xxxxxxxxxx"))
+    if(this->dbconn.open("root", "3226960*"))
     {
     //如果判断为真，则连接成功
         qDebug()<<"success";
@@ -255,8 +255,20 @@ QString Usersql::getOtherAccountAge(QString otheraccount)
     {
         if(otheraccount==(this->query.value(0).toString()))
         {
-            //qDebug()<<"年龄是"<<query.value(9).toString();
             return this->query.value(9).toString();
+        }
+    }
+    return "";
+}
+
+QString Usersql::getOtherAccountProfession(QString otheraccount)
+{
+    this->query.exec("select * from user");
+    while(query.next())
+    {
+        if(otheraccount==(this->query.value(0).toString()))
+        {
+            return this->query.value(11).toString();
         }
     }
     return "";
@@ -273,7 +285,77 @@ void Usersql::setverify(QString time, QString account, QString sate, QString nam
 void Usersql::getverify(QString time, QString otheraccount, QString sate, QString name, QString grouping, QString account)
 {
     QString data = QString("INSERT INTO getverify VALUES('%1','%2','%3','%4','%5','%6')")
-            .arg(time, otheraccount,sate, name, grouping, account);
+            .arg(time,otheraccount,sate, name, grouping, account);
+    qDebug()<<data;
+    this->query.exec(data);
+}
+
+QString Usersql::getverifygrouping(QString account, QString otheraccount)
+{
+    QString data = QString("select * from setverify where account='%1' and otheraccount = '%2' ").arg(account,otheraccount);
+    this->query.exec(data);
+    while(query.next())
+    {
+        return this->query.value(4).toString();
+    }
+    return " ";
+}
+
+void Usersql::updatagrouping(QString otheraccount,QString account)
+{
+    //我是1234578
+    QString accountgrouping;//12345678的分组 当前帐号分组名称
+    QString accountname;//获取对方账号名字
+    QString accountid;//获取当前帐户分组id
+    QString otheraccountgrouping; //获取对方账号分组名称
+    QString otheraccountname; //获取自己账号名字
+    QString otheraccountid;//获取对方分组id
+    //获取双方分组信息
+    QString data = QString("select * from getverify where otheraccount= '%1' and account = '%2' ")
+                   .arg(otheraccount,account);
+    this->query.exec(data);
+    while(query.next())
+    {
+        accountname = this->query.value(3).toString();//获取对方账号名字
+        accountgrouping = this->query.value(4).toString();//获取当前帐号分组名称
+    }
+
+    data = QString("select * from setverify where account = '%1' and otheraccount= '%2'")
+           .arg(account,otheraccount);
+    this->query.exec(data);
+    while(query.next())
+    {
+        otheraccountname = this->query.value(3).toString();//获取自己账号名字
+        otheraccountgrouping = this->query.value(4).toString();//获取对方账号分组名称
+    }
+    //获取分组对应ID
+    data = QString("select * from grouping where account ='%1' and name ='%2'").arg(account,accountgrouping);
+    this->query.exec(data);
+    while(query.next())
+    {
+        accountid = this->query.value(0).toString();//获取1分组id
+    }
+    data = QString("select * from grouping where account ='%1' and name ='%2'").arg(otheraccount,otheraccountgrouping);
+    this->query.exec(data);
+    while(query.next())
+    {
+        otheraccountid = this->query.value(0).toString();//获取2分组id
+    }
+    //写入数据库好友表
+    qDebug()<<"由"+otheraccount+"向"+account+"发起的添加好友申请，如果"+account+"同意，"
+              "就将"+account+"的名字设置为"+otheraccountname+"放在"+otheraccount+"的"+otheraccountgrouping+"分组下";
+    data = QString("INSERT INTO friend VALUES('123','%1','%2','%3','%4')")
+            .arg(account, otheraccountid,otheraccount,otheraccountname);
+    this->query.exec(data);
+
+    qDebug()<<"账号"+account+"接收到"+otheraccount+"发来的添加好友申请，如果"+account+"同意，"
+              "就将"+otheraccount+"的名字设置为"+accountname+"放在"+account+"的"+accountgrouping+"分组下";
+    data = QString("INSERT INTO friend VALUES('123','%1','%2','%3','%4')")
+            .arg(otheraccount, accountid,account,accountname);//好友账号，好友所在分组，本身账号，好友名字
+    this->query.exec(data);
+
+    data = QString("update setverify set state='%1' where account='%2' and otheraccount='%3' ")
+            .arg("同意",account,otheraccount);//好友账号，好友所在分组，本身账号，好友名字
     this->query.exec(data);
 }
 

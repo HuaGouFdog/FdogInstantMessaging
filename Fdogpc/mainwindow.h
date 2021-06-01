@@ -115,15 +115,13 @@ private slots:
     void on_min_tool_clicked();     //最小化
     void on_close_tool_clicked();   //关闭按钮
     void on_toolButton_3_clicked(); //主界面在线按钮
-    //void on_pushButton_2_clicked(); //闪烁 实验
-    //void on_pushButton_3_clicked(); //关闭 实验
     void on_Double_widget_clicked(QListWidgetItem * witem);//好友列表被双击
     void on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reason);//对托盘按钮的点击
     /*TCP相关*/
-    void onSocketStateChange(QAbstractSocket::SocketState socketState);//收到数据
+    void onSocketStateChange(QAbstractSocket::SocketState socketState);//状态
     void onConnected();//连接
     void onDisconnected();//断开连接
-    void onSocketReadyRead();//状态
+    void onSocketReadyRead();//收到数据
     void listchatcount(); //监视chat数据
     /*托盘图标闪动相关*/
     void sltTimerT();
@@ -133,7 +131,9 @@ private slots:
     void MainSendAddData(QString str);
     void actionexe(int);
     /*消息验证*/
-    void pudatamainverify(QString,QString);
+    void updatamaingrouping(QString,QString,QString,QString);
+    void updatamainverify(QString,QString);
+
 private:
     Ui::MainWindow *ui;
 };

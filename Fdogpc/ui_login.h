@@ -59,7 +59,7 @@ public:
     {
         if (Login->objectName().isEmpty())
             Login->setObjectName(QStringLiteral("Login"));
-        Login->resize(447, 344);
+        Login->resize(446, 342);
         QFont font;
         font.setFamily(QStringLiteral("Microsoft YaHei"));
         font.setPointSize(10);
@@ -76,7 +76,7 @@ public:
         gridLayout = new QGridLayout(Login);
         gridLayout->setSpacing(1);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
+        gridLayout->setContentsMargins(0, 2, 0, 0);
         widget = new QWidget(Login);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setMinimumSize(QSize(431, 304));
@@ -103,8 +103,7 @@ public:
         label_2->setMinimumSize(QSize(431, 200));
         label_2->setFont(font1);
         label_2->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
-"border-bottom-left-radius: 10px;\n"
-"border-bottom-right-radius: 10px;"));
+""));
         register_btn = new QPushButton(widget);
         register_btn->setObjectName(QStringLiteral("register_btn"));
         register_btn->setGeometry(QRect(10, 299, 71, 21));
@@ -250,7 +249,7 @@ public:
         lineEdit->setEchoMode(QLineEdit::Password);
         pushButton = new QPushButton(widget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(110, 277, 221, 34));
+        pushButton->setGeometry(QRect(110, 277, 221, 37));
         QFont font5;
         font5.setFamily(QStringLiteral("Microsoft YaHei"));
         font5.setPointSize(13);

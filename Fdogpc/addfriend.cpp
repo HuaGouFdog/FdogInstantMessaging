@@ -9,6 +9,7 @@ Addfriend::Addfriend(QPixmap icon,QString otheraccount,QString name,QString acco
 {
     ui->setupUi(this);
     setWindowFlags (Qt::FramelessWindowHint);
+    setAttribute(Qt::WA_TranslucentBackground);
     Globalobserver::setAddfriendp(this);
     //显示该用户信息
     this->setOtheraccount(otheraccount);
@@ -17,12 +18,12 @@ Addfriend::Addfriend(QPixmap icon,QString otheraccount,QString name,QString acco
     ui->pushButton_3->setIcon(QIcon(icon));
     ui->pushButton_3->setIconSize(QSize(70,70));
     ui->label_8->setText(name);
-    ui->label_9->setText(account);
+    ui->label_9->setText(otheraccount);
     ui->label_10->setText("性别:"+sex);
     ui->label_11->setText("年龄:"+age);
     ui->label_12->setText("职业:"+Profession);
     sqconn.conndata();
-    sqconn.queryUserInfo(otheraccount);
+    sqconn.queryUserInfo(account);
     ui->comboBox->addItem(this->getName());
     QStringList groupings = sqconn.getGrouping();
     ui->comboBox_2->addItems(groupings);
@@ -31,6 +32,16 @@ Addfriend::Addfriend(QPixmap icon,QString otheraccount,QString name,QString acco
 Addfriend::~Addfriend()
 {
     delete ui;
+}
+
+void Addfriend::paintEvent(QPaintEvent *e)
+{
+    Q_UNUSED(e)
+        QPainter painter(this);
+        QPixmap pixmap(":/lib/background.png");//做好的图
+        qDrawBorderPixmap(&painter, this->rect(), QMargins(0, 0, 0, 0), pixmap);
+        QRect rect(this->rect().x()+8, this->rect().y()+8, this->rect().width()-16, this->rect().height()-16);
+        painter.fillRect(rect, QColor(255, 255, 255));
 }
 
 void Addfriend::mousePressEvent(QMouseEvent *event)
@@ -81,7 +92,7 @@ void Addfriend::on_pushButton_clicked()
         QString time = curDateTime.toString("MM.dd");
         if(info=="")info="你好";
         //消息格式：接收方+添加方+验证信息+备注名字（默认网名）+分组+消息类型
-        QString data = account+otheraccount+info+":"+name+":"+grouping+"yan";
+        QString data = otheraccount+account+info+":"+name+":"+grouping+"yan";
         sqconn.setverify(time,account,"等待同意",name,grouping,otheraccount);
         //qDebug()<<"发送验证消息"<<data;
         //qDebug()<<"完成后：全局函数值：";

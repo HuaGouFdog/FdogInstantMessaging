@@ -24,6 +24,7 @@ class Addfriend : public QWidget
 public:
     explicit Addfriend(QPixmap icon,QString otheraccount,QString name,QString account,QString sex, QString age,QString Profession,QWidget *parent = 0);
     ~Addfriend();
+    void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *event);//鼠标点击
     void mouseMoveEvent(QMouseEvent *event);//鼠标移动
     void mouseReleaseEvent(QMouseEvent *event);//鼠标释放

@@ -10,9 +10,6 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //qDebug()<<"未完成：全局函数值：";
-    //qDebug()<<Globalobserver::getAddfriendp();
-    //qDebug()<<Globalobserver::getMainwindowp();
     this->tarywidget  = new Traywidget(this->name);
     this->timemouse.start(200);
     this->timemouse.setSingleShot(false);
@@ -129,10 +126,8 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
                 QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
                 horLayout->setContentsMargins(0,0,0,0);
                 horLayout->setSpacing(0);
-
                 QLabel * l1 = new QLabel();
                 l1->setFixedSize(15,32);
-
                 QPushButton * btnicon = new QPushButton();
                 btnicon->setFixedSize(32,32);
                 btnicon->setIconSize(QSize(32,32));
@@ -159,16 +154,11 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
                                           "QListWidget::Item:hover{background-color: rgb(193, 193, 193);}"
                                           "QListWidget::Item:selected{background-color: rgb(193, 193, 193);}"
                                           "QListWidget{outline:0px;}");
-
-
-                //listwidget->setStyleSheet("QListWidget{color:gray;font-size:12px;background-color: rgb(106, 223, 255);}"
-                //                          "QScrollBar{width:0;height:0}");
-                //listwidget->setStyleSheet("QListWidget::indicator:checked{background-color: rgb(255, 103, 53);}"
-                //                          "QListWidget::indicator:unchecked{background-color: rgb(255, 103, 53);}");
             }
         }
         btn->setText(grouping.at(j)+"     "+QString::number(sum+1)+"/"+QString::number(sum+1));
         layout->addWidget(listwidget);
+        listwidget->setObjectName(grouping.at(j));
     }
     layout->addStretch();
     ui->scrollAreaWidgetContents->setLayout(layout);
@@ -347,14 +337,15 @@ void MainWindow::on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reaso
                 //时间 头像  名字 男 16岁
                 //附加信息
                 //QString time,QPixmap icon,QString name,QString sex,QString age,QString add
-                verify = new Verify(
-                                    this->account,data.mid(0,8),
+                qDebug()<<"正在创建验证窗口,发送方为："<<data.mid(0,8);
+                verify = new Verify(this->account,
+                                    data.mid(0,8),
                                     "今日",
                                     sqconn.getPixmapIcon(data.mid(0,8)),
                                     sqconn.getOtherAccountName(data.mid(0,8)),
                                     sqconn.getOtherAccountSex(data.mid(0,8)),
-                                    sqconn.getOtherAccountAge(data.mid(0.8)),
-                                    "申请添加您为好友");
+                                    sqconn.getOtherAccountAge(data.mid(0,8)),
+                                    "CSDN上面看到您的");
                 verify->show();
                 //这里是构造函数初始化窗口，应该使用普通函数进行动态更新
             }
@@ -608,9 +599,9 @@ void MainWindow::onSocketReadyRead() //接收消息
     iconbool = false; //新信息需要重新获取头像
     while (tcpClient->canReadLine()) {
         QString data = tcpClient->readLine();
-        //qDebug()<<"数据："<<data;
-        //判断是验证消息还是普通信息
-        //qDebug()<<"数据后三位："<<data.mid(data.length()-4,3);
+        //判断是验证消息还是普通信息,还是更新消息
+        qDebug()<<"data.mid(8,4)的内容是"<<data.mid(8,4);
+        qDebug()<<"data的内容是"<<data;
         bool isstr =false;
         if(data.mid(data.length()-4,3)=="yan")
         {
@@ -634,6 +625,58 @@ void MainWindow::onSocketReadyRead() //接收消息
             this->timerT.start(400);
             Globalinfo.append(2);
             //查询对方时间 头像 网名 信息 职业 附加信息
+        }
+        else if(data.mid(8,4)=="hytg")
+        {
+            qDebug()<<"进入生成列表";
+            QFont font2;
+            font2.setFamily("Microsoft YaHei");
+            font2.setPointSize(9);
+            font2.setStyleStrategy(QFont::PreferAntialias);
+            //获取申请时的分组
+            QString groupingstr = sqconn.getverifygrouping(this->account,data.mid(0,8));
+            qDebug()<<"成功1";
+            qDebug()<<"找到对应分组"<<groupingstr;
+            for(int i=0;i<this->listwidget.length();i++)
+            {
+                if(this->listwidget[i]->objectName()==groupingstr)
+                {
+                    qDebug()<<"找到对应分组"<<groupingstr;
+                    //分组添加内容
+                    QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
+                    horLayout->setContentsMargins(0,0,0,0);
+                    horLayout->setSpacing(0);
+                    QLabel * l1 = new QLabel();
+                    l1->setFixedSize(15,32);
+                    QPushButton * btnicon = new QPushButton();
+                    btnicon->setFixedSize(32,32);
+                    btnicon->setIconSize(QSize(32,32));
+                    btnicon->setIcon(sqconn.getPixmapIcon(data.mid(0,8)));
+                    btnicon->setStyleSheet("background:rgba(0,0,0,0)");
+                    QLabel * la2 = new QLabel(data.mid(0,8));
+                    la2->setObjectName("label2");
+                    la2->hide();
+                    QLabel * la3 = new QLabel("  "+sqconn.getOtherAccountName(data.mid(0,8)));
+                    la3->setObjectName("label3");
+                    la3->setFont(font2);
+                    horLayout->addWidget(l1);
+                    horLayout->addWidget(btnicon);
+                    horLayout->addWidget(la2);
+                    horLayout->addWidget(la3);
+                    QWidget *widget =new QWidget(this);
+                    widget->setLayout(horLayout);
+                    widget->setStyleSheet("background:rgba(232, 255, 149,0);");
+                    QListWidgetItem * Listitem = new QListWidgetItem(this->listwidget[i]);
+                    Listitem->setSizeHint(QSize(312, 50));  //每次改变Item的高度
+                    this->listwidget[i]->setItemWidget(Listitem,widget);
+                    this->listwidget[i]->setFixedSize(312,this->listwidget[i]->geometry().height()+50);
+                    this->listwidget[i]->setStyleSheet("QListWidget::Item{background-color: rgb(203, 203, 203);}"
+                                              "QListWidget::Item:hover{background-color: rgb(193, 193, 193);}"
+                                              "QListWidget::Item:selected{background-color: rgb(193, 193, 193);}"
+                                              "QListWidget{outline:0px;}");
+                }
+            }
+            qDebug()<<"成功2";
         }
         else{
             qDebug()<<"接收到普通消息";
@@ -729,8 +772,63 @@ void MainWindow::actionexe(int value)
     }
 }
 
-void MainWindow::pudatamainverify(QString otheraccount, QString account)
+void MainWindow::updatamaingrouping(QString otheraccount, QString account,QString name ,QString grouping)
 {
+    qDebug()<<"收到分组更新消息";
+    sqconn.updatagrouping(otheraccount,account);//双方数据库更新完毕
+    //开始更新双方分组 先更新自身，找到对应分组，增加对应名字，以及相关数据
+    QFont font2;
+    font2.setFamily("Microsoft YaHei");
+    font2.setPointSize(9);
+    font2.setStyleStrategy(QFont::PreferAntialias);
+    for(int i=0;i<this->listwidget.length();i++)
+    {
+        if(this->listwidget[i]->objectName()==grouping)
+        {
+            //分组添加内容
+            QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
+            horLayout->setContentsMargins(0,0,0,0);
+            horLayout->setSpacing(0);
+            QLabel * l1 = new QLabel();
+            l1->setFixedSize(15,32);
+            QPushButton * btnicon = new QPushButton();
+            btnicon->setFixedSize(32,32);
+            btnicon->setIconSize(QSize(32,32));
+            btnicon->setIcon(sqconn.getPixmapIcon(otheraccount));
+            btnicon->setStyleSheet("background:rgba(0,0,0,0)");
+            QLabel * la2 = new QLabel(otheraccount);
+            la2->setObjectName("label2");
+            la2->hide();
+            QLabel * la3 = new QLabel("  "+name);
+            la3->setObjectName("label3");
+            la3->setFont(font2);
+            horLayout->addWidget(l1);
+            horLayout->addWidget(btnicon);
+            horLayout->addWidget(la2);
+            horLayout->addWidget(la3);
+            QWidget *widget =new QWidget(this);
+            widget->setLayout(horLayout);
+            widget->setStyleSheet("background:rgba(232, 255, 149,0);");
+            QListWidgetItem * Listitem = new QListWidgetItem(this->listwidget[i]);
+            Listitem->setSizeHint(QSize(312, 50));  //每次改变Item的高度
+            this->listwidget[i]->setItemWidget(Listitem,widget);
+            this->listwidget[i]->setFixedSize(312,this->listwidget[i]->geometry().height()+50);
+            this->listwidget[i]->setStyleSheet("QListWidget::Item{background-color: rgb(203, 203, 203);}"
+                                      "QListWidget::Item:hover{background-color: rgb(193, 193, 193);}"
+                                      "QListWidget::Item:selected{background-color: rgb(193, 193, 193);}"
+                                      "QListWidget{outline:0px;}");
+        }
+    }
+    //从setverify找到
+    QString data = otheraccount+account+"hytg";
+    QByteArray strdata = data.toUtf8();
+    strdata.append('\n');
+    tcpClient->write(strdata);
+}
+
+void MainWindow::updatamainverify(QString otheraccount, QString account)
+{
+    qDebug()<<"收到同意拒绝消息";
     //更新界面
     //更新主界面好友列表
     //更新验证消息窗口
@@ -809,17 +907,4 @@ void MainWindow::showdata()
         this->tarywidget->hide();
     }
 }
-
-//void MainWindow::on_pushButton_2_clicked()
-//{
-//    this->timerT.start(400);
-//    systemtrayicon->showMessage("新消息","验证消息",QIcon(":/lib/fdogicon.png"),2000);
-//}
-
-//void MainWindow::on_pushButton_3_clicked()
-//{
-//    if (timerT.isActive()) timerT.stop();
-//    if (timerNoT.isActive()) timerNoT.stop();
-//    systemtrayicon->setIcon(QIcon(":/lib/fdogicon.png")); //还原托盘原本icon
-//}
 

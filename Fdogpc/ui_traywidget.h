@@ -48,8 +48,8 @@ public:
     {
         if (Traywidget->objectName().isEmpty())
             Traywidget->setObjectName(QStringLiteral("Traywidget"));
-        Traywidget->resize(205, 150);
-        Traywidget->setMaximumSize(QSize(205, 16777215));
+        Traywidget->resize(229, 150);
+        Traywidget->setMaximumSize(QSize(229, 16777215));
         QFont font;
         font.setFamily(QStringLiteral("Microsoft YaHei"));
         Traywidget->setFont(font);
@@ -60,7 +60,7 @@ public:
         verticalLayout = new QVBoxLayout(Traywidget);
         verticalLayout->setSpacing(1);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 2, 0, 0);
+        verticalLayout->setContentsMargins(0, 5, 0, 0);
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));

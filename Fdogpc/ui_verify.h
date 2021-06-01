@@ -13,10 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
@@ -28,12 +30,16 @@ class Ui_Verify
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *widget_2;
+    QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QLabel *label_2;
+    QSpacerItem *horizontalSpacer;
     QToolButton *toolButton;
     QToolButton *toolButton_2;
     QWidget *widget;
+    QGridLayout *gridLayout_2;
     QTabWidget *tabWidget;
     QWidget *tab;
     QLabel *label_3;
@@ -48,19 +54,27 @@ public:
     {
         if (Verify->objectName().isEmpty())
             Verify->setObjectName(QStringLiteral("Verify"));
-        Verify->resize(575, 447);
+        Verify->resize(568, 445);
         Verify->setStyleSheet(QLatin1String("*{font-family:Microsoft YaHei;}\n"
 "#Verify{\n"
 "background-color: rgb(116, 195, 255);\n"
 "}"));
         verticalLayout = new QVBoxLayout(Verify);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        widget_2 = new QWidget(Verify);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setStyleSheet(QStringLiteral("background-color: rgb(187, 255, 155);"));
+        gridLayout = new QGridLayout(widget_2);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(6, 0, 6, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(Verify);
+        label = new QLabel(widget_2);
         label->setObjectName(QStringLiteral("label"));
-        label->setMaximumSize(QSize(15, 15));
+        label->setMinimumSize(QSize(20, 20));
+        label->setMaximumSize(QSize(20, 20));
         QFont font;
         font.setFamily(QStringLiteral("Microsoft YaHei"));
         font.setStyleStrategy(QFont::PreferAntialias);
@@ -69,43 +83,53 @@ public:
 
         horizontalLayout->addWidget(label);
 
-        label_2 = new QLabel(Verify);
+        label_2 = new QLabel(widget_2);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
 
         horizontalLayout->addWidget(label_2);
 
-        toolButton = new QToolButton(Verify);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        toolButton = new QToolButton(widget_2);
         toolButton->setObjectName(QStringLiteral("toolButton"));
         toolButton->setFont(font);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/zuixiaohua.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton->setIcon(icon);
+        toolButton->setIconSize(QSize(20, 20));
         toolButton->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton);
 
-        toolButton_2 = new QToolButton(Verify);
+        toolButton_2 = new QToolButton(widget_2);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         toolButton_2->setFont(font);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/guanbi.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_2->setIcon(icon1);
+        toolButton_2->setIconSize(QSize(20, 20));
         toolButton_2->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton_2);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
+
+
+        verticalLayout->addWidget(widget_2);
 
         widget = new QWidget(Verify);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setMinimumSize(QSize(0, 417));
         widget->setFont(font);
         widget->setStyleSheet(QStringLiteral("background-color: rgb(179, 255, 250);"));
+        gridLayout_2 = new QGridLayout(widget);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         tabWidget = new QTabWidget(widget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(10, 0, 551, 401));
         tabWidget->setFont(font);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -115,20 +139,43 @@ public:
         label_3->setFont(font);
         label_5 = new QLabel(tab);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(110, 32, 54, 20));
+        label_5->setGeometry(QRect(100, 32, 54, 20));
         label_5->setFont(font);
         label_6 = new QLabel(tab);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(110, 60, 54, 16));
+        label_6->setGeometry(QRect(100, 60, 54, 16));
         label_6->setFont(font);
         label_7 = new QLabel(tab);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(110, 80, 54, 21));
+        label_7->setGeometry(QRect(100, 80, 54, 21));
         label_7->setFont(font);
         pushButton = new QPushButton(tab);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(400, 70, 91, 31));
-        pushButton->setFont(font);
+        pushButton->setGeometry(QRect(400, 70, 81, 31));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Microsoft YaHei"));
+        font1.setPointSize(10);
+        font1.setStyleStrategy(QFont::PreferAntialias);
+        pushButton->setFont(font1);
+        pushButton->setStyleSheet(QLatin1String("#pushButton{\n"
+"background-color: rgb(99, 188, 255);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 5px;\n"
+"}\n"
+"#pushButton:hover{\n"
+"background-color: rgb(99, 170, 255);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 5px;\n"
+"\n"
+"}\n"
+"#pushButton:pressed{\n"
+"background-color: rgb(99, 188, 255);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 5px;\n"
+"padding-left:2px;\n"
+"padding-top:2px;\n"
+"}\n"
+""));
         pushButton_3 = new QPushButton(tab);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(20, 40, 61, 61));
@@ -141,8 +188,13 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         tabWidget->addTab(tab_2, QString());
 
+        gridLayout_2->addWidget(tabWidget, 0, 0, 1, 1);
+
+
         verticalLayout->addWidget(widget);
 
+        verticalLayout->setStretch(0, 1);
+        verticalLayout->setStretch(1, 12);
 
         retranslateUi(Verify);
 
@@ -161,9 +213,9 @@ public:
         toolButton->setText(QApplication::translate("Verify", "...", nullptr));
         toolButton_2->setText(QApplication::translate("Verify", "...", nullptr));
         label_3->setText(QApplication::translate("Verify", "4\346\234\21028\346\227\245", nullptr));
-        label_5->setText(QApplication::translate("Verify", "4\346\234\21028\346\227\245", nullptr));
-        label_6->setText(QApplication::translate("Verify", "4\346\234\21028\346\227\245", nullptr));
-        label_7->setText(QApplication::translate("Verify", "4\346\234\21028\346\227\245", nullptr));
+        label_5->setText(QString());
+        label_6->setText(QString());
+        label_7->setText(QString());
         pushButton->setText(QApplication::translate("Verify", "\346\267\273\345\212\240/\346\213\222\347\273\235", nullptr));
         pushButton_3->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Verify", "\345\245\275\345\217\213\351\252\214\350\257\201", nullptr));

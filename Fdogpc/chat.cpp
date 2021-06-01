@@ -288,3 +288,8 @@ void Chat::on_toolButton_3_clicked()
     }
     emit sendCount();
 }
+
+void Chat::on_toolButton_clicked()
+{
+    this->hide();
+}

@@ -63,7 +63,7 @@ void Verify::on_pushButton_clicked()
     QStringList grouping =sqconn.getGrouping();
     agreefriend = new Agreefriend(this->account,this->otheraccount,this->name,grouping);
     agreefriend->show();
-    connect(Globalobserver::getAgreefriend(),SIGNAL(updateverify(QString,QString)),Globalobserver::getMainwindowp(),SLOT(pudatamainverify(QString,QString)));
+    //connect(Globalobserver::getAgreefriend(),SIGNAL(updateverify(QString,QString)),Globalobserver::getMainwindowp(),SLOT(updatamainverify(QString,QString)));
 }
 
 void Verify::on_toolButton_clicked()
@@ -73,5 +73,5 @@ void Verify::on_toolButton_clicked()
 
 void Verify::on_toolButton_2_clicked()
 {
-    this->close();
+    this->hide();
 }

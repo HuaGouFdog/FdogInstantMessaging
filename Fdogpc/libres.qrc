@@ -48,5 +48,7 @@
         <file>lib/erweima.png</file>
         <file>lib/jietou2.png</file>
         <file>lib/fdog2.png</file>
+        <file>lib/down.png</file>
+        <file>lib/add.png</file>
     </qresource>
 </RCC>

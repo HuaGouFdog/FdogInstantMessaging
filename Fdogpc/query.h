@@ -21,6 +21,7 @@ public:
     QPixmap PixmapToRound(QPixmap &src, int radius);
     explicit Query(QString account,QWidget *parent = 0);
     ~Query();
+    void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *event);//鼠标点击
     void mouseMoveEvent(QMouseEvent *event);//鼠标移动
     void mouseReleaseEvent(QMouseEvent *event);//鼠标释放

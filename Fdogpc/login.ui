@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>447</width>
-    <height>344</height>
+    <width>446</width>
+    <height>342</height>
    </rect>
   </property>
   <property name="font">
@@ -36,7 +36,7 @@ background-color: rgb(84, 62, 255);
     <number>0</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="rightMargin">
     <number>0</number>
@@ -121,8 +121,7 @@ border-top-right-radius:10px;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);
-border-bottom-left-radius: 10px;
-border-bottom-right-radius: 10px;</string>
+</string>
       </property>
       <property name="text">
        <string/>
@@ -459,7 +458,7 @@ border-bottom-color: rgb(129, 129, 129);</string>
         <x>110</x>
         <y>277</y>
         <width>221</width>
-        <height>34</height>
+        <height>37</height>
        </rect>
       </property>
       <property name="font">
