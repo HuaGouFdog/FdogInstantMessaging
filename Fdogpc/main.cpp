@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 //    w.show();
 
     Login n;
+    n.setAttribute(Qt::WA_DeleteOnClose);
     n.show();
     return a.exec();
 }

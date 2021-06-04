@@ -111,6 +111,7 @@ void MainWindow::onClientDisconnected(int i)
         if(tcpSocket[j]->peerPort()==i)
         {
             ui->plainTextEdit->appendPlainText("客户端套接字已断开连接");
+            sqconn.update(QString::number(tcpSocket[j]->peerPort()));
             tcpSocket[j]->deleteLater();
             this->tcpSocket.removeAt(j);
             this->isfrist.removeAt(j);

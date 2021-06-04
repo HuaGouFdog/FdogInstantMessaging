@@ -22,7 +22,7 @@ Addfriend::Addfriend(QPixmap icon,QString otheraccount,QString name,QString acco
     ui->label_10->setText("性别:"+sex);
     ui->label_11->setText("年龄:"+age);
     ui->label_12->setText("职业:"+Profession);
-    sqconn.conndata();
+    sqconn.connData();
     sqconn.queryUserInfo(account);
     ui->comboBox->addItem(this->getName());
     QStringList groupings = sqconn.getGrouping();

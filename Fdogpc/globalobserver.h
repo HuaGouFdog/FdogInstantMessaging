@@ -21,6 +21,7 @@ public:
     static void installPersonInfo(MainWindow *p);
     static void installPersonInfo(Addfriend *p);
     static void installPersonInfo(Agreefriend *p);
+    static QPixmap PixmapToRound(const QPixmap &src, const int &radius);   //图片反锯齿化
     static MainWindow *getMainwindowp();
     static void setMainwindowp(MainWindow *value);
     static Addfriend *getAddfriendp();
@@ -29,7 +30,6 @@ public:
     static void setAgreefriend(Agreefriend *value);
     static QList<Chat *> getListchat();
     static void setListchat(const QList<Chat *> &value);
-    static QPixmap PixmapToRound(QPixmap &src, int radius);
 };
 
 #endif // GLOBALOBSERVER_H

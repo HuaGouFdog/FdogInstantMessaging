@@ -58,12 +58,11 @@ void Verify::mouseReleaseEvent(QMouseEvent *event)
 void Verify::on_pushButton_clicked()
 {
     Usersql sqconn;
-    sqconn.conndata();
+    sqconn.connData();
     sqconn.queryUserInfo(this->account);
     QStringList grouping =sqconn.getGrouping();
     agreefriend = new Agreefriend(this->account,this->otheraccount,this->name,grouping);
     agreefriend->show();
-    //connect(Globalobserver::getAgreefriend(),SIGNAL(updateverify(QString,QString)),Globalobserver::getMainwindowp(),SLOT(updatamainverify(QString,QString)));
 }
 
 void Verify::on_toolButton_clicked()

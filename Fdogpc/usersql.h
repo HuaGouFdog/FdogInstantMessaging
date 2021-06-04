@@ -8,47 +8,44 @@
 class Usersql
 {
 private:
-     QSqlDatabase dbconn;    //连接数据库
-     QSqlQuery query;        //查询操作
-     QString account = "";   //账号
-     QString phone = "";     //手机
-     QString name = "";      //昵称
-     QString passwd = "";    //密码
-     QString signature ="";  //个性签名
-     QString iconurl = "";   //地址
-     QPixmap icon = "";      //头像
-     QString grade = "";     //帐号等级
-     QString namet = "";     //姓名
-     QString sex = "";       //性别
-     QString age = "";       //年龄
-     QString birthday = "";  //生日
-     QString profession = "";//职业
-     QStringList grouping;   //分组信息
-     QStringList mfriend;    //好友帐户
-     QStringList mfriendname;//好友昵称
-     bool power; //权限
+    QString IP = "";
+    QSqlDatabase dbconn;    //连接数据库
+    QSqlQuery query;        //查询操作
+    QString account = "";   //主体账号
+    QString phone = "";     //主体手机号
+    QString name = "";      //主体昵称
+    QString passwd = "";    //主体密码
+    QString signature ="";  //主体个性签名
+    QString iconurl = "";   //主体地址
+    QPixmap icon;           //主体头像
+    QString grade = "";     //主体帐号等级
+    QString namet = "";     //主体姓名
+    QString sex = "";       //主体性别
+    QString age = "";       //主体年龄
+    QString birthday = "";  //主体生日
+    QString profession = "";//主体职业
+    QStringList grouping;   //分组信息
+    QStringList mfriend;    //好友帐户
+    QStringList mfriendname;//好友昵称
+    int sate = -1;             //主体账号登录显示状态 -1离线 0在线 1F我吧 2隐身 3离开 4忙碌 5勿扰
+    bool power; //权限
 public:
     Usersql();
-    void conndata(); //连接数据库
-    bool queryuser(QString user,QString password); //查询是否有该账户
-    QPixmap geticonurl(QString url);//获取账户图片
-    QPixmap getPixmapIcon(QString url);//根据账户获取头像
-    QPixmap PixmapToRound(QPixmap &src, int radius);
-    void queryUserInfo(QString account); //获取账号信息
-    void conndataOther(QString mysqlname); //获取分组信息连接
-    QStringList getGroupname_Groupcount();//获取分组名称,人数
-    void AccountIP1(QString ip);//获取ip更新在线状态
-    void AccountIP2(QString ip);//获取ip更新离线状态
-    QString getOtherAccountName(QString otheraccount);//根据账号获取名字
-    QString getOtherAccountSex(QString otheraccount);//根据账号获取性别
-    QString getOtherAccountAge(QString otheraccount);//根据账号获取年龄
-    QString getOtherAccountProfession(QString otheraccount);//根据账号获取职业
-    void setverify(QString time,QString account,QString sate,QString name,QString grouping,QString otheraccount);//添加好友数据
-    void getverify(QString time,QString otheraccount,QString sate,QString name,QString grouping,QString account);//添加好友数据
-    QString getverifygrouping(QString account,QString otheraccount);//获取主动添加方设置的分组
-    void updatagrouping(QString otheraccount,QString account);
-
-    //getset
+    bool connData(); //连接数据库
+    bool queryUser(const QString &user,const QString &password);    //查询是否有该账户
+    QPixmap getIconUrl(const QString &url);                         //获取账户图片
+    QPixmap getPixmapIcon(const QString &url);                       //调用geticonurl函数并对图片进行圆角化
+    void queryUserInfo(const QString &account);    //获取账号基本信息
+    void AccountIP(const QString &ip);//获取ip在线状态，包括在线，隐身，Q我，忙碌，离线等等
+    QString getOtherAccountName(const QString &otheraccount);  //根据账号获取名字
+    QString getOtherAccountSex(const QString &otheraccount);   //根据账号获取性别
+    QString getOtherAccountAge(const QString &otheraccount);   //根据账号获取年龄
+    QString getOtherAccountProfession(const QString &otheraccount);//根据账号获取职业
+    void setverify(const QString &time,const QString &account,const QString &sate,const QString &name,const QString &grouping,const QString &otheraccount);//添加好友数据
+    void getverify(const QString &time,const QString &otheraccount,const QString &sate,const QString &name,const QString &grouping,const QString &account);//添加好友数据
+    QString getverifygrouping(const QString &account,const QString &otheraccount);//获取主动添加方设置的分组
+    void updatagrouping(const QString &otheraccount,const QString &account);//暂无
+    //getset函数
     QPixmap getIcon() const;
     void setIcon(const QPixmap &value);
     QString getAccount() const;
@@ -73,6 +70,12 @@ public:
     void setProfession(const QString &value);
     QString getSex() const;
     void setSex(const QString &value);
+    QString getIP() const;
+    void setIP(const QString &value);
+    int getA() const;
+    void setA(int value);
+    int getSate() const;
+    void setSate(int value);
 };
 
 #endif // USERSQL_H

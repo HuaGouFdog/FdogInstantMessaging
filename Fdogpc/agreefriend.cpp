@@ -31,7 +31,7 @@ void Agreefriend::on_pushButton_clicked()
     //数据库找到发起方，更新数据，在对应分组增加该好友
     //QString time, QString otheraccount, QString sate, QString name, QString grouping, QString account
     Usersql sqconn;
-    sqconn.conndata();
+    sqconn.connData();
     sqconn.getverify("今日",this->otheraccount,"同意",ui->lineEdit->text(),ui->comboBox->currentText(),this->account);
     //数据库找到目的方
     //两个作用，第一个是告诉自己更新列表，第二个是告诉对方更新列表
@@ -44,7 +44,7 @@ void Agreefriend::on_pushButton_clicked()
 void Agreefriend::on_pushButton_2_clicked()
 {
     Usersql sqconn;
-    sqconn.conndata();
+    sqconn.connData();
     sqconn.getverify("今日",this->otheraccount,"拒绝",ui->lineEdit->text(),ui->comboBox->currentText(),this->account);
     //拒绝
     emit updateverify(this->otheraccount,this->account);

@@ -21,6 +21,7 @@
 #include<QMenu>
 #include<QMessageBox>
 #include<algorithm>
+#include<QTimer>
 #include"usersql.h"
 #include"mainwindow.h"
 namespace Ui {
@@ -30,10 +31,13 @@ class Login;
 class Login : public QWidget
 {
     Q_OBJECT
+    QTcpSocket * tcpClient;//连接网络
     QSystemTrayIcon  * systemtrayicon;  //系统托盘
     QPoint m_point;                     //点类
     QMovie * m_movie;                   //添加动态图
+    QMovie * m_movie2;                  //添加动态图2
     QSize m_si;                         //动态图压缩大小
+    QSize m_si2;                        //动态图压缩大小2
     Usersql sqconn;                     //数据库类
     MainWindow * w;                     //主界面类
     QString account ="";                //查询账户
@@ -49,8 +53,13 @@ class Login : public QWidget
     QAction *m_pCloseAction;            //退出选项
     QSignalMapper * myMapper;
     QVector<int> infoListsign;
+    QTimer timesignin;
+    quint16 port;
+    QString addr =getLocalIP();
+    bool network = true; //是否能正常连接主机
 public:
     explicit Login(QWidget *parent = 0);
+    QString getLocalIP();                           //获取本机IP地址
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *event);//鼠标点击
     void mouseMoveEvent(QMouseEvent *event);//鼠标移动
@@ -71,13 +80,21 @@ private slots:
     void on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reason);
 
     void on_comboBox_currentIndexChanged(int index);
-
+    void onConnected();//连接
+    void onSocketStateChange(QAbstractSocket::SocketState);//状态
+    void onSocketErrorChange(QAbstractSocket::SocketError);//连接错误类型
 
     void showwidget();
     void closewidget();
     void deleteaccount(int i);
 
 
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
 
 private:
     Ui::Login *ui;

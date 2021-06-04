@@ -517,7 +517,7 @@ padding-top:2px;
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QWidget" name="horizontalLayoutWidget">
+     <widget class="QWidget" name="horizontalWidget" native="true">
       <property name="geometry">
        <rect>
         <x>4</x>
@@ -525,12 +525,6 @@ padding-top:2px;
         <width>421</width>
         <height>41</height>
        </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Microsoft YaHei</family>
-        <stylestrategy>PreferAntialias</stylestrategy>
-       </font>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -679,6 +673,9 @@ background-color: rgba(255, 255, 255, 0);</string>
         </widget>
        </item>
       </layout>
+      <zorder>toolButton</zorder>
+      <zorder>toolButton_4</zorder>
+      <zorder>toolButton_2</zorder>
      </widget>
      <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
@@ -727,19 +724,467 @@ background-color: rgba(255, 255, 255, 0);</string>
        </size>
       </property>
      </widget>
+     <widget class="QWidget" name="widget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>431</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#widget_2{
+background-color: rgba(0, 0, 0, 50);
+}</string>
+      </property>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>277</y>
+         <width>131</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <pointsize>13</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#pushButton_4{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+background-color: rgba(255, 255, 255, 0);
+}
+#pushButton_4:hover{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+background-color: rgba(255, 255, 255, 0);
+}
+#pushButton_4:pressed{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+background-color: rgba(255, 255, 255, 0);
+padding-left:2px;
+padding-top:2px;
+}
+
+</string>
+       </property>
+       <property name="text">
+        <string>取消</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>170</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(255, 255, 255, 0);</string>
+       </property>
+       <property name="text">
+        <string>登录中</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>431</width>
+         <height>331</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QStackedWidget" name="stackedWidget">
+       <property name="geometry">
+        <rect>
+         <x>-1</x>
+         <y>-1</y>
+         <width>431</width>
+         <height>331</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#page,#page_2{
+border-image: url(:/lib/error.png);
+	background-color: rgba(255, 255, 255, 0);
+}
+</string>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="page">
+        <widget class="QLabel" name="label_4">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>100</y>
+           <width>250</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string>你输入的帐户名或密码不正确，原因可能是：</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>120</y>
+           <width>250</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string>1. 帐户名输入有误;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>140</y>
+           <width>250</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string>2. 忘记密码;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>160</y>
+           <width>250</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string>3. 未区分字母大小写;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_9">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>180</y>
+           <width>250</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string>4. 未开启小键盘;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>200</y>
+           <width>250</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string>5. 帐户名未绑定QQ号。</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>100</y>
+           <width>36</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/lib/anquan.png);
+background-color: rgba(255, 255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_12">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>240</y>
+           <width>321</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string>如果你的密码丢失或者遗忘，可以访问Fdog官网找回密码。</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_5">
+         <property name="geometry">
+          <rect>
+           <x>350</x>
+           <y>290</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#pushButton_5{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+	background-color: rgb(199, 238, 255);
+}
+#pushButton_5:hover{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+}
+#pushButton_5:pressed{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+padding-left:2px;
+padding-top:2px;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>确定</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_2">
+        <widget class="QLabel" name="label_13">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>130</y>
+           <width>161</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <pointsize>10</pointsize>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="text">
+          <string>连接服务器超时，请重试。</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_6">
+         <property name="geometry">
+          <rect>
+           <x>350</x>
+           <y>290</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#pushButton_6{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+	background-color: rgb(199, 238, 255);
+}
+#pushButton_6:hover{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+}
+#pushButton_6:pressed{
+color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;
+border-radius:5px;
+padding-left:2px;
+padding-top:2px;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>确定</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_14">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>150</y>
+           <width>161</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <pointsize>10</pointsize>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="text">
+          <string>(错误码：0x00000001)</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>130</y>
+           <width>31</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/lib/network.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <zorder>label_3</zorder>
+      <zorder>label</zorder>
+      <zorder>pushButton_4</zorder>
+      <zorder>stackedWidget</zorder>
+     </widget>
      <zorder>mian_label</zorder>
      <zorder>label_2</zorder>
      <zorder>register_btn</zorder>
      <zorder>horizontalLayoutWidget_2</zorder>
      <zorder>comboBox</zorder>
-     <zorder>label_5</zorder>
      <zorder>lineEdit_2</zorder>
      <zorder>lineEdit</zorder>
      <zorder>pushButton</zorder>
-     <zorder>horizontalLayoutWidget</zorder>
+     <zorder>toolButton_5</zorder>
+     <zorder>widget_2</zorder>
+     <zorder>label_5</zorder>
      <zorder>pushButton_3</zorder>
      <zorder>toolButton_3</zorder>
-     <zorder>toolButton_5</zorder>
+     <zorder>horizontalWidget</zorder>
     </widget>
    </item>
   </layout>

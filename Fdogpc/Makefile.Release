@@ -230,6 +230,7 @@ release\qrc_libres.obj: libres.qrc \
 		lib\sangangy.png \
 		lib\dengji.png \
 		lib\jietou2.png \
+		lib\error.png \
 		lib\min.png \
 		lib\svip.png \
 		lib\fdog.png \
@@ -244,6 +245,7 @@ release\qrc_libres.obj: libres.qrc \
 		lib\lixianim.png \
 		lib\shijian.png \
 		lib\fdog2.png \
+		lib\anquan.png \
 		lib\delete2.png \
 		lib\search.png \
 		lib\xiaolian.png \
@@ -251,6 +253,7 @@ release\qrc_libres.obj: libres.qrc \
 		lib\yinshenim.png \
 		lib\jietou.png \
 		lib\verify2.png \
+		lib\manglu.png \
 		lib\jianpan.png
 	D:\QT\5.10.0\msvc2015_64\bin\rcc.exe -name libres libres.qrc -pass 1 -o release/qrc_libres.cpp 
 	 cl $(CXXFLAGS) -c release/qrc_libres.cpp -Forelease/qrc_libres.tmp.obj 
@@ -628,6 +631,9 @@ release\moc_login.cpp: ..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSystemTray
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QMessageBox \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QTimer \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		usersql.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
 		..\..\QT\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
@@ -652,9 +658,6 @@ release\moc_login.cpp: ..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSystemTray
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qtnetwork-config.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qabstractsocket.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QList \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QTimer \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QBitmap \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qbitmap.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QHostInfo \
@@ -2457,6 +2460,9 @@ release\login.obj: login.cpp login.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QMessageBox \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QTimer \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		usersql.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
 		..\..\QT\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
@@ -2481,9 +2487,6 @@ release\login.obj: login.cpp login.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qtnetwork-config.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qabstractsocket.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QList \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QTimer \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QBitmap \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qbitmap.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QHostInfo \
@@ -2525,6 +2528,8 @@ release\login.obj: login.cpp login.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h
 
@@ -2677,7 +2682,76 @@ release\usersql.obj: usersql.cpp usersql.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QPainter \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qpainter.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qpen.h
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qpen.h \
+		globalobserver.h \
+		mainwindow.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QMainWindow \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qicon.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSystemTrayIcon \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qsystemtrayicon.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QMouseEvent \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QPoint \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QMovie \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qmovie.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qimagereader.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qimageiohandler.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qplugin.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qpointer.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QSize \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QListWidget \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QSignalMapper \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qsignalmapper.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QTcpSocket \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QList \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QTimer \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qdrawutil.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QHostInfo \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qhostinfo.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qhostaddress.h \
+		query.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
+		chat.h \
+		verify.h \
+		agreefriend.h \
+		traywidget.h \
+		addfriend.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QDateTime
 
 release\query.obj: query.cpp query.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QWidget \

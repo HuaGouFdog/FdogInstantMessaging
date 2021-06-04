@@ -22,6 +22,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QWidget>
 
@@ -46,7 +47,7 @@ public:
     QLineEdit *lineEdit_2;
     QLineEdit *lineEdit;
     QPushButton *pushButton;
-    QWidget *horizontalLayoutWidget;
+    QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout;
     QToolButton *toolButton_4;
     QSpacerItem *horizontalSpacer;
@@ -54,6 +55,26 @@ public:
     QToolButton *toolButton_2;
     QPushButton *pushButton_3;
     QToolButton *toolButton_5;
+    QWidget *widget_2;
+    QPushButton *pushButton_4;
+    QLabel *label;
+    QLabel *label_3;
+    QStackedWidget *stackedWidget;
+    QWidget *page;
+    QLabel *label_4;
+    QLabel *label_6;
+    QLabel *label_7;
+    QLabel *label_8;
+    QLabel *label_9;
+    QLabel *label_10;
+    QLabel *label_11;
+    QLabel *label_12;
+    QPushButton *pushButton_5;
+    QWidget *page_2;
+    QLabel *label_13;
+    QPushButton *pushButton_6;
+    QLabel *label_14;
+    QLabel *label_15;
 
     void setupUi(QWidget *Login)
     {
@@ -283,14 +304,12 @@ public:
 ""));
         pushButton->setAutoDefault(false);
         pushButton->setFlat(false);
-        horizontalLayoutWidget = new QWidget(widget);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(4, 0, 421, 41));
-        horizontalLayoutWidget->setFont(font1);
-        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalWidget = new QWidget(widget);
+        horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
+        horizontalWidget->setGeometry(QRect(4, 0, 421, 41));
+        horizontalLayout = new QHBoxLayout(horizontalWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        toolButton_4 = new QToolButton(horizontalLayoutWidget);
+        toolButton_4 = new QToolButton(horizontalWidget);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
         toolButton_4->setMinimumSize(QSize(83, 39));
         toolButton_4->setMaximumSize(QSize(83, 39));
@@ -308,7 +327,7 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        toolButton = new QToolButton(horizontalLayoutWidget);
+        toolButton = new QToolButton(horizontalWidget);
         toolButton->setObjectName(QStringLiteral("toolButton"));
         toolButton->setMinimumSize(QSize(25, 25));
         toolButton->setMaximumSize(QSize(25, 25));
@@ -324,7 +343,7 @@ public:
 
         horizontalLayout->addWidget(toolButton);
 
-        toolButton_2 = new QToolButton(horizontalLayoutWidget);
+        toolButton_2 = new QToolButton(horizontalWidget);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         toolButton_2->setMinimumSize(QSize(25, 25));
         toolButton_2->setMaximumSize(QSize(25, 25));
@@ -339,6 +358,9 @@ public:
 
         horizontalLayout->addWidget(toolButton_2);
 
+        toolButton->raise();
+        toolButton_4->raise();
+        toolButton_2->raise();
         pushButton_3 = new QPushButton(widget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(183, 82, 66, 66));
@@ -356,19 +378,199 @@ public:
         icon5.addFile(QStringLiteral(":/lib/erweima.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_5->setIcon(icon5);
         toolButton_5->setIconSize(QSize(30, 30));
+        widget_2 = new QWidget(widget);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setGeometry(QRect(0, 0, 431, 331));
+        widget_2->setStyleSheet(QLatin1String("#widget_2{\n"
+"background-color: rgba(0, 0, 0, 50);\n"
+"}"));
+        pushButton_4 = new QPushButton(widget_2);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(150, 277, 131, 35));
+        QFont font6;
+        font6.setFamily(QStringLiteral("Microsoft YaHei"));
+        font6.setPointSize(13);
+        font6.setBold(false);
+        font6.setWeight(50);
+        font6.setStyleStrategy(QFont::PreferAntialias);
+        pushButton_4->setFont(font6);
+        pushButton_4->setStyleSheet(QLatin1String("#pushButton_4{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"#pushButton_4:hover{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"#pushButton_4:pressed{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"padding-left:2px;\n"
+"padding-top:2px;\n"
+"}\n"
+"\n"
+""));
+        label = new QLabel(widget_2);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(180, 170, 71, 31));
+        QFont font7;
+        font7.setFamily(QStringLiteral("Microsoft YaHei"));
+        font7.setPointSize(14);
+        font7.setBold(true);
+        font7.setWeight(75);
+        font7.setStyleStrategy(QFont::PreferAntialias);
+        label->setFont(font7);
+        label->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);"));
+        label->setAlignment(Qt::AlignCenter);
+        label_3 = new QLabel(widget_2);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(0, 0, 431, 331));
+        stackedWidget = new QStackedWidget(widget_2);
+        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
+        stackedWidget->setGeometry(QRect(-1, -1, 431, 331));
+        stackedWidget->setStyleSheet(QLatin1String("#page,#page_2{\n"
+"border-image: url(:/lib/error.png);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+""));
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        label_4 = new QLabel(page);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(90, 100, 250, 20));
+        label_4->setFont(font1);
+        label_4->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        label_6 = new QLabel(page);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(90, 120, 250, 20));
+        label_6->setFont(font1);
+        label_6->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        label_7 = new QLabel(page);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(90, 140, 250, 20));
+        label_7->setFont(font1);
+        label_7->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        label_8 = new QLabel(page);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(90, 160, 250, 20));
+        label_8->setFont(font1);
+        label_8->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        label_9 = new QLabel(page);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setGeometry(QRect(90, 180, 250, 20));
+        label_9->setFont(font1);
+        label_9->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        label_10 = new QLabel(page);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setGeometry(QRect(90, 200, 250, 20));
+        label_10->setFont(font1);
+        label_10->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        label_11 = new QLabel(page);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(50, 100, 36, 41));
+        label_11->setStyleSheet(QLatin1String("border-image: url(:/lib/anquan.png);\n"
+"background-color: rgba(255, 255, 255, 0);"));
+        label_12 = new QLabel(page);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(90, 240, 321, 20));
+        label_12->setFont(font1);
+        label_12->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        pushButton_5 = new QPushButton(page);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(350, 290, 71, 31));
+        pushButton_5->setFont(font1);
+        pushButton_5->setStyleSheet(QLatin1String("#pushButton_5{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"	background-color: rgb(199, 238, 255);\n"
+"}\n"
+"#pushButton_5:hover{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"}\n"
+"#pushButton_5:pressed{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"padding-left:2px;\n"
+"padding-top:2px;\n"
+"}\n"
+""));
+        stackedWidget->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        label_13 = new QLabel(page_2);
+        label_13->setObjectName(QStringLiteral("label_13"));
+        label_13->setGeometry(QRect(140, 130, 161, 16));
+        label_13->setFont(font);
+        pushButton_6 = new QPushButton(page_2);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setGeometry(QRect(350, 290, 71, 31));
+        pushButton_6->setFont(font1);
+        pushButton_6->setStyleSheet(QLatin1String("#pushButton_6{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"	background-color: rgb(199, 238, 255);\n"
+"}\n"
+"#pushButton_6:hover{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"}\n"
+"#pushButton_6:pressed{\n"
+"color: rgb(255, 255, 255);\n"
+"border-style:solid;\n"
+"border-width:1px;\n"
+"border-radius:5px;\n"
+"padding-left:2px;\n"
+"padding-top:2px;\n"
+"}\n"
+""));
+        label_14 = new QLabel(page_2);
+        label_14->setObjectName(QStringLiteral("label_14"));
+        label_14->setGeometry(QRect(140, 150, 161, 16));
+        label_14->setFont(font);
+        label_15 = new QLabel(page_2);
+        label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setGeometry(QRect(90, 130, 31, 31));
+        label_15->setStyleSheet(QStringLiteral("border-image: url(:/lib/network.png);"));
+        stackedWidget->addWidget(page_2);
+        label_3->raise();
+        label->raise();
+        pushButton_4->raise();
+        stackedWidget->raise();
         mian_label->raise();
         label_2->raise();
         register_btn->raise();
         horizontalLayoutWidget_2->raise();
         comboBox->raise();
-        label_5->raise();
         lineEdit_2->raise();
         lineEdit->raise();
         pushButton->raise();
-        horizontalLayoutWidget->raise();
+        toolButton_5->raise();
+        widget_2->raise();
+        label_5->raise();
         pushButton_3->raise();
         toolButton_3->raise();
-        toolButton_5->raise();
+        horizontalWidget->raise();
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
@@ -388,6 +590,7 @@ public:
         register_btn->setDefault(false);
         pushButton_2->setDefault(false);
         comboBox->setCurrentIndex(-1);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Login);
@@ -415,6 +618,22 @@ public:
         toolButton_2->setText(QApplication::translate("Login", "...", nullptr));
         pushButton_3->setText(QString());
         toolButton_5->setText(QString());
+        pushButton_4->setText(QApplication::translate("Login", "\345\217\226\346\266\210", nullptr));
+        label->setText(QApplication::translate("Login", "\347\231\273\345\275\225\344\270\255", nullptr));
+        label_3->setText(QString());
+        label_4->setText(QApplication::translate("Login", "\344\275\240\350\276\223\345\205\245\347\232\204\345\270\220\346\210\267\345\220\215\346\210\226\345\257\206\347\240\201\344\270\215\346\255\243\347\241\256\357\274\214\345\216\237\345\233\240\345\217\257\350\203\275\346\230\257\357\274\232", nullptr));
+        label_6->setText(QApplication::translate("Login", "1. \345\270\220\346\210\267\345\220\215\350\276\223\345\205\245\346\234\211\350\257\257;", nullptr));
+        label_7->setText(QApplication::translate("Login", "2. \345\277\230\350\256\260\345\257\206\347\240\201;", nullptr));
+        label_8->setText(QApplication::translate("Login", "3. \346\234\252\345\214\272\345\210\206\345\255\227\346\257\215\345\244\247\345\260\217\345\206\231;", nullptr));
+        label_9->setText(QApplication::translate("Login", "4. \346\234\252\345\274\200\345\220\257\345\260\217\351\224\256\347\233\230;", nullptr));
+        label_10->setText(QApplication::translate("Login", "5. \345\270\220\346\210\267\345\220\215\346\234\252\347\273\221\345\256\232QQ\345\217\267\343\200\202", nullptr));
+        label_11->setText(QString());
+        label_12->setText(QApplication::translate("Login", "\345\246\202\346\236\234\344\275\240\347\232\204\345\257\206\347\240\201\344\270\242\345\244\261\346\210\226\350\200\205\351\201\227\345\277\230\357\274\214\345\217\257\344\273\245\350\256\277\351\227\256Fdog\345\256\230\347\275\221\346\211\276\345\233\236\345\257\206\347\240\201\343\200\202", nullptr));
+        pushButton_5->setText(QApplication::translate("Login", "\347\241\256\345\256\232", nullptr));
+        label_13->setText(QApplication::translate("Login", "\350\277\236\346\216\245\346\234\215\345\212\241\345\231\250\350\266\205\346\227\266\357\274\214\350\257\267\351\207\215\350\257\225\343\200\202", nullptr));
+        pushButton_6->setText(QApplication::translate("Login", "\347\241\256\345\256\232", nullptr));
+        label_14->setText(QApplication::translate("Login", "(\351\224\231\350\257\257\347\240\201\357\274\2320x00000001)", nullptr));
+        label_15->setText(QString());
     } // retranslateUi
 
 };

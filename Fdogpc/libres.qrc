@@ -50,5 +50,9 @@
         <file>lib/fdog2.png</file>
         <file>lib/down.png</file>
         <file>lib/add.png</file>
+        <file>lib/manglu.png</file>
+        <file>lib/anquan.png</file>
+        <file>lib/error.png</file>
+        <file>lib/network.png</file>
     </qresource>
 </RCC>

@@ -5,11 +5,12 @@
 #pragma execution_character_set("utf-8")
 #endif
 
-MainWindow::MainWindow(QString account,QWidget *parent) :
+MainWindow::MainWindow(QString account,QTcpSocket *tcpClient,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->tcpClient = tcpClient;
     this->tarywidget  = new Traywidget(this->name);
     this->timemouse.start(200);
     this->timemouse.setSingleShot(false);
@@ -18,26 +19,22 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
     connect(&timemouse,SIGNAL(timeout()),this,SLOT(showdata()));
 
     Globalobserver::setMainwindowp(this);
-    tcpClient=new QTcpSocket(this);
     LabSocketate = new QLabel("Socket状态：");
     LabSocketate->setMinimumWidth(250);
     QString localIP = getLocalIP();
 
     //连接到服务器
-    QString addr =localIP;
-    //qDebug()<<"ip:"<<addr;
-    //QString addr ="192.16";
-    quint16 port = 60;
-    tcpClient->connectToHost(addr,port);
-
-    connect(tcpClient,SIGNAL(connected()),
-            this,SLOT(onConnected()));
-    connect(tcpClient,SIGNAL(disconnected()),
-            this,SLOT(onDisconnected()));
-    connect(tcpClient,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-            this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
-    connect(tcpClient,SIGNAL(readyRead()),
-            this,SLOT(onSocketReadyRead()));
+//    QString addr =localIP;
+//    //qDebug()<<"ip:"<<addr;
+//    //QString addr ="192.16";
+//    tcpClient=new QTcpSocket(this);
+//    quint16 port = 60;
+//    tcpClient->connectToHost(addr,port);
+    connect(tcpClient,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(onSocketErrorChange(QAbstractSocket::SocketError)));
+    connect(tcpClient,SIGNAL(connected()),this,SLOT(onConnected()));
+    connect(tcpClient,SIGNAL(disconnected()),this,SLOT(onDisconnected()));
+    connect(tcpClient,SIGNAL(stateChanged(QAbstractSocket::SocketState)),this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
+    connect(tcpClient,SIGNAL(readyRead()),this,SLOT(onSocketReadyRead()));
 
 
     //接收消息
@@ -57,9 +54,10 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
     this->account = account;
     //通过账户，查询数据库基本数据,头像，昵称，个性签名
     //直接从网络下载图片不理想，可以先使用本地头像，再搜索网络头像
-    sqconn.conndata();
+    sqconn.connData();
     sqconn.queryUserInfo(this->account);
-    sqconn.AccountIP1(getLocalIP());      //获取ip登录在线
+    sqconn.setSate(0);
+    sqconn.AccountIP(getLocalIP());      //获取ip登录在线
     this->icon = sqconn.getIcon();
     //qDebug()<<"pixmap "<<this->icon;
     this->account = sqconn.getAccount();
@@ -72,7 +70,7 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
     //图标不可点击
     ui->icon_tool->setEnabled(false);
     this->icon=this->icon.scaled(QSize(this->icon.width(), this->icon.height()), Qt::IgnoreAspectRatio);
-    this->icon= PixmapToRound(this->icon, this->icon.width()/2);
+    this->icon= Globalobserver::PixmapToRound(this->icon, this->icon.width()/2);
     ui->pushButton->setIcon(QIcon(this->icon));
     //添加垂直布局 最外面布局
     QVBoxLayout * layout = new QVBoxLayout();
@@ -184,21 +182,23 @@ MainWindow::MainWindow(QString account,QWidget *parent) :
     m_pCallAction = new QAction(QIcon(":/lib/xiaolian"),"F我吧");
     m_pCloakingAction = new QAction(QIcon(":/lib/yinshenim"),"隐身");
     m_pLeaveAction = new QAction(QIcon(":/lib/likaishijian"),"离开");
+    m_pBusyAction = new QAction(QIcon(":/lib/manglu"),"忙碌");
     m_pDisturbAction = new QAction(QIcon(":/lib/wurao"),"请勿打扰");
     m_pOffLineAtion = new QAction(QIcon(":/lib/lixianim"),"离线");
     menu->addAction(m_pOnLineAction);
     menu->addAction(m_pCallAction);
     menu->addAction(m_pCloakingAction);
     menu->addAction(m_pLeaveAction);
+    menu->addAction(m_pBusyAction);
     menu->addAction(m_pDisturbAction);
     menu->addAction(m_pOffLineAtion);
     menu->addSeparator();
     menu->addAction(m_pShowAction);
     menu->addAction(m_pCloseAction);
     menuAction = new QSignalMapper();
-    QAction * actionarry[8]={m_pShowAction,m_pCloseAction,m_pOnLineAction,m_pCallAction,
-                             m_pCloakingAction,m_pLeaveAction,m_pDisturbAction,m_pOffLineAtion};
-    for(int i =0;i<8;i++)
+    QAction * actionarry[9]={m_pShowAction,m_pCloseAction,m_pOnLineAction,m_pCallAction,
+                             m_pCloakingAction,m_pLeaveAction,m_pBusyAction,m_pDisturbAction,m_pOffLineAtion};
+    for(int i =0;i<9;i++)
     {
         connect(actionarry[i],SIGNAL(triggered(bool)),menuAction,SLOT(map()));
         menuAction->setMapping(actionarry[i],i);
@@ -238,7 +238,8 @@ MainWindow::~MainWindow()
     //断开连接
     if(tcpClient->state()==QAbstractSocket::ConnectedState)
         tcpClient->disconnectFromHost();
-    sqconn.AccountIP2(getLocalIP());      //获取ip登录离线
+    sqconn.setSate(-1);
+    sqconn.AccountIP(getLocalIP());      //获取ip登录离线
     //释放内存
 
     delete ui;
@@ -411,38 +412,6 @@ void MainWindow::setAccount(QString account)
 
 }
 
-QPixmap MainWindow::PixmapToRound(QPixmap &src, int radius)
-{
-    if (src.isNull()) {
-            return QPixmap();
-        }
-        QSize size(2*radius, 2*radius);
-        //掩码图（黑白色）
-        QBitmap mask(size);
-        QPainter painter(&mask);
-        //Antialiasing：反走样（抗锯齿）
-        painter.setRenderHint(QPainter::Antialiasing);
-        //SmoothPixmapTransform：用来在对图片进行缩放时启用线性插值算法而不是最邻近算法
-        painter.setRenderHint(QPainter::SmoothPixmapTransform);
-        //填充矩形
-        painter.fillRect(0, 0, size.width(), size.height(), Qt::white);
-        //画刷
-        painter.setBrush(QColor(0, 0, 0));
-        //绘制圆角矩形
-        /*QPainter::drawRoundedRect
-           (const QRectF &rect,
-            qreal xRadius,
-            qreal yRadius,
-            Qt::SizeMode mode = Qt::AbsoluteSize)
-        */
-        painter.drawRoundedRect(0, 0, size.width(), size.height(), 190, 190);
-        //自适应图片
-        QPixmap image = src.scaled(size);
-        //setMask：创建不规则窗口使用
-        image.setMask(mask);
-        return image;
-}
-
 void MainWindow::datawidget(QPixmap pixmap, QString str)
 {
     QFont font;
@@ -570,6 +539,11 @@ void MainWindow::onSocketStateChange(QAbstractSocket::SocketState socketState)
     default:
         break;
     }
+}
+
+void MainWindow::onSocketErrorChange(QAbstractSocket::SocketError)
+{
+
 }
 
 void MainWindow::onConnected()
@@ -743,6 +717,7 @@ void MainWindow::MainSendAddData(QString str)//发送验证信息
 
 void MainWindow::actionexe(int value)
 {
+    //-1离线 0在线 1F我吧 2隐身 3离开 4忙碌 5勿扰
     switch(value)
     {
     case 0:
@@ -753,23 +728,34 @@ void MainWindow::actionexe(int value)
         break;
     case 2:
         ui->toolButton_2->setIcon(QIcon(":/lib/zaixian"));
+        sqconn.setSate(0);
         break;
     case 3:
         ui->toolButton_2->setIcon(QIcon(":/lib/xiaolian"));
+        sqconn.setSate(1);
         break;
     case 4:
         ui->toolButton_2->setIcon(QIcon(":/lib/yinshenim"));
+        sqconn.setSate(2);
         break;
     case 5:
         ui->toolButton_2->setIcon(QIcon(":/lib/likaishijian"));
+        sqconn.setSate(3);
         break;
     case 6:
-        ui->toolButton_2->setIcon(QIcon(":/lib/wurao"));
+        ui->toolButton_2->setIcon(QIcon(":/lib/wanglu"));
+        sqconn.setSate(4);
         break;
     case 7:
+        ui->toolButton_2->setIcon(QIcon(":/lib/wurao"));
+        sqconn.setSate(5);
+        break;
+    case 8:
         ui->toolButton_2->setIcon(QIcon(":/lib/lixianim"));
+        sqconn.setSate(-1);
         break;
     }
+    sqconn.AccountIP(this->getLocalIP());
 }
 
 void MainWindow::updatamaingrouping(QString otheraccount, QString account,QString name ,QString grouping)

@@ -8,13 +8,7 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-//    QFont font;
-//    font.setFamily("Microsoft YaHei");
-//    font.setPointSize(12);
-//    font.setBold(true);
-//    font.setStyleStrategy(QFont::PreferAntialias);
-//    ui->pushButton->setFont(font);
-    //this->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint);
+    ui->widget_2->hide();
     //窗体风格
     this->setWindowFlags(Qt::SplashScreen|Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);//WindowStaysOnTopHint窗口顶置
     //窗体透明
@@ -39,12 +33,18 @@ Login::Login(QWidget *parent) :
     systemtrayicon->show();
     //加载动态图
     m_movie = new QMovie(":/lib/mian2.gif");
+    m_movie2 = new QMovie(":/lib/mian2.gif");
     //设置动态图大小
     m_si.setWidth(431);
     m_si.setHeight(151);
     m_movie->setScaledSize(m_si);
+
+    m_si2.setWidth(431);
+    m_si2.setHeight(331);
+    m_movie2->setScaledSize(m_si2);
     //添加动态图
     ui->mian_label->setMovie(m_movie);
+    ui->label_3->setMovie(m_movie2);
     //开始动画
     m_movie->start();
     //创建一个action
@@ -64,7 +64,7 @@ Login::Login(QWidget *parent) :
     //表示action所在方位（左侧）。
     ui->lineEdit_2->addAction(searchAction_3,QLineEdit::LeadingPosition);
     //连接数据库
-    this->sqconn.conndata();
+    this->sqconn.connData();
     //获取本地信息
     //获取exe运行目录
     QString fileName1 = QCoreApplication::applicationDirPath()+"//..//FdogUserFile";
@@ -160,11 +160,46 @@ Login::Login(QWidget *parent) :
     }
 
     connect(myMapper,SIGNAL(mapped(int)),this,SLOT(deleteaccount(int)));
+    //对网络进行检测
+    port = 60;
+    addr =getLocalIP();
+    this->tcpClient = new QTcpSocket(this);
+    tcpClient->connectToHost(addr,port);
+    connect(this->tcpClient,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(onSocketErrorChange(QAbstractSocket::SocketError)));
+    //connect(this->tcpClient,SIGNAL(connected()),this,SLOT(onConnected()));
+}
+
+QString Login::getLocalIP()
+{
+    //获取本机IPv4地址
+    QString hostName = QHostInfo::localHostName();//本机主机名
+    QHostInfo hostInfo = QHostInfo::fromName(hostName);
+    QString localIP="";
+    QList<QHostAddress> addList = hostInfo.addresses();
+    if(!addList.isEmpty())
+    {
+        for(int i = 0;i<addList.count();i++)
+        {
+            QHostAddress aHost = addList.at(i);
+            if(QAbstractSocket::IPv4Protocol==aHost.protocol())
+            {
+                localIP = aHost.toString();
+                break;
+            }
+        }
+    }
+   return localIP;
 }
 
 Login::~Login()
 {
     delete ui;
+    qDebug()<<"正常退出";
+    //断开连接
+    if(tcpClient->state()==QAbstractSocket::ConnectedState)
+        tcpClient->disconnectFromHost();
+    sqconn.setSate(-1);
+    sqconn.AccountIP(getLocalIP());      //获取ip登录离线
 }
 
 QStringList Login::GetDirNameList(const QString &strDirpath)
@@ -222,8 +257,8 @@ void Login::mouseReleaseEvent(QMouseEvent *event)
 
 void Login::on_toolButton_2_clicked()
 {
-    this->close();
     this->systemtrayicon->hide();
+    this->close();
 }
 
 void Login::on_toolButton_clicked()
@@ -274,87 +309,172 @@ void Login::on_comboBox_currentIndexChanged(int index)
     //ui->label_4->setStyleSheet(QString("border-image: url(%1);border-width:0px;border-style:solid;border-color: rgb(255, 255, 255);border-radius:33px;").arg(icon1));
 }
 
+void Login::onConnected()
+{
+    QByteArray straccount = this->account.toUtf8();
+    this->tcpClient->write(straccount);
+}
+
+void Login::onSocketStateChange(QAbstractSocket::SocketState socketState)
+{
+    systemtrayicon->hide();//隐藏系统托盘
+    this->close();//隐藏登录窗口
+    //初始化主界面
+    w = new MainWindow(ui->lineEdit_2->text(),this->tcpClient);
+    //显示主界面
+    w->show();
+    //显示系统托盘图标
+    w->showicon();
+    switch (socketState) {
+    case QAbstractSocket::UnconnectedState:
+
+        break;
+    case QAbstractSocket::HostLookupState:
+
+        break;
+    case QAbstractSocket::ConnectingState:
+
+        break;
+    case QAbstractSocket::ConnectedState:
+        break;
+    case QAbstractSocket::BoundState:
+
+        break;
+    case QAbstractSocket::ClosingState:
+
+        break;
+    case QAbstractSocket::ListeningState:
+        break;
+    default:
+        break;
+    }
+}
+
+void Login::onSocketErrorChange(QAbstractSocket::SocketError)
+{
+    //提示网络错误
+    network = false;
+    qDebug()<<"网络错误";
+}
+
 void Login::on_pushButton_clicked()
 {
-    ui->pushButton->setText("登录中...");
-    bool isuser = sqconn.queryuser(ui->lineEdit_2->text(),ui->lineEdit->text());//输入内容查询
-    //用户是否存在
-    if(isuser)
-    {
-        //只获取账号
-        QString account = ui->lineEdit_2->text(); //账户
-        this->sqconn.queryUserInfo(account);//根据账户获取昵称，密码(如果用户选择记住密码，则保存密码)，头像
-        QString name = sqconn.getName();
-        QString passwd="";
-        if(ui->checkBox_2->isChecked())//判断用户是否保存密码
+    this->timesignin.blockSignals(false);
+    m_movie2->start();
+    ui->widget_2->show();
+    ui->stackedWidget->hide();
+    this->account = ui->lineEdit_2->text();
+    //连接到服务器
+    //QString addr ="192.16";
+    //this->tcpClient=new QTcpSocket(this);
+    //进入这个界面要等1-2秒
+    this->timesignin.start(100);
+    connect(&this->timesignin,&QTimer::timeout,this,[=](){
+        if(this->timesignin.isActive())
         {
-            passwd = sqconn.getPasswd();
-        }
-        QPixmap icon = sqconn.getIcon();
-        //获取程序当前运行目录
-        QString fileName = QCoreApplication::applicationDirPath();
-        //用户目录
-        QString add = "//..//FdogUserFile";
-        //创建用户文件夹
-        fileName = fileName + add +QString("//%1").arg(account);
-        //qDebug()<<fileName;
-        //信息保存
-        QDir * file = new QDir;
-        //文件夹是否存在，若存在则表示信息已经存在，只需要更新内容即可。
-        bool exist_1 = file->exists(fileName);
-        if(exist_1)
-        {
-            //qDebug()<<"创建";
-            QFile file(fileName +"//data.txt");
-            //qDebug()<<fileName +"//data.txt";
-            if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
+            bool isuser = sqconn.queryUser(ui->lineEdit_2->text(),ui->lineEdit->text());//输入内容查询
+            if(isuser)
             {
-                //qDebug()<<"txt文件创建成功";
-            }
-            QTextStream stream(&file);
-            //写入
-            if(passwd=="")stream<<name;
-            else stream<<name<<"\n"<<passwd;
-            //qDebug()<<"tup:"<<account;
-            icon.save(fileName+QString("//%1.jpg").arg(account),"JPG");
-            file.close();
-        }
-        else
-        {   //如果不存在则创建
-            bool ok = file->mkpath(fileName);
-            if(ok)
-            {
-                //qDebug()<<"创建";
-                QFile file(fileName +"//data.txt");
-                //qDebug()<<fileName +"//data.txt";
-                if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
+                //只获取账号
+                QString account = ui->lineEdit_2->text(); //账户
+                this->sqconn.queryUserInfo(account);//根据账户获取昵称，密码(如果用户选择记住密码，则保存密码)，头像
+                QString name = sqconn.getName();
+                QString passwd="";
+                if(ui->checkBox_2->isChecked())//判断用户是否保存密码
                 {
-                    //qDebug()<<"txt文件创建成功";
+                    passwd = sqconn.getPasswd();
                 }
-                QTextStream stream(&file);
-                if(passwd=="")stream<<name;
-                else stream<<name<<"\n"<<passwd;
-                icon.save(fileName+QString("//%1.jpg").arg(account),"JPG");
-                file.close();
+                QPixmap icon = sqconn.getIcon();
+                //获取程序当前运行目录
+                QString fileName = QCoreApplication::applicationDirPath();
+                //用户目录
+                QString add = "//..//FdogUserFile";
+                //创建用户文件夹
+                fileName = fileName + add +QString("//%1").arg(account);
+                //qDebug()<<fileName;
+                //信息保存
+                QDir * file = new QDir;
+                //文件夹是否存在，若存在则表示信息已经存在，只需要更新内容即可。
+                bool exist_1 = file->exists(fileName);
+                if(exist_1)
+                {
+                    QFile file(fileName +"//data.txt");
+                    if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
+                    {
+                        //qDebug()<<"txt文件创建成功";
+                    }
+                    QTextStream stream(&file);
+                    //写入
+                    if(passwd=="")stream<<name;
+                    else stream<<name<<"\n"<<passwd;
+                    icon.save(fileName+QString("//%1.jpg").arg(account),"JPG");
+                    file.close();
+                }
+                else
+                {   //如果不存在则创建
+                    bool ok = file->mkpath(fileName);
+                    if(ok)
+                    {
+                        QFile file(fileName +"//data.txt");
+                        if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
+                        {
+                            //qDebug()<<"txt文件创建成功";
+                        }
+                        QTextStream stream(&file);
+                        if(passwd=="")stream<<name;
+                        else stream<<name<<"\n"<<passwd;
+                        icon.save(fileName+QString("//%1.jpg").arg(account),"JPG");
+                        file.close();
+                    }
+                    else
+                    {
+                        qDebug()<<"未创建成功";
+                    }
+                }
+                if(this->network!=true)
+                {
+                    //网络错误
+                    ui->label_5->hide();
+                    ui->toolButton_3->hide();
+                    ui->pushButton_3->hide();
+                    ui->pushButton_4->hide();
+                    ui->widget_2->show();
+                    ui->stackedWidget->show();
+                    ui->stackedWidget->setCurrentIndex(1);
+                    this->network=true;
+                }
+                else
+                {
+                    QByteArray straccount = this->account.toUtf8();
+                    this->tcpClient->write(straccount);
+                    systemtrayicon->hide();//隐藏系统托盘
+                    this->hide();//隐藏登录窗口
+                    //初始化主界面
+                    w = new MainWindow(ui->lineEdit_2->text(),this->tcpClient);
+                    //显示主界面
+                    w->show();
+                    //显示系统托盘图标
+                    w->showicon();
+                }
+                //对网络进行检测
+                //tcpClient->connectToHost(addr,port);
+                //connect(this->tcpClient,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(onSocketErrorChange(QAbstractSocket::SocketError)));
+                //connect(this->tcpClient,SIGNAL(stateChanged(QAbstractSocket::SocketState)),this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
             }
-            else
+           else//该用户不存在
             {
-                qDebug()<<"未创建成功";
+                ui->label_5->hide();
+                ui->toolButton_3->hide();
+                ui->pushButton_3->hide();
+                ui->pushButton_4->hide();
+                ui->widget_2->show();
+                ui->stackedWidget->show();
+                ui->stackedWidget->setCurrentIndex(0);
             }
+            qDebug()<<"stop先";
+            this->timesignin.stop();
         }
-        systemtrayicon->hide();//隐藏系统托盘
-        this->close();//隐藏登录窗口
-        //初始化主界面
-        w = new MainWindow(account);
-        //显示主界面
-        w->show();
-        //显示系统托盘图标
-        w->showicon();
-    }
-   else//该用户不存在
-    {
-
-    }
+    });
 }
 
 void Login::showwidget()
@@ -408,15 +528,10 @@ void Login::deleteaccount(int i) //传进来的是标记数字
             this->m_AccountList->setItemHidden(this->m_AccountList->item(0),true);
             return;
         }
-        //隐藏账号信息  this->m_AccountList->setItemHidden(this->m_AccountList->item(i),true);
         //删除账号信息
         QListWidgetItem * item;
-        qDebug()<<"出错0";
-        qDebug()<<"infoListsign.indexOf(i)"<<infoListsign.indexOf(i);
         item = this->m_AccountList->takeItem(infoListsign.indexOf(i));
-        qDebug()<<"出错1";
         this->m_AccountList->removeItemWidget(item);
-        qDebug()<<"出错2";
         delete item;
         infoListsign.erase(infoListsign.begin()+infoListsign.indexOf(i));
         break;
@@ -428,3 +543,29 @@ void Login::deleteaccount(int i) //传进来的是标记数字
 
 
 
+
+void Login::on_pushButton_4_clicked()
+{
+    ui->widget_2->hide();
+    this->timesignin.blockSignals(true);
+    this->timesignin.stop();
+}
+
+void Login::on_pushButton_5_clicked()
+{
+    ui->label_5->show();
+    ui->toolButton_3->show();
+    ui->pushButton_3->show();
+    ui->pushButton_4->show();
+    ui->widget_2->hide();
+}
+
+void Login::on_pushButton_6_clicked()
+{
+    tcpClient->connectToHost(addr,port);
+    ui->label_5->show();
+    ui->toolButton_3->show();
+    ui->pushButton_3->show();
+    ui->pushButton_4->show();
+    ui->widget_2->hide();
+}

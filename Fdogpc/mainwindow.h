@@ -48,12 +48,16 @@ private:
     QMenu * mainmenu;                   //主界面菜单
     QAction *m_pShowAction;             //显示选项
     QAction *m_pCloseAction;            //退出选项
+    
     QAction *m_pOnLineAction;           //在线
     QAction *m_pCallAction;             //call我
     QAction *m_pCloakingAction;         //隐身
     QAction *m_pLeaveAction;            //离开
-    QAction *m_pDisturbAction;          //勿扰
+    QAction *m_pBusyAction;             //忙碌
+    QAction *m_pDisturbAction;          //请勿打扰
     QAction *m_pOffLineAtion;           //离线
+    
+    
     /*消息通知*/
     Traywidget * tarywidget;            //右下角消息显示列表
     QPixmap icondata;                   //用于保存需要闪动头像
@@ -95,13 +99,12 @@ private:
     bool ishover = false;//判断鼠标是否进过托盘图标
 
 public:
-    explicit MainWindow(QString account,QWidget *parent = 0); //构造函数
+    explicit MainWindow(QString account,QTcpSocket *tcpClient,QWidget *parent = 0); //构造函数
     void paintEvent(QPaintEvent *e);//重绘背景
     void showicon();                                //显示系统托盘图标
     void setAccount(QString account);               //设置账号
     bool eventFilter(QObject *obj, QEvent *event);  //事件过滤器
     QString getLocalIP();                           //获取本机IP地址
-    QPixmap PixmapToRound(QPixmap &src, int radius);//平滑图片
     void datawidget(QPixmap pixmap,QString str);   //更新消息列表
     ~MainWindow();//析构函数
 signals:
@@ -119,6 +122,7 @@ private slots:
     void on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reason);//对托盘按钮的点击
     /*TCP相关*/
     void onSocketStateChange(QAbstractSocket::SocketState socketState);//状态
+    void onSocketErrorChange(QAbstractSocket::SocketError);//连接错误类型
     void onConnected();//连接
     void onDisconnected();//断开连接
     void onSocketReadyRead();//收到数据

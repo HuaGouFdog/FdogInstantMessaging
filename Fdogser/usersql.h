@@ -13,6 +13,7 @@ public:
     bool conndata(); //连接数据库
     QString AccountIP(QString account);//获取目标ip
     QString update(QString account,QString port);
+    QString update(QString port);
 };
 
 #endif // USERSQL_H
