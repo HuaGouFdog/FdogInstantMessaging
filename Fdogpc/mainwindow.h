@@ -68,7 +68,6 @@ private:
     QTimer timemouse;
     /*账号基本数据*/
     Usersql sqconn;                 //获取个人信息
-    Usersql sqconnother;            //获取分钟信息
     QPixmap icon;                   //头像
     QString account = "";           //账号
     QString name = "";              //昵称

@@ -76,6 +76,7 @@ public:
     QWidget *scrollAreaWidgetContents_2;
     QVBoxLayout *verticalLayout;
     QListWidget *listWidget_2;
+    QWidget *widget_5;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_5;
     QToolButton *toolButton_4;
@@ -86,18 +87,19 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(325, 659);
+        MainWindow->resize(332, 662);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/fdogicon.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QStringLiteral("*{font-family:Microsoft YaHei;}"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         gridLayout = new QGridLayout(centralWidget);
         gridLayout->setSpacing(0);
         gridLayout->setContentsMargins(15, 15, 15, 15);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setContentsMargins(4, 8, 6, 8);
+        gridLayout->setContentsMargins(7, 14, 7, 13);
         widget = new QWidget(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setMinimumSize(QSize(301, 601));
@@ -374,19 +376,24 @@ public:
         font8.setStyleStrategy(QFont::PreferAntialias);
         tabWidget->setFont(font8);
         tabWidget->setStyleSheet(QLatin1String("QWidget::tab{\n"
-"background-color: rgb(255, 255, 255);\n"
+"background-color: rgba(203, 203, 203,250);\n"
 "border-style:solid;\n"
-"border-width:2px;\n"
+"border-bottom-width:2px;\n"
 "border-radius:0px;\n"
 "height:32px;\n"
-"width:102px;\n"
+"width:106px;\n"
 "color: rgb(100, 100, 100);\n"
-"	border-color: rgb(255, 255, 255);\n"
-"border-bottom-color: rgba(255, 255, 255, 0);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-bottom-color:rgba(163, 163, 163,250);\n"
 "}\n"
 "QWidget::tab:selected{\n"
-"border-bottom-color: rgb(127, 127, 127);\n"
+"border-bottom-color: rgb(80, 80, 80);\n"
+"border-bottom-width:2px;\n"
 "border-radius-:2px;\n"
+"}\n"
+"QWidget::pane{\n"
+"border-style:solid;\n"
+"background-color: rgba(203, 203, 203,250);\n"
 "}"));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -405,7 +412,7 @@ public:
         scrollArea_3->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 310, 412));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 316, 411));
         gridLayout_4 = new QGridLayout(scrollAreaWidgetContents_3);
         gridLayout_4->setSpacing(15);
         gridLayout_4->setContentsMargins(15, 15, 15, 15);
@@ -438,7 +445,7 @@ public:
         font10.setStyleStrategy(QFont::PreferAntialias);
         tabWidget_2->setFont(font10);
         tabWidget_2->setStyleSheet(QLatin1String("::tab{\n"
-"background-color: rgb(255, 255, 255);\n"
+"background-color: rgba(203, 203, 203,200);\n"
 "border-style:solid;\n"
 "border-width:0px;\n"
 "border-radius:2px;\n"
@@ -486,11 +493,12 @@ public:
 "\n"
 "\n"
 "QScrollBar::sub-page:vertical,QScrollBar::sub-page:vertical{background:rgba(0,0,0,0);}"));
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 310, 383));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 316, 382));
         scrollAreaWidgetContents->setCursor(QCursor(Qt::ArrowCursor));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("#scrollAreaWidgetContents{\n"
 "background-color: rgb(203, 203, 203);\n"
@@ -511,13 +519,13 @@ public:
         tab_3->setObjectName(QStringLiteral("tab_3"));
         scrollArea_2 = new QScrollArea(tab_3);
         scrollArea_2->setObjectName(QStringLiteral("scrollArea_2"));
-        scrollArea_2->setGeometry(QRect(0, 0, 311, 411));
+        scrollArea_2->setGeometry(QRect(0, 0, 318, 411));
         scrollArea_2->setFont(font1);
         scrollArea_2->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 309, 409));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 316, 409));
         verticalLayout = new QVBoxLayout(scrollAreaWidgetContents_2);
         verticalLayout->setSpacing(15);
         verticalLayout->setContentsMargins(15, 15, 15, 15);
@@ -541,39 +549,50 @@ public:
 
         verticalLayout_2->addWidget(tabWidget);
 
-        horizontalLayout_3 = new QHBoxLayout();
+        widget_5 = new QWidget(widget);
+        widget_5->setObjectName(QStringLiteral("widget_5"));
+        widget_5->setStyleSheet(QLatin1String("background-color: rgba(203, 203, 203,200);\n"
+"border-top-width:1px;\n"
+"border-top-color:rgba(163, 163, 163,250);\n"
+"border-style:solid;"));
+        horizontalLayout_3 = new QHBoxLayout(widget_5);
         horizontalLayout_3->setSpacing(15);
+        horizontalLayout_3->setContentsMargins(15, 15, 15, 15);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(-1, 9, -1, 9);
         horizontalSpacer_5 = new QSpacerItem(5, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_5);
 
-        toolButton_4 = new QToolButton(widget);
+        toolButton_4 = new QToolButton(widget_5);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
         toolButton_4->setMinimumSize(QSize(30, 30));
         toolButton_4->setMaximumSize(QSize(30, 30));
         toolButton_4->setFont(font1);
-        toolButton_4->setStyleSheet(QStringLiteral(""));
+        toolButton_4->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
+"border-style:solid;\n"
+"border-color: rgba(255, 255, 255, 0);"));
         QIcon icon9;
         icon9.addFile(QStringLiteral(":/lib/sangangy.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_4->setIcon(icon9);
         toolButton_4->setIconSize(QSize(25, 25));
-        toolButton_4->setAutoRaise(true);
+        toolButton_4->setAutoRaise(false);
 
         horizontalLayout_3->addWidget(toolButton_4);
 
-        toolButton_3 = new QToolButton(widget);
+        toolButton_3 = new QToolButton(widget_5);
         toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
         toolButton_3->setMinimumSize(QSize(30, 30));
         toolButton_3->setMaximumSize(QSize(30, 30));
         toolButton_3->setFont(font1);
-        toolButton_3->setStyleSheet(QStringLiteral(""));
+        toolButton_3->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
+"border-style:solid;\n"
+"border-color: rgba(255, 255, 255, 0);"));
         QIcon icon10;
         icon10.addFile(QStringLiteral(":/lib/tianjiahaoyou.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_3->setIcon(icon10);
         toolButton_3->setIconSize(QSize(25, 25));
-        toolButton_3->setAutoRaise(true);
+        toolButton_3->setAutoRaise(false);
 
         horizontalLayout_3->addWidget(toolButton_3);
 
@@ -582,7 +601,7 @@ public:
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_3);
+        verticalLayout_2->addWidget(widget_5);
 
 
         gridLayout->addWidget(widget, 1, 0, 1, 1);

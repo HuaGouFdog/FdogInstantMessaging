@@ -232,6 +232,7 @@ release\qrc_libres.obj: libres.qrc \
 		lib\jietou2.png \
 		lib\error.png \
 		lib\min.png \
+		lib\network.png \
 		lib\svip.png \
 		lib\fdog.png \
 		lib\back.gif \
@@ -3178,11 +3179,12 @@ release\chat.obj: chat.cpp chat.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \

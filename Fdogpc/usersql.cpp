@@ -11,26 +11,6 @@
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
-QString Usersql::getIP() const
-{
-    return IP;
-}
-
-void Usersql::setIP(const QString &value)
-{
-    IP = value;
-}
-
-int Usersql::getSate() const
-{
-    return sate;
-}
-
-void Usersql::setSate(int value)
-{
-    sate = value;
-}
-
 Usersql::Usersql()
 {
     
@@ -305,6 +285,26 @@ QPixmap Usersql::getIcon() const
 void Usersql::setIcon(const QPixmap &value)
 {
     icon = value;
+}
+
+QString Usersql::getIP() const
+{
+    return IP;
+}
+
+void Usersql::setIP(const QString &value)
+{
+    IP = value;
+}
+
+int Usersql::getSate() const
+{
+    return sate;
+}
+
+void Usersql::setSate(int value)
+{
+    sate = value;
 }
 
 QString Usersql::getAccount() const

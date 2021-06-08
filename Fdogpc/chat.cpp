@@ -7,7 +7,7 @@
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
-Chat::Chat(QPixmap pixmap,QString otheraccount,QString name,MainWindow * main,QWidget *parent) :
+Chat::Chat(QPixmap mypixmap,QPixmap pixmap,QString otheraccount,QString name,MainWindow * main,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Chat)
 {
@@ -21,36 +21,14 @@ Chat::Chat(QPixmap pixmap,QString otheraccount,QString name,MainWindow * main,QW
     LabSocketate = new QLabel("Socket状态：");
     LabSocketate->setMinimumWidth(250);
     this->setWindowIcon(QIcon(pixmap));
+    this->pixmap=pixmap;
+    this->mypixmap=mypixmap;
     //ui->statusBar->addWidget(LabSocketate);
     //QString localIP = getLocalIP();
     ui->label->setText(this->name);
     //接收主窗口的消息信号
     mainwindow = main;
     connect(mainwindow,SIGNAL(sendChatData(QString)),this,SLOT(onSocketReadyRead(QString)));
-}
-
-QWidget *Chat::CreateWidgetL()
-{
-    //对面发送的，应显示在左边
-    QWidget * datawidget = new QWidget();
-    return datawidget;
-}
-
-QWidget *Chat::CreateWidgetR()
-{
-    //自己发送的，应显示在右边
-    QWidget * datawidget = new QWidget();
-//    QHBoxLayout *horLayout1 = new QHBoxLayout();//水平布局
-//    QPushButton * IconButton = new QPushButton(QIcon(":\lib\10001.jpg"));
-//    QLabel * nameLabel = new QLabel("今夜无风：312312321");
-//    horLayout1->addWidget(IconButton);
-//    horLayout1->addWidget(nameLabel);
-//    QHBoxLayout *horLayout2 = new QHBoxLayout();//水平布局
-//    QLabel * userLabel = new QLabel(data);
-//    horLayout2->addWidget(userLabel);//添加消息
-//    datawidget->setLayout(horLayout1);
-//    datawidget->setLayout(horLayout2);
-    return datawidget;
 }
 
 void Chat::paintEvent(QPaintEvent *e)
@@ -60,7 +38,7 @@ void Chat::paintEvent(QPaintEvent *e)
         QPixmap pixmap(":/lib/background.png");//做好的图
         qDrawBorderPixmap(&painter, this->rect(), QMargins(0, 0, 0, 0), pixmap);
         QRect rect(this->rect().x()+8, this->rect().y()+8, this->rect().width()-16, this->rect().height()-16);
-        painter.fillRect(rect, QColor(255, 255, 255));
+        painter.fillRect(rect, QColor(255, 255, 255,0));
 }
 
 void Chat::mousePressEvent(QMouseEvent *event)
@@ -100,6 +78,183 @@ void Chat::closeEvent(QCloseEvent *e)
     //this->hide();
     e->ignore();
     e->accept();
+}
+
+
+
+QString Chat::getLocalIP()
+{
+    //获取本机IPv4地址
+    QString hostName = QHostInfo::localHostName();//本机主机名
+    QHostInfo hostInfo = QHostInfo::fromName(hostName);
+    QString localIP="";
+    QList<QHostAddress> addList = hostInfo.addresses();
+    if(!addList.isEmpty())
+    {
+        for(int i = 0;i<addList.count();i++)
+        {
+            QHostAddress aHost = addList.at(i);
+            if(QAbstractSocket::IPv4Protocol==aHost.protocol())
+            {
+                localIP = aHost.toString();
+                break;
+            }
+        }
+    }
+    return localIP;
+}
+
+QWidget *Chat::CreateWidgetL_R(int i,QString data)
+{
+    QFont font1;
+    font1.setFamily("Microsoft YaHei");
+    font1.setPointSize(15);
+    font1.setStyleStrategy(QFont::PreferAntialias);
+    QWidget * widget = new QWidget();
+    widget->setStyleSheet("background:rgba(0,0,0,0);");
+    widget->setFixedSize(660,50);
+    QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
+    horLayout->setContentsMargins(0,0,0,0);
+    horLayout->setSpacing(0);
+    QPushButton * btnicon = new QPushButton();
+    btnicon->setFixedSize(55,40);
+    btnicon->setIconSize(QSize(40,40));
+    btnicon->setStyleSheet("background:rgba(0,0,0,0);");
+    QLabel * label = new QLabel(data);
+    label->setFont(font1);
+    label->setStyleSheet("background-color: rgb(140, 105, 255);border-style:solid;border-width:2px;border-color: rgb(125, 242, 255);border-radius:10px;");// background-color: rgb(255, 123, 249);
+    label->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    label->setMaximumHeight(40);
+    if(i==1)
+    {
+        label->setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
+        horLayout->addWidget(btnicon);
+        horLayout->addWidget(label);
+        horLayout->addStretch();
+        btnicon->setIcon(this->pixmap);
+    }
+    else
+    {
+        label->setAlignment(Qt::AlignVCenter|Qt::AlignRight);
+        horLayout->addStretch();
+        horLayout->addWidget(label);
+        horLayout->addWidget(btnicon);
+        btnicon->setIcon(this->mypixmap);
+    }
+    widget->setLayout(horLayout);
+    return widget;
+}
+
+void Chat::onSocketStateChange(QAbstractSocket::SocketState socketState)
+{
+    switch (socketState) {
+    case QAbstractSocket::UnconnectedState:
+        LabSocketate->setText("scoket状态：UnconnectedState");
+        break;
+    case QAbstractSocket::HostLookupState:
+        LabSocketate->setText("scoket状态：HostLookupState");
+        break;
+    case QAbstractSocket::ConnectingState:
+        LabSocketate->setText("scoket状态：ConnectingState");
+        break;
+    case QAbstractSocket::ConnectedState:
+        LabSocketate->setText("scoket状态：ConnectedState");
+        break;
+    case QAbstractSocket::BoundState:
+        LabSocketate->setText("scoket状态：BoundState");
+        break;
+    case QAbstractSocket::ClosingState:
+        LabSocketate->setText("scoket状态：ClosingState");
+        break;
+    case QAbstractSocket::ListeningState:
+        LabSocketate->setText("scoket状态：ListeningState");
+        break;
+    default:
+        break;
+    }
+}
+
+void Chat::onConnected()
+{
+//    ui->plainTextEdit->appendPlainText("已连接服务器");
+//    ui->plainTextEdit->appendPlainText("**peer address"+tcpClient->peerAddress().toString());
+//    ui->plainTextEdit->appendPlainText("**peer port:"+QString::number(tcpClient->peerPort()));
+//    ui->pushButton->setEnabled(false);
+//    ui->pushButton_2->setEnabled(true);
+}
+
+void Chat::onDisconnected()
+{
+//    ui->plainTextEdit->appendPlainText("已断开服务器的连接");
+//    ui->pushButton->setEnabled(true);
+//    ui->pushButton_2->setEnabled(true);
+}
+
+void Chat::onSocketReadyRead(QString data)
+{
+    QDateTime curDateTime=QDateTime::currentDateTime();
+    QString time = curDateTime.toString("hh:mm:ss");
+    if(this->isread==true)
+    {
+        data = data.mid(8);
+        data = data.left(data.size() - 1);
+        qDebug()<<"数据："<<data;
+        //创建一个widget
+        QWidget * widget = CreateWidgetL_R(1,data);
+        ui->verticalLayout_5->addWidget(widget);
+        widget->show();
+        this->isread=false;
+    }
+}
+
+void Chat::on_pushButton_3_clicked()
+{
+    QDateTime curDateTime=QDateTime::currentDateTime();
+    QString time = curDateTime.toString("hh:mm:ss");
+    //数据格式为: 到达方账号，发送方账号，内容
+    QString msg = this->getOtheraccount()+this->getAccount()+ui->lineEdit->text();
+    //我发送的内容显示在右边
+    QWidget * widget = CreateWidgetL_R(2,ui->lineEdit->text());
+    ui->verticalLayout_5->addWidget(widget);
+    widget->show();
+    ui->lineEdit->clear();
+    ui->lineEdit->setFocus();
+    QByteArray str = msg.toUtf8();
+    //发送信号
+    emit sendData(str);
+}
+
+
+void Chat::on_pushButton_4_clicked()
+{
+    if(this->isdown==1)
+    {
+        this->hide();
+    }
+    else
+    {
+        this->close();
+    }
+    //发送信号
+    emit sendCount();
+}
+
+void Chat::on_toolButton_3_clicked()
+{
+    if(this->isdown==1)
+    {
+        this->hide();
+    }
+    else
+    {
+        this->close();
+    }
+    emit sendCount();
+}
+
+void Chat::on_toolButton_clicked()
+{
+    this->hide();
 }
 
 QString Chat::getName() const
@@ -160,136 +315,4 @@ QString Chat::getOtheraccount() const
 void Chat::setOtheraccount(const QString &value)
 {
     otheraccount = value;
-}
-
-QString Chat::getLocalIP()
-{
-    //获取本机IPv4地址
-    QString hostName = QHostInfo::localHostName();//本机主机名
-    QHostInfo hostInfo = QHostInfo::fromName(hostName);
-    QString localIP="";
-    QList<QHostAddress> addList = hostInfo.addresses();
-    if(!addList.isEmpty())
-    {
-        for(int i = 0;i<addList.count();i++)
-        {
-            QHostAddress aHost = addList.at(i);
-            if(QAbstractSocket::IPv4Protocol==aHost.protocol())
-            {
-                localIP = aHost.toString();
-                break;
-            }
-        }
-    }
-    return localIP;
-}
-
-void Chat::onSocketStateChange(QAbstractSocket::SocketState socketState)
-{
-    switch (socketState) {
-    case QAbstractSocket::UnconnectedState:
-        LabSocketate->setText("scoket状态：UnconnectedState");
-        break;
-    case QAbstractSocket::HostLookupState:
-        LabSocketate->setText("scoket状态：HostLookupState");
-        break;
-    case QAbstractSocket::ConnectingState:
-        LabSocketate->setText("scoket状态：ConnectingState");
-        break;
-    case QAbstractSocket::ConnectedState:
-        LabSocketate->setText("scoket状态：ConnectedState");
-        break;
-    case QAbstractSocket::BoundState:
-        LabSocketate->setText("scoket状态：BoundState");
-        break;
-    case QAbstractSocket::ClosingState:
-        LabSocketate->setText("scoket状态：ClosingState");
-        break;
-    case QAbstractSocket::ListeningState:
-        LabSocketate->setText("scoket状态：ListeningState");
-        break;
-    default:
-        break;
-    }
-}
-
-void Chat::onConnected()
-{
-//    ui->plainTextEdit->appendPlainText("已连接服务器");
-//    ui->plainTextEdit->appendPlainText("**peer address"+tcpClient->peerAddress().toString());
-//    ui->plainTextEdit->appendPlainText("**peer port:"+QString::number(tcpClient->peerPort()));
-//    ui->pushButton->setEnabled(false);
-//    ui->pushButton_2->setEnabled(true);
-}
-
-void Chat::onDisconnected()
-{
-//    ui->plainTextEdit->appendPlainText("已断开服务器的连接");
-//    ui->pushButton->setEnabled(true);
-//    ui->pushButton_2->setEnabled(true);
-}
-
-void Chat::onSocketReadyRead(QString data)
-{
-    //qDebug()<<"接收到信号";
-    //qDebug()<<"是真是假："<<this->isread;
-    QDateTime curDateTime=QDateTime::currentDateTime();
-    QString time = curDateTime.toString("hh:mm:ss");
-    if(this->isread==true)
-    {
-        data = data.mid(8);
-        ui->plainTextEdit->appendPlainText("他   "+time+"\n"+data);
-        this->isread=false;
-    }
-}
-
-void Chat::on_pushButton_3_clicked()
-{
-    QDateTime curDateTime=QDateTime::currentDateTime();
-    QString time = curDateTime.toString("hh:mm:ss");
-    //数据格式为: 到达方账号，发送方账号，内容
-    QString msg = this->getOtheraccount()+this->getAccount()+ui->lineEdit->text();
-    //我发送的内容显示在右边
-    ui->plainTextEdit->appendPlainText("我   "+time+"\n"+ui->lineEdit->text());
-    //ui->scrollAreaWidgetContents-> CreateWidgetR();
-    ui->lineEdit->clear();
-    ui->lineEdit->setFocus();
-    QByteArray str = msg.toUtf8();
-    //str.append('\n');
-    //发送信号
-    emit sendData(str);
-    //tcpClient->write(str);
-}
-
-
-void Chat::on_pushButton_4_clicked()
-{
-    if(this->isdown==1)
-    {
-        this->hide();
-    }
-    else
-    {
-        this->close();
-    }
-    //发送信号
-    emit sendCount();
-}
-
-void Chat::on_toolButton_3_clicked()
-{
-    if(this->isdown==1)
-    {
-        this->hide();
-    }
-    else
-    {
-        this->close();
-    }
-    emit sendCount();
-}
-
-void Chat::on_toolButton_clicked()
-{
-    this->hide();
 }

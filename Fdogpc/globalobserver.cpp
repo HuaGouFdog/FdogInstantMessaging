@@ -87,6 +87,3 @@ QList<Chat *> Globalobserver::listchat;
      return image;
  }
 
-
- //接收消息
- //connect(Globalobserver::getAddfriendp(),SIGNAL(sendaddinfo(QString)),Globalobserver::getMainwindowp(),SLOT(MainSendAddData(QString)));

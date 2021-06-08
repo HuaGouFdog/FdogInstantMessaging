@@ -13,11 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
@@ -40,24 +40,23 @@ public:
     QToolButton *toolButton;
     QToolButton *toolButton_2;
     QToolButton *toolButton_3;
+    QSpacerItem *horizontalSpacer_5;
     QHBoxLayout *horizontalLayout_3;
     QWidget *widget;
     QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
+    QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_5;
-    QPlainTextEdit *plainTextEdit;
     QWidget *widget_3;
     QHBoxLayout *horizontalLayout_4;
-    QSpacerItem *horizontalSpacer_5;
     QToolButton *toolButton_4;
     QToolButton *toolButton_5;
     QToolButton *toolButton_6;
     QSpacerItem *horizontalSpacer_4;
     QToolButton *toolButton_7;
     QToolButton *toolButton_8;
-    QSpacerItem *horizontalSpacer_6;
     QLineEdit *lineEdit;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer;
@@ -75,7 +74,7 @@ public:
     {
         if (Chat->objectName().isEmpty())
             Chat->setObjectName(QStringLiteral("Chat"));
-        Chat->resize(684, 611);
+        Chat->resize(842, 746);
         QFont font;
         font.setFamily(QStringLiteral("Microsoft YaHei"));
         Chat->setFont(font);
@@ -89,14 +88,14 @@ public:
         verticalLayout = new QVBoxLayout(Chat);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(8, 7, 8, 8);
+        verticalLayout->setContentsMargins(8, 8, 8, 8);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(-1, 0, 0, 0);
         widget_4 = new QWidget(Chat);
         widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setMinimumSize(QSize(319, 37));
+        widget_4->setMinimumSize(QSize(332, 41));
         widget_4->setMaximumSize(QSize(16777215, 34));
         widget_4->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 0);"));
         horizontalLayout_5 = new QHBoxLayout(widget_4);
@@ -152,6 +151,10 @@ public:
 
         horizontalLayout_5->addWidget(toolButton_3);
 
+        horizontalSpacer_5 = new QSpacerItem(5, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_5);
+
 
         horizontalLayout->addWidget(widget_4);
 
@@ -176,27 +179,20 @@ public:
         scrollArea->setStyleSheet(QLatin1String("background-color:transparent;\n"
 "border-width:0;\n"
 "border-style:outset;"));
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 527, 275));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 671, 398));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral(""));
-        verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
+        gridLayout = new QGridLayout(scrollAreaWidgetContents);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setSpacing(8);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalLayout_5->setContentsMargins(10, 10, 10, 10);
-        plainTextEdit = new QPlainTextEdit(scrollAreaWidgetContents);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        QFont font2;
-        font2.setFamily(QStringLiteral("Microsoft YaHei"));
-        font2.setPointSize(14);
-        font2.setStyleStrategy(QFont::PreferAntialias);
-        plainTextEdit->setFont(font2);
-        plainTextEdit->setStyleSheet(QLatin1String("background-color:transparent;\n"
-"border-width:0;\n"
-"border-style:outset;"));
-        plainTextEdit->setReadOnly(true);
 
-        verticalLayout_5->addWidget(plainTextEdit);
+        gridLayout->addLayout(verticalLayout_5, 0, 0, 1, 1);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 
@@ -213,11 +209,7 @@ public:
 "border-top-color: rgb(166, 166, 166);"));
         horizontalLayout_4 = new QHBoxLayout(widget_3);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        horizontalSpacer_5 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_4->addItem(horizontalSpacer_5);
-
+        horizontalLayout_4->setContentsMargins(4, 0, 4, 0);
         toolButton_4 = new QToolButton(widget_3);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
         toolButton_4->setMinimumSize(QSize(30, 30));
@@ -282,16 +274,16 @@ public:
 
         horizontalLayout_4->addWidget(toolButton_8);
 
-        horizontalSpacer_6 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_4->addItem(horizontalSpacer_6);
-
 
         verticalLayout_4->addWidget(widget_3);
 
         lineEdit = new QLineEdit(widget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setMinimumSize(QSize(0, 190));
+        QFont font2;
+        font2.setFamily(QStringLiteral("Microsoft YaHei"));
+        font2.setPointSize(14);
+        font2.setStyleStrategy(QFont::PreferAntialias);
         lineEdit->setFont(font2);
         lineEdit->setStyleSheet(QLatin1String("background-color:transparent;\n"
 "border-width:0;\n"
@@ -308,7 +300,7 @@ public:
 
         pushButton_4 = new QPushButton(widget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setMinimumSize(QSize(74, 26));
+        pushButton_4->setMinimumSize(QSize(80, 30));
         QFont font3;
         font3.setFamily(QStringLiteral("Microsoft YaHei"));
         font3.setPointSize(10);
@@ -323,7 +315,7 @@ public:
 
         pushButton_3 = new QPushButton(widget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setMinimumSize(QSize(74, 26));
+        pushButton_3->setMinimumSize(QSize(80, 30));
         pushButton_3->setFont(font3);
         pushButton_3->setStyleSheet(QLatin1String("border-style:solid;\n"
 "border-color: rgb(68, 68, 68);\n"
@@ -353,8 +345,8 @@ public:
 
         widget_2 = new QWidget(Chat);
         widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setMinimumSize(QSize(137, 0));
-        widget_2->setMaximumSize(QSize(120, 16777215));
+        widget_2->setMinimumSize(QSize(151, 0));
+        widget_2->setMaximumSize(QSize(149, 16777215));
         widget_2->setStyleSheet(QLatin1String("background-color: rgb(191, 191, 191);\n"
 "border-width:1px;\n"
 "border-style:solid;\n"
@@ -367,8 +359,8 @@ public:
 
         label_2 = new QLabel(widget_2);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setMinimumSize(QSize(120, 318));
-        label_2->setMaximumSize(QSize(120, 318));
+        label_2->setMinimumSize(QSize(122, 350));
+        label_2->setMaximumSize(QSize(137, 362));
         label_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/body.png);"));
 
         verticalLayout_3->addWidget(label_2);
@@ -384,7 +376,7 @@ public:
         verticalLayout->addLayout(horizontalLayout_3);
 
         verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(1, 20);
+        verticalLayout->setStretch(1, 15);
         QWidget::setTabOrder(pushButton_3, pushButton_4);
 
         retranslateUi(Chat);

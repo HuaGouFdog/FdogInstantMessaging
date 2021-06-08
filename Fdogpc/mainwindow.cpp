@@ -103,7 +103,7 @@ MainWindow::MainWindow(QString account,QTcpSocket *tcpClient,QWidget *parent) :
         btn->setFixedSize(312,38);
         QSize btnsize(36,36);
         btn->setIconSize(btnsize);
-        btn->setStyleSheet("QPushButton{text-align: left;background-color: rgb(203, 203, 203);border-style:solid;}"
+        btn->setStyleSheet("QPushButton{text-align: left;background-color: rgba(203, 203, 203,200);border-style:solid;}"
                            "QPushButton:hover{text-align: left;background-color: rgb(193, 193, 193);border-style:solid;}");
         //加入分组信息
         layout->addWidget(btn);
@@ -148,7 +148,7 @@ MainWindow::MainWindow(QString account,QTcpSocket *tcpClient,QWidget *parent) :
                 Listitem->setSizeHint(QSize(312, 50));  //每次改变Item的高度
                 listwidget->setItemWidget(Listitem,widget);
                 listwidget->setFixedSize(312,50*(sum+1));
-                listwidget->setStyleSheet("QListWidget::Item{background-color: rgb(203, 203, 203);}"
+                listwidget->setStyleSheet("QListWidget::Item{background-color: rgba(203, 203, 203,200);}"
                                           "QListWidget::Item:hover{background-color: rgb(193, 193, 193);}"
                                           "QListWidget::Item:selected{background-color: rgb(193, 193, 193);}"
                                           "QListWidget{outline:0px;}");
@@ -227,13 +227,13 @@ void MainWindow::paintEvent(QPaintEvent *e)
     qDrawBorderPixmap(&painter, this->rect(), QMargins(0, 0, 0, 0), pixmap);
     // 绘制中心区域的背景色（不然会是透明的）
     QRect rect(this->rect().x()+8, this->rect().y()+8, this->rect().width()-16, this->rect().height()-16);
-    painter.fillRect(rect, QColor(255, 255, 255));
+    painter.fillRect(rect, QColor(255, 255, 255,0));
 }
 
 MainWindow::~MainWindow()
 {
     qDebug()<<"退出";
-
+    this->listchat.clear();
 
     //断开连接
     if(tcpClient->state()==QAbstractSocket::ConnectedState)
@@ -311,7 +311,7 @@ void MainWindow::on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reaso
                 {
                     //qDebug()<<"没找到已存在窗口";
                     //普通消息 获取相关数据，生成聊天窗口  对方帐号，对方名字，主窗口指针
-                    Chat * a = new Chat(sqconn.getPixmapIcon(data.mid(0,8)),data.mid(0,8),sqconn.getOtherAccountName(data.mid(0,8)),this);
+                    Chat * a = new Chat(this->icon,sqconn.getPixmapIcon(data.mid(0,8)),data.mid(0,8),sqconn.getOtherAccountName(data.mid(0,8)),this);
                     a->setAccount(this->account); //本身账号
                     //四条数据
                     listchat.append(a);
@@ -493,7 +493,7 @@ void MainWindow::on_Double_widget_clicked(QListWidgetItem * witem)
         pwig = this->listwidget[i]->itemWidget(witem);
        if(pwig!=NULL)break;
     }
-        Chat * a = new Chat(sqconn.getPixmapIcon(pwig->findChild<QLabel *>("label2")->text()),pwig->findChild<QLabel *>("label2")->text(),
+        Chat * a = new Chat(this->icon,sqconn.getPixmapIcon(pwig->findChild<QLabel *>("label2")->text()),pwig->findChild<QLabel *>("label2")->text(),
                             pwig->findChild<QLabel *>("label3")->text(),this);
         a->setAccount(this->account);
         //四条数据

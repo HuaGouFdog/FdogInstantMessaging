@@ -22,13 +22,13 @@ private:
     bool isread = false;
     int isdown;
     QPixmap pixmap;
+    QPixmap mypixmap;
     QPoint last;                        //窗口拖动用变量
     bool isPressedWidget;
 public:
-    explicit Chat(QPixmap pixmap,QString otheraccount,QString name,MainWindow * main, QWidget *parent = 0);
+    explicit Chat(QPixmap mypixmap,QPixmap pixmap,QString otheraccount,QString name,MainWindow * main, QWidget *parent = 0);
     QString getLocalIP();
-    QWidget * CreateWidgetL();
-    QWidget * CreateWidgetR();
+    QWidget * CreateWidgetL_R(int i,QString data);
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *event);//鼠标点击
     void mouseMoveEvent(QMouseEvent *event);//鼠标移动

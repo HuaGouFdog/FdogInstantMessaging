@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>325</width>
-    <height>659</height>
+    <width>332</width>
+    <height>662</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,18 +21,21 @@
    <string notr="true">*{font-family:Microsoft YaHei;}</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
-     <number>4</number>
+     <number>7</number>
     </property>
     <property name="topMargin">
-     <number>8</number>
+     <number>14</number>
     </property>
     <property name="rightMargin">
-     <number>6</number>
+     <number>7</number>
     </property>
     <property name="bottomMargin">
-     <number>8</number>
+     <number>13</number>
     </property>
     <property name="spacing">
      <number>0</number>
@@ -721,19 +724,24 @@ border-radius:0px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QWidget::tab{
-background-color: rgb(255, 255, 255);
+background-color: rgba(203, 203, 203,250);
 border-style:solid;
-border-width:2px;
+border-bottom-width:2px;
 border-radius:0px;
 height:32px;
-width:102px;
+width:106px;
 color: rgb(100, 100, 100);
-	border-color: rgb(255, 255, 255);
-border-bottom-color: rgba(255, 255, 255, 0);
+border-color: rgb(255, 255, 255);
+border-bottom-color:rgba(163, 163, 163,250);
 }
 QWidget::tab:selected{
-border-bottom-color: rgb(127, 127, 127);
+border-bottom-color: rgb(80, 80, 80);
+border-bottom-width:2px;
 border-radius-:2px;
+}
+QWidget::pane{
+border-style:solid;
+background-color: rgba(203, 203, 203,250);
 }</string>
          </property>
          <property name="currentIndex">
@@ -778,8 +786,8 @@ border-radius-:2px;
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>310</width>
-                <height>412</height>
+                <width>316</width>
+                <height>411</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -842,7 +850,7 @@ border-radius-:2px;
              </property>
              <property name="styleSheet">
               <string notr="true">::tab{
-background-color: rgb(255, 255, 255);
+background-color: rgba(203, 203, 203,200);
 border-style:solid;
 border-width:0px;
 border-radius:2px;
@@ -911,6 +919,9 @@ QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical{background:rgba(0,0,
 
 QScrollBar::sub-page:vertical,QScrollBar::sub-page:vertical{background:rgba(0,0,0,0);}</string>
                  </property>
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
                  <property name="horizontalScrollBarPolicy">
                   <enum>Qt::ScrollBarAlwaysOff</enum>
                  </property>
@@ -922,8 +933,8 @@ QScrollBar::sub-page:vertical,QScrollBar::sub-page:vertical{background:rgba(0,0,
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>310</width>
-                    <height>383</height>
+                    <width>316</width>
+                    <height>382</height>
                    </rect>
                   </property>
                   <property name="cursor">
@@ -957,7 +968,7 @@ background-color: rgb(203, 203, 203);
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>311</width>
+             <width>318</width>
              <height>411</height>
             </rect>
            </property>
@@ -978,7 +989,7 @@ background-color: rgb(203, 203, 203);
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>309</width>
+              <width>316</width>
               <height>409</height>
              </rect>
             </property>
@@ -1021,137 +1032,149 @@ background-color: rgba(203, 203, 203, 100);
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <property name="topMargin">
-          <number>9</number>
+        <widget class="QWidget" name="widget_5" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(203, 203, 203,200);
+border-top-width:1px;
+border-top-color:rgba(163, 163, 163,250);
+border-style:solid;</string>
          </property>
-         <property name="bottomMargin">
-          <number>9</number>
-         </property>
-         <item>
-          <spacer name="horizontalSpacer_5">
-           <property name="font">
-            <font>
-             <family>Microsoft YaHei</family>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>5</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButton_4">
-           <property name="minimumSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Microsoft YaHei</family>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="libres.qrc">
-             <normaloff>:/lib/sangangy.png</normaloff>:/lib/sangangy.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButton_3">
-           <property name="minimumSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Microsoft YaHei</family>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="libres.qrc">
-             <normaloff>:/lib/tianjiahaoyou.png</normaloff>:/lib/tianjiahaoyou.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="font">
-            <font>
-             <family>Microsoft YaHei</family>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="topMargin">
+           <number>9</number>
+          </property>
+          <property name="bottomMargin">
+           <number>9</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer_5">
+            <property name="font">
+             <font>
+              <family>Microsoft YaHei</family>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>5</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_4">
+            <property name="minimumSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Microsoft YaHei</family>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-style:solid;
+border-color: rgba(255, 255, 255, 0);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="libres.qrc">
+              <normaloff>:/lib/sangangy.png</normaloff>:/lib/sangangy.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="autoRaise">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_3">
+            <property name="minimumSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Microsoft YaHei</family>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-style:solid;
+border-color: rgba(255, 255, 255, 0);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="libres.qrc">
+              <normaloff>:/lib/tianjiahaoyou.png</normaloff>:/lib/tianjiahaoyou.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="autoRaise">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="font">
+             <font>
+              <family>Microsoft YaHei</family>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>

@@ -54,5 +54,6 @@
         <file>lib/anquan.png</file>
         <file>lib/error.png</file>
         <file>lib/network.png</file>
+        <file>lib/background2.png</file>
     </qresource>
 </RCC>
