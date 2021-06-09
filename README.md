@@ -68,19 +68,19 @@ https://blog.csdn.net/Fdog_
 
 ##### 1.登录界面
 
-<img src="https://img-blog.csdnimg.cn/20210609105205428.png" style="zoom: 25%;" />
+<img src="https://img-blog.csdnimg.cn/20210609112805866.png" style="zoom: 50%;" />
 
 ##### 2.主界面以及聊天窗口
 
-<img src="https://img-blog.csdnimg.cn/20210609105204531.png" style="zoom:25%;" />
+<img src="https://img-blog.csdnimg.cn/20210609112805707.png" style="zoom:50%;" />
 
 ##### 3.查找以及添加好友界面
 
-<img src="https://img-blog.csdnimg.cn/20210609105203830.png" style="zoom:25%;" />
+<img src="https://img-blog.csdnimg.cn/20210609112805629.png" style="zoom:50%;" />
 
 ##### 4.数据库字段
 
-<img src="https://img-blog.csdnimg.cn/20210609105204400.png" style="zoom:25%;" />
+<img src="https://img-blog.csdnimg.cn/20210609112805635.png" style="zoom:50%;" />
 
 
 
