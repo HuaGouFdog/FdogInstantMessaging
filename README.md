@@ -1,63 +1,4 @@
----
-typora-root-url: READMEimg
----
-
-# FdogInstantMessaging
-
-#### 介绍
-FdogInstantMessaging，Fdog即时通讯软件。
-
-利用在校所学知识进行编写，主要包括网页端，客户端，以及服务端。
-
-网页端主要使用html，jsp，javaweb，使用Tomcat部署在腾讯云服务器上面：[注册网址](https://www.fdogcsdn.cn/FdogMaven/index.jsp) ，并使用腾讯云的短信接口进行短信注册，由于一个月体验已到期，现在无法正常发送短信。
-
-客户端和服务端是在win10平台使用qt5.10进行编写。
-
-由于无法将服务器数据库密码等重要信息上传，所以下载下来的程序无法正常运行，这里只提供源码以及数据库的字段。
-
-欢迎大家下载学习，走前给个星星！
-
-我的博客：https://blog.csdn.net/Fdog_
-
-
-
-#### 图例
-
-##### 1.登录界面
-
-##### ![](https://img-blog.csdnimg.cn/20210528152616336.png)
-
-
-
-##### 2.主界面
-
-
-
-![](https://img-blog.csdnimg.cn/20210528152616300.png)
-
-
-
-##### 3.聊天窗口
-
-<img src="https://img-blog.csdnimg.cn/20210528152616304.png" style="zoom:80%;" />
-
-
-
-##### 4.查找
-
-<img src="https://img-blog.csdnimg.cn/20210528152616288.png" style="zoom:67%;" />
-
-
-
-##### 6.添加好友
-
-![](https://img-blog.csdnimg.cn/20210528152616214.png)
-
-
-
-##### 7.右下角托盘图标
-
-![](https://img-blog.csdnimg.cn/20210528152616283.png)
+[TOC]
 
 
 
@@ -65,11 +6,41 @@ FdogInstantMessaging，Fdog即时通讯软件。
 
 
 
----
 
-#### 技术讲解
 
-Fdog系列已写目录：
+# FdogInstantMessaging(Fdog即时通讯软件)
+
+#### 一. 介绍
+FdogInstantMessaging，Fdog即时通讯软件，利用在校所学知识进行编写，主要包括网页端，客户端，以及服务端。
+
+1. 网页端主要使用html前端，java后端，使用Tomcat部署在腾讯云服务器上面，实习软件下载和账号注册等功能。
+2. 客户端和服务端是在window平台使用qt5.10进行编写。
+
+
+
+备注：
+
+相关软件版本：tomcat7.x，mysql7.x，centOS7.x
+
+短信使用的是腾讯云的短信服务，其他几家的短信服务都需要企业认证，腾讯云不需要。
+
+每个新用户注册腾讯云都有两个个月短信体验，我的体验已到期，现在无法正常发送短信，不要再再试注册了。
+
+由于无法将服务器数据库密码等重要信息上传，所以下载下来的程序无法正常运行，这里只提供源码以及相关数据库字段。
+
+目前没有上传可执行文件（太大了，github又慢），如下载源码后无法编译，右击项目，重新构建即可。
+
+欢迎大家参考学习，如果对你有帮助的话，别忘了给个星星！
+
+Fdog网站：
+
+https://www.fdogcsdn.cn
+
+我的博客：
+
+https://blog.csdn.net/Fdog_ 
+
+下面是提供一些可能有用的技术参考：
 
 [Fdog系列（一）：思来想去，不如写一个聊天软件，那就从仿QQ注册页面开始吧。](https://zxfdog.blog.csdn.net/article/details/115558479)
 
@@ -83,59 +54,39 @@ Fdog系列已写目录：
 
 [Fdog系列（六）：利用Qt通过服务端进行客户端与客户端通信（资料少，建议收藏）](https://zxfdog.blog.csdn.net/article/details/116355817)
 
+[Centos上编译qt程序缺少mysql驱动解决方案](https://zxfdog.blog.csdn.net/article/details/117637402)
 
+[腾讯云云服务器Centos系统安装MySQL数据库详细教程](https://zxfdog.blog.csdn.net/article/details/113573491)
 
-数据库的一些字段可能需要：
-
-![](https://img-blog.csdnimg.cn/20210528153827550.png)
-
-
-
-![](https://img-blog.csdnimg.cn/2021052815390824.png)
-
-![](https://img-blog.csdnimg.cn/20210528153459534.png)
-
-
-
-![](https://img-blog.csdnimg.cn/20210528153459539.png)
-
-
-
-![](https://img-blog.csdnimg.cn/20210528153459542.png)
-
----
-
-#### 使用环境
-
-网页端
-1.  tomcat7.x
-2.  mysql7.x
-3.  centOS7.x
-
-PC端
-1.  win10，qt5.10
-
-
-服务端
-1.  win10，qt5.10
-
----
-
-#### 使用说明
-
-1.  将网页端部署完毕，可完成Fdog账号注册功能
-2.  打开服务端，自动接收TCP请求 默认60端口
-3.  登录两个客户端，可互发信息
-
-
-
-备注：只上传了源码，并没有上传可执行文件（太大了，github又慢），如下载源码后无法编译，右击项目，重新构建即可。
+[初学Qt不会样式表怎么办，打包好的Qt样式表一键生成送给你](https://zxfdog.blog.csdn.net/article/details/108296647)
 
 
 
 ---
 
-#### 更新目录
+#### 二. 图例
+
+##### 1.登录界面
+
+<img src="https://img-blog.csdnimg.cn/20210609105205428.png" style="zoom: 25%;" />
+
+##### 2.主界面以及聊天窗口
+
+<img src="https://img-blog.csdnimg.cn/20210609105204531.png" style="zoom:25%;" />
+
+##### 3.查找以及添加好友界面
+
+<img src="https://img-blog.csdnimg.cn/20210609105203830.png" style="zoom:25%;" />
+
+##### 4.数据库字段
+
+<img src="https://img-blog.csdnimg.cn/20210609105204400.png" style="zoom:25%;" />
+
+
+
+---
+
+#### 三. 更新目录
 
 ##### 2021.5.1 更新
     1. 完成基本的登录，客户端与客户端的通信
