@@ -58,7 +58,7 @@ public:
 
 signals:
     void sendData(QString str);
-    void sendCount();
+    void sendCount(QString otheraccount);
 private slots:
     void closeEvent(QCloseEvent *e);
     void onSocketStateChange(QAbstractSocket::SocketState socketState);

@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -38,7 +37,7 @@ public:
     QWidget *widget;
     QGridLayout *gridLayout;
     QListWidget *listWidget;
-    QFrame *line;
+    QWidget *widget_2;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer;
@@ -48,7 +47,7 @@ public:
     {
         if (Traywidget->objectName().isEmpty())
             Traywidget->setObjectName(QStringLiteral("Traywidget"));
-        Traywidget->resize(229, 150);
+        Traywidget->resize(229, 153);
         Traywidget->setMaximumSize(QSize(229, 16777215));
         QFont font;
         font.setFamily(QStringLiteral("Microsoft YaHei"));
@@ -60,7 +59,7 @@ public:
         verticalLayout = new QVBoxLayout(Traywidget);
         verticalLayout->setSpacing(1);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 5, 0, 0);
+        verticalLayout->setContentsMargins(2, 5, 2, 0);
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -114,19 +113,15 @@ public:
 
         verticalLayout->addWidget(widget);
 
-        line = new QFrame(Traywidget);
-        line->setObjectName(QStringLiteral("line"));
-        line->setMaximumSize(QSize(206, 16777215));
-        line->setFont(font2);
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-
-        verticalLayout->addWidget(line);
-
-        horizontalLayout = new QHBoxLayout();
+        widget_2 = new QWidget(Traywidget);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setStyleSheet(QLatin1String("border-style:solid;\n"
+"border-width:1px;\n"
+"border-top-color:rgb(161, 161, 161);"));
+        horizontalLayout = new QHBoxLayout(widget_2);
         horizontalLayout->setSpacing(2);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        pushButton = new QPushButton(Traywidget);
+        pushButton = new QPushButton(widget_2);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setMaximumSize(QSize(55, 20));
         pushButton->setFont(font2);
@@ -140,7 +135,7 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        pushButton_2 = new QPushButton(Traywidget);
+        pushButton_2 = new QPushButton(widget_2);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setMaximumSize(QSize(55, 80));
         pushButton_2->setFont(font2);
@@ -150,7 +145,7 @@ public:
         horizontalLayout->addWidget(pushButton_2);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout->addWidget(widget_2);
 
 
         retranslateUi(Traywidget);

@@ -745,7 +745,7 @@ background-color: rgba(203, 203, 203,250);
 }</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="tab">
           <property name="font">
@@ -969,7 +969,7 @@ background-color: rgb(203, 203, 203);
              <x>0</x>
              <y>0</y>
              <width>318</width>
-             <height>411</height>
+             <height>415</height>
             </rect>
            </property>
            <property name="font">
@@ -990,7 +990,7 @@ background-color: rgb(203, 203, 203);
               <x>0</x>
               <y>0</y>
               <width>316</width>
-              <height>409</height>
+              <height>413</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">

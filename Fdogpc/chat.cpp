@@ -13,6 +13,8 @@ Chat::Chat(QPixmap mypixmap,QPixmap pixmap,QString otheraccount,QString name,Mai
 {
     ui->setupUi(this);
     setWindowFlags (Qt::FramelessWindowHint);//隐藏标题栏
+    setAttribute(Qt::WA_DeleteOnClose);
+    setWindowFlag(Qt::CoverWindow);
     setAttribute(Qt::WA_TranslucentBackground);
     this->otheraccount=otheraccount;
     this->name=name;
@@ -227,29 +229,13 @@ void Chat::on_pushButton_3_clicked()
 
 void Chat::on_pushButton_4_clicked()
 {
-    if(this->isdown==1)
-    {
-        this->hide();
-    }
-    else
-    {
-        this->close();
-    }
-    //发送信号
-    emit sendCount();
+    on_toolButton_3_clicked();
 }
 
 void Chat::on_toolButton_3_clicked()
 {
-    if(this->isdown==1)
-    {
-        this->hide();
-    }
-    else
-    {
-        this->close();
-    }
-    emit sendCount();
+    this->close();
+    emit sendCount(this->otheraccount);
 }
 
 void Chat::on_toolButton_clicked()

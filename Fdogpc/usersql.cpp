@@ -26,9 +26,9 @@ bool Usersql::connData()
     {
         this->dbconn = QSqlDatabase::addDatabase("QMYSQL");
     }
-    this-> dbconn.setHostName("82.156.111.139");//主机名字
+    this-> dbconn.setHostName("xxxxxxxx");//主机名字
     this-> dbconn.setDatabaseName("fdogsql");//数据库名字
-    if(this->dbconn.open("root", "xxxxx"))
+    if(this->dbconn.open("root", "xxxxxx"))
     {
         this->query = (QSqlQuery)this->dbconn; //进行绑定 此后可以使用query对象对数据库进行操作。
         return true;
@@ -275,6 +275,24 @@ void Usersql::updatagrouping(const QString &otheraccount,const QString &account)
     data = QString("update setverify set state='%1' where account='%2' and otheraccount='%3' ")
             .arg("同意",account,otheraccount);//好友账号，好友所在分组，本身账号，好友名字
     this->query.exec(data);
+}
+
+QString Usersql::isLine(const QString &account)
+{
+    QString line ="-1";
+    QString ip="";
+    QString data = QString("select * from state where account='%1'").arg(account);
+    this->query.exec(data);
+    while(query.next())
+    {
+        line = this->query.value(1).toString();//获取在线状态
+        ip = this->query.value(2).toString();//获取ip
+    }
+    if(line!="-1")//如果在线就返回ip
+    {
+        return ip;
+    }
+    return "";
 }
 
 QPixmap Usersql::getIcon() const

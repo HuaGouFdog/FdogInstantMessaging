@@ -519,13 +519,13 @@ public:
         tab_3->setObjectName(QStringLiteral("tab_3"));
         scrollArea_2 = new QScrollArea(tab_3);
         scrollArea_2->setObjectName(QStringLiteral("scrollArea_2"));
-        scrollArea_2->setGeometry(QRect(0, 0, 318, 411));
+        scrollArea_2->setGeometry(QRect(0, 0, 318, 415));
         scrollArea_2->setFont(font1);
         scrollArea_2->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 316, 409));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 316, 413));
         verticalLayout = new QVBoxLayout(scrollAreaWidgetContents_2);
         verticalLayout->setSpacing(15);
         verticalLayout->setContentsMargins(15, 15, 15, 15);
@@ -610,7 +610,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
         tabWidget_2->setCurrentIndex(0);
 
 

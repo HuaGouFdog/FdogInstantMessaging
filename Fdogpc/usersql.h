@@ -45,6 +45,7 @@ public:
     void getverify(const QString &time,const QString &otheraccount,const QString &sate,const QString &name,const QString &grouping,const QString &account);//添加好友数据
     QString getverifygrouping(const QString &account,const QString &otheraccount);//获取主动添加方设置的分组
     void updatagrouping(const QString &otheraccount,const QString &account);//暂无
+    QString isLine(const QString &account);
     //getset函数
     QPixmap getIcon() const;
     void setIcon(const QPixmap &value);

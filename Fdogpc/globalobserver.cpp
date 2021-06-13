@@ -6,6 +6,8 @@ MainWindow * Globalobserver::mainwindowp =NULL;
 Addfriend *  Globalobserver::addfriendp =NULL;
 Agreefriend * Globalobserver::agreefriend=NULL;
 QList<Chat *> Globalobserver::listchat;
+QFont Globalobserver::font1;
+QFont Globalobserver::font2;
  MainWindow *Globalobserver::getMainwindowp()
 {
     return mainwindowp;
@@ -48,7 +50,12 @@ QList<Chat *> Globalobserver::listchat;
 
  Globalobserver::Globalobserver()
  {
-
+     font1.setFamily("Microsoft YaHei");
+     font1.setPointSize(8);
+     font1.setStyleStrategy(QFont::PreferAntialias);
+     font2.setFamily("Microsoft YaHei");
+     font2.setPointSize(9);
+     font2.setStyleStrategy(QFont::PreferAntialias);
  }
 
  void Globalobserver::installPersonInfo(MainWindow *p)

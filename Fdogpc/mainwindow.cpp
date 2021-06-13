@@ -10,171 +10,56 @@ MainWindow::MainWindow(QString account,QTcpSocket *tcpClient,QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->tcpClient = tcpClient;
-    this->tarywidget  = new Traywidget(this->name);
-    this->timemouse.start(200);
-    this->timemouse.setSingleShot(false);
-    connect(&timerT,SIGNAL(timeout()),this,SLOT(sltTimerT()));
-    connect(&timerNoT,SIGNAL(timeout()),this,SLOT(sltTimerNoT()));
-    connect(&timemouse,SIGNAL(timeout()),this,SLOT(showdata()));
-
+    //个人信息弹框
+    this->myinfo->setWindowFlags(Qt::FramelessWindowHint | Qt::CustomizeWindowHint | Qt::X11BypassWindowManagerHint|Qt::Tool);
+    //主窗口样式
+    setWindowFlags(Qt::SplashScreen|Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
+    //setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_TranslucentBackground);
+    //设置全局
     Globalobserver::setMainwindowp(this);
-    LabSocketate = new QLabel("Socket状态：");
-    LabSocketate->setMinimumWidth(250);
-    QString localIP = getLocalIP();
-
-    //连接到服务器
-//    QString addr =localIP;
-//    //qDebug()<<"ip:"<<addr;
-//    //QString addr ="192.16";
-//    tcpClient=new QTcpSocket(this);
-//    quint16 port = 60;
-//    tcpClient->connectToHost(addr,port);
+    //获取TCP
+    this->tcpClient = tcpClient;
+    LabSocketate = new QLabel(this);
     connect(tcpClient,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(onSocketErrorChange(QAbstractSocket::SocketError)));
     connect(tcpClient,SIGNAL(connected()),this,SLOT(onConnected()));
     connect(tcpClient,SIGNAL(disconnected()),this,SLOT(onDisconnected()));
     connect(tcpClient,SIGNAL(stateChanged(QAbstractSocket::SocketState)),this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
     connect(tcpClient,SIGNAL(readyRead()),this,SLOT(onSocketReadyRead()));
-
-
-    //接收消息
-    //connect(Globalobserver::getAddfriendp(),SIGNAL(sendaddinfo(QString)),Globalobserver::getMainwindowp(),SLOT(MainSendAddData(QString)));
-
-    //ui->widget->setLayout(horLayout);
-    //个人信息弹框
-    this->aa->setWindowFlags(Qt::FramelessWindowHint | Qt::CustomizeWindowHint | Qt::X11BypassWindowManagerHint|Qt::Tool);
-    //主窗口样式
-    this->setWindowFlags(Qt::SplashScreen|Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
-    setAttribute(Qt::WA_DeleteOnClose);
-    setAttribute(Qt::WA_TranslucentBackground);
-    //创建右击菜单
-    systemtrayicon = new QSystemTrayIcon(this);
-    QIcon icon = QIcon(":/lib/fdogicon.png");
-    //创建基础内容
-    this->account = account;
-    //通过账户，查询数据库基本数据,头像，昵称，个性签名
-    //直接从网络下载图片不理想，可以先使用本地头像，再搜索网络头像
+    //数据库获取数据
     sqconn.connData();
-    sqconn.queryUserInfo(this->account);
+    sqconn.queryUserInfo(account);
     sqconn.setSate(0);
-    sqconn.AccountIP(getLocalIP());      //获取ip登录在线
+    sqconn.AccountIP(getLocalIP());//获取ip登录在线
+    //获取基础内容
+    this->account = account;
     this->icon = sqconn.getIcon();
-    //qDebug()<<"pixmap "<<this->icon;
     this->account = sqconn.getAccount();
     this->name = sqconn.getName();
-    this->tarywidget->setName(this->name);
     this->signature = sqconn.getSignature();
     ui->username_label->setText(this->name);
     ui->signature_label->setText(this->signature);
     ui->signature_label->setToolTip(this->signature);
-    //图标不可点击
-    ui->icon_tool->setEnabled(false);
     this->icon=this->icon.scaled(QSize(this->icon.width(), this->icon.height()), Qt::IgnoreAspectRatio);
     this->icon= Globalobserver::PixmapToRound(this->icon, this->icon.width()/2);
     ui->pushButton->setIcon(QIcon(this->icon));
-    //添加垂直布局 最外面布局
-    QVBoxLayout * layout = new QVBoxLayout();
-    //设置边距为0
-    layout->setContentsMargins(0,0,0,0);
-    layout->setSpacing(0);
-    //获取分组信息，以及好友列表
-    QStringList grouping = sqconn.getGrouping();
-    QStringList mfriend = sqconn.getMfriend();
-    QStringList mfriendname = sqconn.getMfriendname();
-    //qDebug()<<mfriend;
-    //显示等级
-    ui->toolButton_5->setText("   "+sqconn.getGrade());
-   // grouping.length()
-    QFont font1;
-    font1.setFamily("Microsoft YaHei");
-    font1.setPointSize(8);
-    font1.setStyleStrategy(QFont::PreferAntialias);
-    QFont font2;
-    font2.setFamily("Microsoft YaHei");
-    font2.setPointSize(9);
-    font2.setStyleStrategy(QFont::PreferAntialias);
-    for(int j = 0;j<grouping.length();j++)
-    {
-        //创建分组信息
-        QPushButton * btn = new QPushButton(QIcon(":/lib/jietou.png")," "+grouping.at(j));
-        btn->setFont(font1);
-        this->listbtn.append(btn);
-        this->iswidget.append(true);
-        btn->setFixedSize(312,38);
-        QSize btnsize(36,36);
-        btn->setIconSize(btnsize);
-        btn->setStyleSheet("QPushButton{text-align: left;background-color: rgba(203, 203, 203,200);border-style:solid;}"
-                           "QPushButton:hover{text-align: left;background-color: rgb(193, 193, 193);border-style:solid;}");
-        //加入分组信息
-        layout->addWidget(btn);
-        QListWidget * listwidget = new QListWidget(this);
-        connect(listwidget,SIGNAL(itemDoubleClicked(QListWidgetItem*)),
-                this,SLOT(on_Double_widget_clicked(QListWidgetItem*)));
-        this->listwidget.append(listwidget);
-        listwidget->setFrameShape(QListWidget::NoFrame);
-        listwidget->setGridSize(QSize(312,50));
-        int sum = -1;
-        for(int i = 0;i<mfriend.length();i++)
-        {
-            QString mf = mfriend.at(i);
-            char a = mf.at(0).toLatin1();
-            if(a-48==j)
-            {
-                sum++;
-                QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
-                horLayout->setContentsMargins(0,0,0,0);
-                horLayout->setSpacing(0);
-                QLabel * l1 = new QLabel();
-                l1->setFixedSize(15,32);
-                QPushButton * btnicon = new QPushButton();
-                btnicon->setFixedSize(32,32);
-                btnicon->setIconSize(QSize(32,32));
-                btnicon->setIcon(sqconn.getPixmapIcon(mf.mid(1)));
-                btnicon->setStyleSheet("background:rgba(0,0,0,0)");
-                QLabel * la2 = new QLabel(QString("%1").arg(mf.mid(1)));
-                la2->setObjectName("label2");
-                la2->hide();
-                QLabel * la3 = new QLabel(QString("  %1").arg(mfriendname.at(i)));
-                la3->setObjectName("label3");
-                la3->setFont(font2);
-                horLayout->addWidget(l1);
-                horLayout->addWidget(btnicon);
-                horLayout->addWidget(la2);
-                horLayout->addWidget(la3);
-                QWidget *widget =new QWidget(this);
-                widget->setLayout(horLayout);
-                widget->setStyleSheet("background:rgba(232, 255, 149,0);");
-                QListWidgetItem * Listitem = new QListWidgetItem(listwidget);
-                Listitem->setSizeHint(QSize(312, 50));  //每次改变Item的高度
-                listwidget->setItemWidget(Listitem,widget);
-                listwidget->setFixedSize(312,50*(sum+1));
-                listwidget->setStyleSheet("QListWidget::Item{background-color: rgba(203, 203, 203,200);}"
-                                          "QListWidget::Item:hover{background-color: rgb(193, 193, 193);}"
-                                          "QListWidget::Item:selected{background-color: rgb(193, 193, 193);}"
-                                          "QListWidget{outline:0px;}");
-            }
-        }
-        btn->setText(grouping.at(j)+"     "+QString::number(sum+1)+"/"+QString::number(sum+1));
-        layout->addWidget(listwidget);
-        listwidget->setObjectName(grouping.at(j));
-    }
-    layout->addStretch();
-    ui->scrollAreaWidgetContents->setLayout(layout);
-    //初始化QSignalMapper
-    myMapper = new QSignalMapper(this);
-    for(int i = 0;i<this->listbtn.length();i++)
-    {
-        connect(this->listbtn[i],SIGNAL(clicked(bool)),myMapper,SLOT(map()));
-        myMapper->setMapping(listbtn[i],i);
-    }
-    connect(myMapper,SIGNAL(mapped(int)),this,SLOT(on_widget_clicked(int)));
-    QString str = QString("Fdog:%1(%2)\n声音:关闭\n消息提示框:关闭\n会话消息:任务栏头像闪动").arg(this->name,this->account);
+    //获取托盘消息窗口
+    this->tarywidget  = new Traywidget(this->name);
+    this->tarywidget->setName(this->name);
+    //定时检测身鼠标是否位于托盘之上
+    this->timemouse.start(200);
+    this->timemouse.setSingleShot(false);
+    connect(&timerT,SIGNAL(timeout()),this,SLOT(sltTimerT()));//开始
+    connect(&timerNoT,SIGNAL(timeout()),this,SLOT(sltTimerNoT()));//停止
+    connect(&timemouse,SIGNAL(timeout()),this,SLOT(showdata()));//显示消息
+    //设置托盘图标
+    systemtrayicon = new QSystemTrayIcon(this);
+    QIcon icon = QIcon(":/lib/fdogicon.png");
     systemtrayicon->setIcon(icon);
+    QString str = QString("Fdog:%1(%2)\n声音:关闭\n消息提示框:关闭\n会话消息:任务栏头像闪动").arg(this->name,this->account);
     systemtrayicon->setToolTip(str);
     systemtrayicon->show();
-    //systemtrayicon->hide();
-    connect(systemtrayicon,SIGNAL(activated(QSystemTrayIcon::ActivationReason))
-            ,this,SLOT(on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason)));
+    //设置菜单
     menu = new QMenu(this);
     m_pShowAction = new QAction("显示主界面");
     m_pCloseAction = new QAction("退出");
@@ -205,10 +90,97 @@ MainWindow::MainWindow(QString account,QTcpSocket *tcpClient,QWidget *parent) :
     }
     connect(menuAction,SIGNAL(mapped(int)),this,SLOT(actionexe(int)));
     mainmenu = menu;
-    //mainmenu->removeAction(m_pShowAction);
-    //mainmenu->removeAction(m_pCloseAction);
     ui->toolButton_2->setMenu(menu);
     systemtrayicon->setContextMenu(menu);
+    //获取分组列表以及好友
+    //添加垂直布局 最外面布局
+    QVBoxLayout * layout = new QVBoxLayout();
+    //设置边距为0
+    layout->setContentsMargins(0,0,0,0);
+    layout->setSpacing(0);
+    //获取分组信息，以及好友列表
+    QStringList grouping = sqconn.getGrouping();
+    QStringList mfriend = sqconn.getMfriend();
+    QStringList mfriendname = sqconn.getMfriendname();
+    //显示等级
+    ui->toolButton_5->setText("   "+sqconn.getGrade());
+    for(int j = 0;j<grouping.length();j++)
+    {
+        //创建分组信息
+        QPushButton * btn = new QPushButton(QIcon(":/lib/jietou.png")," "+grouping.at(j));//箭头+分组名
+        btn->setFont(Globalobserver::font1);
+        this->listbtn.append(btn);
+        this->iswidget.append(true);
+        btn->setFixedSize(312,38);
+        QSize btnsize(36,36);
+        btn->setIconSize(btnsize);
+        btn->setStyleSheet("QPushButton{text-align: left;background-color: rgba(203, 203, 203,200);border-style:solid;}"
+                           "QPushButton:hover{text-align: left;background-color: rgb(193, 193, 193);border-style:solid;}");
+        //加入分组信息
+        layout->addWidget(btn);
+        QListWidget * listwidget = new QListWidget(this);
+        connect(listwidget,SIGNAL(itemDoubleClicked(QListWidgetItem*)),this,SLOT(onDoubleWidgetClicked(QListWidgetItem*)));
+        this->listwidget.append(listwidget);
+        listwidget->setFrameShape(QListWidget::NoFrame);
+        listwidget->setGridSize(QSize(312,50));
+        int sum = -1;
+        for(int i = 0;i<mfriend.length();i++)
+        {
+            QString mf = mfriend.at(i);
+            char a = mf.at(0).toLatin1();
+            if(a-48==j)
+            {
+                sum++;
+                QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
+                horLayout->setContentsMargins(0,0,0,0);
+                horLayout->setSpacing(0);
+                QLabel * l1 = new QLabel();
+                l1->setFixedSize(15,32);
+                QPushButton * btnicon = new QPushButton();
+                btnicon->setFixedSize(32,32);
+                btnicon->setIconSize(QSize(32,32));
+                btnicon->setIcon(sqconn.getPixmapIcon(mf.mid(1)));
+                btnicon->setStyleSheet("background:rgba(0,0,0,0)");
+                QLabel * la2 = new QLabel(QString("%1").arg(mf.mid(1)));
+                la2->setObjectName("label2");
+                la2->hide();
+                QLabel * la3 = new QLabel(QString("  %1").arg(mfriendname.at(i)));
+                la3->setObjectName("label3");
+                la3->setFont(Globalobserver::font2);
+                horLayout->addWidget(l1);
+                horLayout->addWidget(btnicon);
+                horLayout->addWidget(la2);
+                horLayout->addWidget(la3);
+                QWidget *widget =new QWidget(this);
+                widget->setLayout(horLayout);
+                widget->setStyleSheet("background:rgba(232, 255, 149,0);");
+                QListWidgetItem * Listitem = new QListWidgetItem(listwidget);
+                Listitem->setSizeHint(QSize(312, 50));  //每次改变Item的高度
+                listwidget->setItemWidget(Listitem,widget);
+                listwidget->setFixedSize(312,50*(sum+1));
+                listwidget->setStyleSheet("QListWidget::Item{background-color: rgba(203, 203, 203,200);}"
+                                          "QListWidget::Item:hover{background-color: rgb(193, 193, 193);}"
+                                          "QListWidget::Item:selected{background-color: rgb(193, 193, 193);}"
+                                          "QListWidget{outline:0px;}");
+            }
+        }
+        btn->setText(grouping.at(j)+"     "+QString::number(sum+1)+"/"+QString::number(sum+1));
+        layout->addWidget(listwidget);
+        listwidget->setObjectName(grouping.at(j));
+    }
+    layout->addStretch();
+    ui->scrollAreaWidgetContents->setLayout(layout);
+    //初始化QSignalMapper
+    myMapper = new QSignalMapper(this);
+    for(int i = 0;i<this->listbtn.length();i++)
+    {
+        connect(this->listbtn[i],SIGNAL(clicked(bool)),myMapper,SLOT(map()));
+        myMapper->setMapping(listbtn[i],i);
+    }
+    connect(myMapper,SIGNAL(mapped(int)),this,SLOT(onWidgetClicked(int)));
+    connect(systemtrayicon,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason)));
+    //图标不可点击
+    ui->icon_tool->setEnabled(false);
     //头像悬浮弹出
     ui->pushButton->setAttribute(Qt::WA_Hover,true);
     ui->pushButton->installEventFilter(this);
@@ -218,6 +190,11 @@ MainWindow::MainWindow(QString account,QTcpSocket *tcpClient,QWidget *parent) :
     ui->scrollArea_3->setFrameShape(QFrame::NoFrame);
 }
 
+MainWindow::~MainWindow()
+{
+    qDebug()<<"主窗口完成析构";
+    delete ui;
+}
 void MainWindow::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e)
@@ -228,21 +205,6 @@ void MainWindow::paintEvent(QPaintEvent *e)
     // 绘制中心区域的背景色（不然会是透明的）
     QRect rect(this->rect().x()+8, this->rect().y()+8, this->rect().width()-16, this->rect().height()-16);
     painter.fillRect(rect, QColor(255, 255, 255,0));
-}
-
-MainWindow::~MainWindow()
-{
-    qDebug()<<"退出";
-    this->listchat.clear();
-
-    //断开连接
-    if(tcpClient->state()==QAbstractSocket::ConnectedState)
-        tcpClient->disconnectFromHost();
-    sqconn.setSate(-1);
-    sqconn.AccountIP(getLocalIP());      //获取ip登录离线
-    //释放内存
-
-    delete ui;
 }
 
 QString MainWindow::getLocalIP()
@@ -313,19 +275,21 @@ void MainWindow::on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reaso
                     //普通消息 获取相关数据，生成聊天窗口  对方帐号，对方名字，主窗口指针
                     Chat * a = new Chat(this->icon,sqconn.getPixmapIcon(data.mid(0,8)),data.mid(0,8),sqconn.getOtherAccountName(data.mid(0,8)),this);
                     a->setAccount(this->account); //本身账号
+                    a->setAttribute(Qt::WA_DeleteOnClose);
+                    a->setObjectName(data.mid(0,8));
                     //四条数据
                     listchat.append(a);
-                    this->count++;
-                    if(this->count==1)
-                    {
-                        a->setIsdown(1);
-                    }
-                    else
-                    {
-                        a->setIsdown(0);
-                    }
+                    //this->count++;
+//                    if(this->count==1)
+//                    {
+//                        a->setIsdown(1);
+//                    }
+//                    else
+//                    {
+//                        a->setIsdown(0);
+//                    }
                     connect(a,SIGNAL(sendData(QString)),this,SLOT(MainSendData(QString)));
-                    connect(a,SIGNAL(sendCount()),this,SLOT(listchatcount()));
+                    connect(a,SIGNAL(sendCount(QString)),this,SLOT(listchatcount(QString)));
                     a->show();
                     a->setIsread(true);
                     emit sendChatData(data);
@@ -398,8 +362,24 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void MainWindow::on_close_tool_clicked()
 {
+    qDebug()<<"执行关闭1";
     systemtrayicon->hide();
+    qDebug()<<"执行关闭2";
     this->close();
+    qDebug()<<"执行关闭3";
+    sqconn.setSate(-1);
+    sqconn.AccountIP(getLocalIP());      //获取ip登录离线
+    qDebug()<<"执行关闭4";
+    //断开连接
+    if(tcpClient->state()==QAbstractSocket::ConnectedState)
+    {
+        tcpClient->disconnectFromHost();
+    }
+    qDebug()<<"执行关闭5";
+    //释放内存 把窗口释放
+    qDeleteAll(this->listchat);
+    qDebug()<<"释放";
+    emit sendquitData();
 }
 
 void MainWindow::showicon()
@@ -407,17 +387,11 @@ void MainWindow::showicon()
     systemtrayicon->show();
 }
 
-void MainWindow::setAccount(QString account)
-{
-
-}
-
-void MainWindow::datawidget(QPixmap pixmap, QString str)
+void MainWindow::datawidget(QPixmap pixmap, QString str,QString account)
 {
     QFont font;
     font.setFamily("Microsoft YaHei");
     font.setPointSize(10);
-    //font.setBold(true);
     font.setStyleStrategy(QFont::PreferAntialias);
     QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
     horLayout->setContentsMargins(0,0,0,0);
@@ -434,6 +408,7 @@ void MainWindow::datawidget(QPixmap pixmap, QString str)
     horLayout->addWidget(la);
     QWidget * widget = new QWidget(this);
     widget->setLayout(horLayout);
+    widget->setObjectName(account);
     QListWidgetItem * Listitem = new QListWidgetItem(ui->listWidget);
     Listitem->setSizeHint(QSize(321, 50));  //每次改变Item的高度
     ui->listWidget->setItemWidget(Listitem,widget);
@@ -449,27 +424,28 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             qDebug() <<"鼠标来了";
             ui->pushButton->setStyleSheet("border-radius:25px;border-style:solid;border-width:4px;border-color: rgba(255, 255, 255,40);");
             QPoint globalPos = this->mapToGlobal(QPoint(0, 0));
-            this->aa->setFixedSize(300,150);
-            this->aa->move(globalPos.x()-302, globalPos.y()+50);
-            this->aa->show();
+            this->myinfo->setFixedSize(300,150);
+            this->myinfo->move(globalPos.x()-302, globalPos.y()+50);
+            this->myinfo->show();
             return true;
         }
         if(event->type() == QEvent::HoverLeave) {
             qDebug() <<"鼠标走了";
             ui->pushButton->setStyleSheet("border-radius:25px;border-style:solid;border-width:2px;border-color: rgba(255, 255, 255,20);");
-            this->aa->hide();
+            this->myinfo->hide();
             return true;
         }
     }
     return QWidget::eventFilter(obj,event);
 }
+
 void MainWindow::on_toolButton_3_clicked()
 {
     a = new Query(this->account);
     a->show();
 }
 
-void MainWindow::on_widget_clicked(int i)
+void MainWindow::onWidgetClicked(int i)
 {
     if(this->iswidget[i]==true)//闭合
     {
@@ -485,7 +461,7 @@ void MainWindow::on_widget_clicked(int i)
 
 }
 
-void MainWindow::on_Double_widget_clicked(QListWidgetItem * witem)
+void MainWindow::onDoubleWidgetClicked(QListWidgetItem * witem)
 {
     QWidget * pwig=NULL;
     for(int i =0;i<this->listwidget.length();i++)
@@ -493,23 +469,30 @@ void MainWindow::on_Double_widget_clicked(QListWidgetItem * witem)
         pwig = this->listwidget[i]->itemWidget(witem);
        if(pwig!=NULL)break;
     }
-        Chat * a = new Chat(this->icon,sqconn.getPixmapIcon(pwig->findChild<QLabel *>("label2")->text()),pwig->findChild<QLabel *>("label2")->text(),
-                            pwig->findChild<QLabel *>("label3")->text(),this);
-        a->setAccount(this->account);
+    //判断当前窗口在不在
+    bool isshow = false;
+    for(int i=0;i<listchat.length();i++)
+    {
+        if(listchat[i]->getOtheraccount()==pwig->findChild<QLabel *>("label2")->text())
+        {
+            isshow=true;
+            listchat[i]->show();
+        }
+    }
+    if(!isshow)
+    {
+        Chat * chat = new Chat(this->icon,sqconn.getPixmapIcon(pwig->findChild<QLabel *>("label2")->text()),
+                               pwig->findChild<QLabel *>("label2")->text(),
+                               pwig->findChild<QLabel *>("label3")->text(),this);
+        chat->setAccount(this->account);
+        chat->setAttribute(Qt::WA_DeleteOnClose);
         //四条数据
-        listchat.append(a);
-        this->count++;
-        if(this->count==1)
-        {
-            a->setIsdown(1);
-        }
-        else
-        {
-            a->setIsdown(0);
-        }
-        connect(a,SIGNAL(sendData(QString)),this,SLOT(MainSendData(QString)));
-        connect(a,SIGNAL(sendCount()),this,SLOT(listchatcount()));
-        a->show();
+        listchat.append(chat);
+
+        connect(chat,SIGNAL(sendData(QString)),this,SLOT(MainSendData(QString)));
+        connect(chat,SIGNAL(sendCount(QString)),this,SLOT(listchatcount(QString)));
+        chat->show();
+    }
 }
 
 void MainWindow::onSocketStateChange(QAbstractSocket::SocketState socketState)
@@ -569,13 +552,14 @@ void MainWindow::onDisconnected()
 
 void MainWindow::onSocketReadyRead() //接收消息
 {
-    //Globalobserver::setListchat(this->listchat);
     iconbool = false; //新信息需要重新获取头像
     while (tcpClient->canReadLine()) {
         QString data = tcpClient->readLine();
         //判断是验证消息还是普通信息,还是更新消息
         qDebug()<<"data.mid(8,4)的内容是"<<data.mid(8,4);
         qDebug()<<"data的内容是"<<data;
+        //数据传入数据池
+        stringlistdata.append(data);
         bool isstr =false;
         if(data.mid(data.length()-4,3)=="yan")
         {
@@ -593,7 +577,7 @@ void MainWindow::onSocketReadyRead() //接收消息
             }
             if(isstr==false)
             {
-                datawidget(QPixmap(":/lib/verify1.png"),"验证消息");
+                datawidget(QPixmap(":/lib/verify1.png"),"验证消息","10000");
                 this->tarywidget->setTrayWidgetItem(QPixmap(":/lib/verify1.png"),"验证消息");
             }
             this->timerT.start(400);
@@ -609,7 +593,6 @@ void MainWindow::onSocketReadyRead() //接收消息
             font2.setStyleStrategy(QFont::PreferAntialias);
             //获取申请时的分组
             QString groupingstr = sqconn.getverifygrouping(this->account,data.mid(0,8));
-            qDebug()<<"成功1";
             qDebug()<<"找到对应分组"<<groupingstr;
             for(int i=0;i<this->listwidget.length();i++)
             {
@@ -650,62 +633,96 @@ void MainWindow::onSocketReadyRead() //接收消息
                                               "QListWidget{outline:0px;}");
                 }
             }
-            qDebug()<<"成功2";
         }
         else{
             qDebug()<<"接收到普通消息";
-            //systemtrayicon->showMessage("新消息","有人给你发来消息",QIcon(":/lib/fdogicon.png"),2000);
-            //datawidget(QPixmap(sqconn.getPixmapIcon(data.mid(0,8))),sqconn.getOtherAccountName(data.mid(0,8)));
             for(int i = 0;i<this->stringlistdata.length();i++)
             {
                 QString str = stringlistdata[i];
-                //qDebug()<<"str.mid(0,8)"<<str.mid(0,8);
-                //qDebug()<<"data.mid(0,8)"<<data.mid(0,8);
                 if(str.mid(0,8)==data.mid(0,8))
                 {
                     isstr =true;
                     //后续设置显示条数
-                    //qDebug()<<"找到相同数";
                     break;
                 }
             }
-            //qDebug()<<"真假"<<isstr;
+            bool dns = false;
             if(isstr==false)
             {
-                datawidget(QPixmap(sqconn.getPixmapIcon(data.mid(0,8))),sqconn.getOtherAccountName(data.mid(0,8)));
-                this->tarywidget->setTrayWidgetItem(QPixmap(sqconn.getPixmapIcon(data.mid(0,8))),sqconn.getOtherAccountName(data.mid(0,8)));
+                //判断当前列表是否已经存在该好友消息
+                for(int i =0;i<ui->listWidget->count();i++)
+                {
+                    QWidget * widget = ui->listWidget->itemWidget(ui->listWidget->item(i));
+                    if(widget->objectName()==data.mid(0,8))
+                    {
+                        dns = true;
+                        break;
+                    }
+                }
+                if(dns==false)
+                {
+                datawidget(QPixmap(sqconn.getPixmapIcon(data.mid(0,8))),sqconn.getOtherAccountName(data.mid(0,8)),data.mid(0,8));
+                }
             }
-           this->timerT.start(400);
            Globalinfo.append(1);
+           bool ishide=false;
            for(int i = 0;i<listchat.length();i++)
            {
-               //qDebug()<<"getname:"<<listchat[i]->getOtheraccount()<<"   data.mid"<<data.mid(0,8);
-               if(listchat[i]->getOtheraccount()==data.mid(0,8))
+               if(listchat[i]->getOtheraccount()==data.mid(0,8)&&!listchat[i]->isHidden())
                {
+                   QApplication::alert(listchat[i],0);
                    //qDebug()<<"找到正确窗口:"<<data.mid(0,8);
                    listchat[i]->setIsread(true);
                    emit sendChatData(data);
+                   ishide = true;
                    //qDebug()<<"成功发送信号";
+                   break;
                }
            }
+           if(ishide!=true)
+           {
+               this->timerT.start(400);//判断当前窗口是否显示在桌面，显示则不在托盘显示，也在消息框显示
+               this->tarywidget->setTrayWidgetItem(QPixmap(sqconn.getPixmapIcon(data.mid(0,8))),sqconn.getOtherAccountName(data.mid(0,8)));
+           }
         }
-        //数据传入数据池
-        stringlistdata.append(data);
     }
 }
 
-void MainWindow::listchatcount()
+void MainWindow::listchatcount(QString otheraccount)
 {
-    this->count--;
+    for(int i =0;i<listchat.length();i++)
+    {
+        if(listchat[i]->getOtheraccount()==otheraccount)
+        {
+            listchat[i]->close();
+            listchat.removeOne(listchat[i]);
+        }
+    }
 }
 
 void MainWindow::MainSendData(QString str)//发送聊天信息
 {
+    qDebug()<<"接收到消息";
     QByteArray strdata = str.toUtf8();
     strdata.append('\n');
     tcpClient->write(strdata);
+    //消息列表
+    bool dns = false;
+    //判断当前列表是否已经存在该好友消息
+    for(int i =0;i<ui->listWidget->count();i++)
+    {
+        QWidget * widget = ui->listWidget->itemWidget(ui->listWidget->item(i));
+        if(widget->objectName()==strdata.mid(0,8))
+        {
+            dns = true;
+            break;
+        }
+    }
+    if(dns==false)
+    {
+        datawidget(QPixmap(sqconn.getPixmapIcon(strdata.mid(0,8))),sqconn.getOtherAccountName(strdata.mid(0,8)),strdata.mid(0,8));
+    }
 }
-
 void MainWindow::MainSendAddData(QString str)//发送验证信息
 {
     //qDebug()<<"我是主窗口,我接收到了来做您的验证消息："<<str;

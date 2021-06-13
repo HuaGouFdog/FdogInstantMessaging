@@ -8,6 +8,7 @@ class Chat;
 #include"addfriend.h"
 #include"agreefriend.h"
 #include"chat.h"
+#include"login.h"
 class Globalobserver
 {
 private:
@@ -15,7 +16,9 @@ private:
     static Addfriend * addfriendp;
     static Agreefriend * agreefriend;
     static QList<Chat *> listchat;
-
+public:
+    static QFont font1;
+    static QFont font2;
 public:
     Globalobserver();
     static void installPersonInfo(MainWindow *p);

@@ -9,6 +9,8 @@ Login::Login(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->widget_2->hide();
+    ui->label_16->hide();
+    ui->toolButton_6->hide();
     //窗体风格
     this->setWindowFlags(Qt::SplashScreen|Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);//WindowStaysOnTopHint窗口顶置
     //窗体透明
@@ -48,18 +50,18 @@ Login::Login(QWidget *parent) :
     //开始动画
     m_movie->start();
     //创建一个action
-    QAction * searchAction = new QAction(ui->lineEdit_2);
+    searchAction = new QAction(ui->lineEdit_2);
     //填加图标
     searchAction->setIcon(QIcon(":/lib/suo.png"));
     //表示action所在方位（左侧）。
     ui->lineEdit->addAction(searchAction,QLineEdit::LeadingPosition);
 
-    QAction * searchAction_2 = new QAction(ui->lineEdit);
+    searchAction_2 = new QAction(ui->lineEdit);
     searchAction_2->setIcon(QIcon(":/lib/jianpan.png"));
     //表示action所在方位（右侧）。
     ui->lineEdit->addAction(searchAction_2,QLineEdit::TrailingPosition);
 
-    QAction * searchAction_3 = new QAction(ui->lineEdit);
+    searchAction_3 = new QAction(ui->lineEdit);
     searchAction_3->setIcon(QIcon(":/lib/fdog.png"));
     //表示action所在方位（左侧）。
     ui->lineEdit_2->addAction(searchAction_3,QLineEdit::LeadingPosition);
@@ -128,8 +130,8 @@ Login::Login(QWidget *parent) :
             }
             //qDebug()<<infopasswd;
         }
-        QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
-        QPushButton * la = new QPushButton();
+        horLayout = new QHBoxLayout();//水平布局
+        la = new QPushButton();
         //QString s = ic;
         QPixmap pixicon(ic);
         pixicon=pixicon.scaled(QSize(pixicon.width(), pixicon.height()), Qt::IgnoreAspectRatio);
@@ -139,9 +141,9 @@ Login::Login(QWidget *parent) :
         la->setIconSize(QSize(34,34));
         la->setStyleSheet("background:rgba(0,0,0,0)");
         la->setFixedSize(34,34);
-        QLabel * la2 = new QLabel(QString("%1\n%2").arg(local_name.left(local_name.length()-1),local_account));
+        la2 = new QLabel(QString("%1\n%2").arg(local_name.left(local_name.length()-1),local_account));
         la2->setFont(font);
-        QPushButton * b1 = new QPushButton();
+        b1 = new QPushButton();
         b1->setFixedSize(32,32);
         b1->setStyleSheet("QPushButton{background:rgba(200,200,200,0);border-style:solid;border-image: url(:/lib/delete.png);}"
                           "QPushButton:hover{background:rgba(200,200,200,0);border-style:solid;border-image: url(:/lib/delete2.png);}");
@@ -193,13 +195,33 @@ QString Login::getLocalIP()
 
 Login::~Login()
 {
-    delete ui;
-    qDebug()<<"正常退出";
+    qDebug()<<"登录窗口析构";
+    this->systemtrayicon->hide();
     //断开连接
     if(tcpClient->state()==QAbstractSocket::ConnectedState)
         tcpClient->disconnectFromHost();
     sqconn.setSate(-1);
     sqconn.AccountIP(getLocalIP());      //获取ip登录离线
+    delete tcpClient;
+    delete systemtrayicon;
+    delete m_movie;
+    delete m_movie2;
+    delete w;
+    //delete m_AccountList;
+    delete menu;
+    delete m_pShowAction;
+    delete m_pCloseAction;
+    delete myMapper;
+    delete searchAction;
+    delete searchAction_2;
+    delete searchAction_3;
+    delete horLayout;
+    delete la;
+    delete la2;
+    delete b1;
+    this->hide();
+    this->close();
+    delete ui;
 }
 
 QStringList Login::GetDirNameList(const QString &strDirpath)
@@ -257,8 +279,9 @@ void Login::mouseReleaseEvent(QMouseEvent *event)
 
 void Login::on_toolButton_2_clicked()
 {
-    this->systemtrayicon->hide();
-    this->close();
+    qDebug()<<"正常退出";
+    QApplication * app;
+    app->quit();
 }
 
 void Login::on_toolButton_clicked()
@@ -315,40 +338,40 @@ void Login::onConnected()
     this->tcpClient->write(straccount);
 }
 
-void Login::onSocketStateChange(QAbstractSocket::SocketState socketState)
-{
-    systemtrayicon->hide();//隐藏系统托盘
-    this->close();//隐藏登录窗口
-    //初始化主界面
-    w = new MainWindow(ui->lineEdit_2->text(),this->tcpClient);
-    //显示主界面
-    w->show();
-    //显示系统托盘图标
-    w->showicon();
-    switch (socketState) {
-    case QAbstractSocket::UnconnectedState:
+//void Login::onSocketStateChange(QAbstractSocket::SocketState socketState)
+//{
+//    systemtrayicon->hide();//隐藏系统托盘
+//    this->close();//隐藏登录窗口
+//    //初始化主界面
+//    w = new MainWindow(ui->lineEdit_2->text(),this->tcpClient,this);
+//    //显示主界面
+//    w->show();
+//    //显示系统托盘图标
+//    w->showicon();
+//    switch (socketState) {
+//    case QAbstractSocket::UnconnectedState:
 
-        break;
-    case QAbstractSocket::HostLookupState:
+//        break;
+//    case QAbstractSocket::HostLookupState:
 
-        break;
-    case QAbstractSocket::ConnectingState:
+//        break;
+//    case QAbstractSocket::ConnectingState:
 
-        break;
-    case QAbstractSocket::ConnectedState:
-        break;
-    case QAbstractSocket::BoundState:
+//        break;
+//    case QAbstractSocket::ConnectedState:
+//        break;
+//    case QAbstractSocket::BoundState:
 
-        break;
-    case QAbstractSocket::ClosingState:
+//        break;
+//    case QAbstractSocket::ClosingState:
 
-        break;
-    case QAbstractSocket::ListeningState:
-        break;
-    default:
-        break;
-    }
-}
+//        break;
+//    case QAbstractSocket::ListeningState:
+//        break;
+//    default:
+//        break;
+//    }
+//}
 
 void Login::onSocketErrorChange(QAbstractSocket::SocketError)
 {
@@ -359,61 +382,44 @@ void Login::onSocketErrorChange(QAbstractSocket::SocketError)
 
 void Login::on_pushButton_clicked()
 {
-    this->timesignin.blockSignals(false);
-    m_movie2->start();
-    ui->widget_2->show();
-    ui->stackedWidget->hide();
-    this->account = ui->lineEdit_2->text();
-    //连接到服务器
-    //QString addr ="192.16";
-    //this->tcpClient=new QTcpSocket(this);
-    //进入这个界面要等1-2秒
-    this->timesignin.start(100);
-    connect(&this->timesignin,&QTimer::timeout,this,[=](){
-        if(this->timesignin.isActive())
-        {
-            bool isuser = sqconn.queryUser(ui->lineEdit_2->text(),ui->lineEdit->text());//输入内容查询
-            if(isuser)
+    if(sqconn.isLine(ui->lineEdit_2->text())!=getLocalIP())
+    {
+        this->timesignin.blockSignals(false);
+        m_movie2->start();
+        ui->widget_2->show();
+        ui->toolButton_3->hide();
+        ui->stackedWidget->hide();
+        this->account = ui->lineEdit_2->text();
+        //进入这个界面要等1-2秒
+        this->timesignin.start(100);
+        connect(&this->timesignin,&QTimer::timeout,this,[=](){
+            if(this->timesignin.isActive())
             {
-                //只获取账号
-                QString account = ui->lineEdit_2->text(); //账户
-                this->sqconn.queryUserInfo(account);//根据账户获取昵称，密码(如果用户选择记住密码，则保存密码)，头像
-                QString name = sqconn.getName();
-                QString passwd="";
-                if(ui->checkBox_2->isChecked())//判断用户是否保存密码
+                bool isuser = sqconn.queryUser(ui->lineEdit_2->text(),ui->lineEdit->text());//输入内容查询
+                if(isuser)
                 {
-                    passwd = sqconn.getPasswd();
-                }
-                QPixmap icon = sqconn.getIcon();
-                //获取程序当前运行目录
-                QString fileName = QCoreApplication::applicationDirPath();
-                //用户目录
-                QString add = "//..//FdogUserFile";
-                //创建用户文件夹
-                fileName = fileName + add +QString("//%1").arg(account);
-                //qDebug()<<fileName;
-                //信息保存
-                QDir * file = new QDir;
-                //文件夹是否存在，若存在则表示信息已经存在，只需要更新内容即可。
-                bool exist_1 = file->exists(fileName);
-                if(exist_1)
-                {
-                    QFile file(fileName +"//data.txt");
-                    if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
+                    //只获取账号
+                    QString account = ui->lineEdit_2->text(); //账户
+                    this->sqconn.queryUserInfo(account);//根据账户获取昵称，密码(如果用户选择记住密码，则保存密码)，头像
+                    QString name = sqconn.getName();
+                    QString passwd="";
+                    if(ui->checkBox_2->isChecked())//判断用户是否保存密码
                     {
-                        //qDebug()<<"txt文件创建成功";
+                        passwd = sqconn.getPasswd();
                     }
-                    QTextStream stream(&file);
-                    //写入
-                    if(passwd=="")stream<<name;
-                    else stream<<name<<"\n"<<passwd;
-                    icon.save(fileName+QString("//%1.jpg").arg(account),"JPG");
-                    file.close();
-                }
-                else
-                {   //如果不存在则创建
-                    bool ok = file->mkpath(fileName);
-                    if(ok)
+                    QPixmap icon = sqconn.getIcon();
+                    //获取程序当前运行目录
+                    QString fileName = QCoreApplication::applicationDirPath();
+                    //用户目录
+                    QString add = "//..//FdogUserFile";
+                    //创建用户文件夹
+                    fileName = fileName + add +QString("//%1").arg(account);
+                    //qDebug()<<fileName;
+                    //信息保存
+                    QDir * file = new QDir;
+                    //文件夹是否存在，若存在则表示信息已经存在，只需要更新内容即可。
+                    bool exist_1 = file->exists(fileName);
+                    if(exist_1)
                     {
                         QFile file(fileName +"//data.txt");
                         if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
@@ -421,60 +427,85 @@ void Login::on_pushButton_clicked()
                             //qDebug()<<"txt文件创建成功";
                         }
                         QTextStream stream(&file);
+                        //写入
                         if(passwd=="")stream<<name;
                         else stream<<name<<"\n"<<passwd;
                         icon.save(fileName+QString("//%1.jpg").arg(account),"JPG");
                         file.close();
                     }
                     else
-                    {
-                        qDebug()<<"未创建成功";
+                    {   //如果不存在则创建
+                        bool ok = file->mkpath(fileName);
+                        if(ok)
+                        {
+                            QFile file(fileName +"//data.txt");
+                            if(file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
+                            {
+                                //qDebug()<<"txt文件创建成功";
+                            }
+                            QTextStream stream(&file);
+                            if(passwd=="")stream<<name;
+                            else stream<<name<<"\n"<<passwd;
+                            icon.save(fileName+QString("//%1.jpg").arg(account),"JPG");
+                            file.close();
+                        }
+                        else
+                        {
+                            qDebug()<<"未创建成功";
+                        }
                     }
+                    if(this->network!=true)
+                    {
+                        //网络错误
+                        ui->label_5->hide();
+                        ui->toolButton_3->hide();
+                        ui->pushButton_3->hide();
+                        ui->pushButton_4->hide();
+                        ui->widget_2->show();
+                        ui->stackedWidget->show();
+                        ui->stackedWidget->setCurrentIndex(1);
+                        this->network=true;
+                    }
+                    else
+                    {
+                        QByteArray straccount = this->account.toUtf8();
+                        this->tcpClient->write(straccount);
+                        systemtrayicon->hide();//隐藏系统托盘
+                        this->hide();//隐藏登录窗口
+                        //初始化主界面
+                        w = new MainWindow(ui->lineEdit_2->text(),this->tcpClient);
+                        w->setAttribute(Qt::WA_DeleteOnClose);
+                        //显示主界面
+                        w->show();
+                        //显示系统托盘图标
+                        w->showicon();
+                        connect(w,SIGNAL(sendquitData()),this,SLOT(on_toolButton_2_clicked()));
+                    }
+                    //对网络进行检测
+                    //tcpClient->connectToHost(addr,port);
+                    //connect(this->tcpClient,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(onSocketErrorChange(QAbstractSocket::SocketError)));
+                    //connect(this->tcpClient,SIGNAL(stateChanged(QAbstractSocket::SocketState)),this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
                 }
-                if(this->network!=true)
+               else//该用户不存在
                 {
-                    //网络错误
                     ui->label_5->hide();
                     ui->toolButton_3->hide();
                     ui->pushButton_3->hide();
                     ui->pushButton_4->hide();
                     ui->widget_2->show();
                     ui->stackedWidget->show();
-                    ui->stackedWidget->setCurrentIndex(1);
-                    this->network=true;
+                    ui->stackedWidget->setCurrentIndex(0);
                 }
-                else
-                {
-                    QByteArray straccount = this->account.toUtf8();
-                    this->tcpClient->write(straccount);
-                    systemtrayicon->hide();//隐藏系统托盘
-                    this->hide();//隐藏登录窗口
-                    //初始化主界面
-                    w = new MainWindow(ui->lineEdit_2->text(),this->tcpClient);
-                    //显示主界面
-                    w->show();
-                    //显示系统托盘图标
-                    w->showicon();
-                }
-                //对网络进行检测
-                //tcpClient->connectToHost(addr,port);
-                //connect(this->tcpClient,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(onSocketErrorChange(QAbstractSocket::SocketError)));
-                //connect(this->tcpClient,SIGNAL(stateChanged(QAbstractSocket::SocketState)),this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
+                this->timesignin.stop();
             }
-           else//该用户不存在
-            {
-                ui->label_5->hide();
-                ui->toolButton_3->hide();
-                ui->pushButton_3->hide();
-                ui->pushButton_4->hide();
-                ui->widget_2->show();
-                ui->stackedWidget->show();
-                ui->stackedWidget->setCurrentIndex(0);
-            }
-            qDebug()<<"stop先";
-            this->timesignin.stop();
-        }
-    });
+        });
+    }
+    else
+    {
+        //提出警告
+        ui->label_16->show();
+        ui->toolButton_6->show();
+    }
 }
 
 void Login::showwidget()
@@ -485,8 +516,8 @@ void Login::showwidget()
 
 void Login::closewidget()
 {
-    this->close();
     systemtrayicon->hide();
+    this->close();
 }
 
 void Login::deleteaccount(int i) //传进来的是标记数字
@@ -541,12 +572,10 @@ void Login::deleteaccount(int i) //传进来的是标记数字
     }
 }
 
-
-
-
 void Login::on_pushButton_4_clicked()
 {
     ui->widget_2->hide();
+    ui->toolButton_3->show();
     this->timesignin.blockSignals(true);
     this->timesignin.stop();
 }
@@ -568,4 +597,10 @@ void Login::on_pushButton_6_clicked()
     ui->pushButton_3->show();
     ui->pushButton_4->show();
     ui->widget_2->hide();
+}
+
+void Login::on_toolButton_6_clicked()
+{
+    ui->label_16->hide();
+    ui->toolButton_6->hide();
 }

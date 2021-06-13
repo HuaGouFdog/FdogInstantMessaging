@@ -1,14 +1,17 @@
 ﻿#include "traywidget.h"
 #include "ui_traywidget.h"
+#include<QDebug>
 Traywidget::Traywidget(QString name,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Traywidget)
 {
+    qDebug()<<"创1";
     ui->setupUi(this);
     this->setWindowFlags(Qt::SplashScreen|Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
     ui->listWidget->setFrameShape(QListWidget::NoFrame);
     ui->label->setText(name);
+    qDebug()<<"创1";
 }
 
 Traywidget::~Traywidget()
@@ -28,6 +31,7 @@ void Traywidget::setName(const QString &value)
 
 void Traywidget::setTrayWidgetItem(QPixmap pixmap,const QString &str)
 {
+    qDebug()<<"消息1";
     QFont font;
     font.setFamily("Microsoft YaHei");
     font.setPointSize(10);
@@ -50,6 +54,7 @@ void Traywidget::setTrayWidgetItem(QPixmap pixmap,const QString &str)
     widget->setLayout(horLayout);
     QListWidgetItem * Listitem = new QListWidgetItem(ui->listWidget);
     Listitem->setSizeHint(QSize(270, 26));  //每次改变Item的高度
+    qDebug()<<"消息2";
     ui->listWidget->setItemWidget(Listitem,widget);
     ui->listWidget->setStyleSheet("QListWidget{color:gray;font-size:12px;background:#FAFAFD;}\
                     QScrollBar{width:0;height:0}");

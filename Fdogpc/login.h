@@ -22,6 +22,7 @@
 #include<QMessageBox>
 #include<algorithm>
 #include<QTimer>
+#include<QHBoxLayout>
 #include"usersql.h"
 #include"mainwindow.h"
 namespace Ui {
@@ -31,15 +32,15 @@ class Login;
 class Login : public QWidget
 {
     Q_OBJECT
-    QTcpSocket * tcpClient;//连接网络
-    QSystemTrayIcon  * systemtrayicon;  //系统托盘
+    QTcpSocket * tcpClient = NULL;//连接网络
+    QSystemTrayIcon  * systemtrayicon = NULL;  //系统托盘
     QPoint m_point;                     //点类
-    QMovie * m_movie;                   //添加动态图
-    QMovie * m_movie2;                  //添加动态图2
+    QMovie * m_movie = NULL;                   //添加动态图
+    QMovie * m_movie2 = NULL;                  //添加动态图2
     QSize m_si;                         //动态图压缩大小
     QSize m_si2;                        //动态图压缩大小2
     Usersql sqconn;                     //数据库类
-    MainWindow * w;                     //主界面类
+    MainWindow * w = NULL;                     //主界面类
     QString account ="";                //查询账户
     QPoint last;                        //窗口拖动用变量
     bool isPressedWidget;
@@ -47,16 +48,25 @@ class Login : public QWidget
     QStringList infoList;               //用户账号
     QStringList infopasswd;             //用户密码
     QStringList icon;                   //头像保存地址
-    QListWidget * m_AccountList;        //下拉列表框
-    QMenu * menu;                       //右击菜单
-    QAction *m_pShowAction;             //显示选项
-    QAction *m_pCloseAction;            //退出选项
-    QSignalMapper * myMapper;
+    QListWidget * m_AccountList = NULL;        //下拉列表框
+    QMenu * menu = NULL;                       //右击菜单
+    QAction *m_pShowAction = NULL;             //显示选项
+    QAction *m_pCloseAction = NULL;            //退出选项
+    QSignalMapper * myMapper = NULL;
     QVector<int> infoListsign;
     QTimer timesignin;
     quint16 port;
     QString addr =getLocalIP();
     bool network = true; //是否能正常连接主机
+
+    QAction * searchAction = NULL;
+    QAction * searchAction_2 = NULL;
+    QAction * searchAction_3 = NULL;
+    QHBoxLayout *horLayout = NULL;
+    QPushButton * la = NULL;
+    QLabel * la2 = NULL;
+    QPushButton * b1 = NULL;
+
 public:
     explicit Login(QWidget *parent = 0);
     QString getLocalIP();                           //获取本机IP地址
@@ -81,7 +91,7 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
     void onConnected();//连接
-    void onSocketStateChange(QAbstractSocket::SocketState);//状态
+    //void onSocketStateChange(QAbstractSocket::SocketState);//状态
     void onSocketErrorChange(QAbstractSocket::SocketError);//连接错误类型
 
     void showwidget();
@@ -95,6 +105,8 @@ private slots:
     void on_pushButton_5_clicked();
 
     void on_pushButton_6_clicked();
+
+    void on_toolButton_6_clicked();
 
 private:
     Ui::Login *ui;

@@ -75,6 +75,8 @@ public:
     QPushButton *pushButton_6;
     QLabel *label_14;
     QLabel *label_15;
+    QLabel *label_16;
+    QToolButton *toolButton_6;
 
     void setupUi(QWidget *Login)
     {
@@ -127,7 +129,7 @@ public:
 ""));
         register_btn = new QPushButton(widget);
         register_btn->setObjectName(QStringLiteral("register_btn"));
-        register_btn->setGeometry(QRect(10, 299, 71, 21));
+        register_btn->setGeometry(QRect(10, 290, 71, 21));
         register_btn->setFont(font1);
         register_btn->setStyleSheet(QLatin1String("#register_btn{\n"
 "color: rgb(149, 149, 149);\n"
@@ -139,7 +141,7 @@ public:
         register_btn->setFlat(true);
         horizontalLayoutWidget_2 = new QWidget(widget);
         horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(110, 240, 227, 31));
+        horizontalLayoutWidget_2->setGeometry(QRect(110, 230, 227, 31));
         horizontalLayoutWidget_2->setFont(font1);
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -187,7 +189,7 @@ public:
 
         comboBox = new QComboBox(widget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(110, 160, 221, 31));
+        comboBox->setGeometry(QRect(110, 150, 221, 31));
         QFont font2;
         font2.setFamily(QStringLiteral("Microsoft YaHei"));
         comboBox->setFont(font2);
@@ -238,7 +240,7 @@ public:
 "background-color: rgba(255, 255, 255,200);"));
         lineEdit_2 = new QLineEdit(widget);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(110, 160, 204, 31));
+        lineEdit_2->setGeometry(QRect(110, 150, 204, 31));
         QFont font3;
         font3.setFamily(QStringLiteral("Microsoft YaHei"));
         font3.setPointSize(12);
@@ -255,7 +257,7 @@ public:
 ""));
         lineEdit = new QLineEdit(widget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(110, 200, 221, 31));
+        lineEdit->setGeometry(QRect(110, 190, 221, 31));
         QFont font4;
         font4.setFamily(QStringLiteral("Microsoft YaHei"));
         font4.setPointSize(14);
@@ -270,7 +272,7 @@ public:
         lineEdit->setEchoMode(QLineEdit::Password);
         pushButton = new QPushButton(widget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(110, 277, 221, 37));
+        pushButton->setGeometry(QRect(110, 270, 221, 37));
         QFont font5;
         font5.setFamily(QStringLiteral("Microsoft YaHei"));
         font5.setPointSize(13);
@@ -371,7 +373,7 @@ public:
 "border-color: rgb(255, 255, 255);"));
         toolButton_5 = new QToolButton(widget);
         toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
-        toolButton_5->setGeometry(QRect(380, 290, 30, 30));
+        toolButton_5->setGeometry(QRect(380, 280, 30, 30));
         toolButton_5->setStyleSheet(QLatin1String("border-style:solid;\n"
 "background-color: rgba(255, 255, 255, 0);"));
         QIcon icon5;
@@ -386,7 +388,7 @@ public:
 "}"));
         pushButton_4 = new QPushButton(widget_2);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(150, 277, 131, 35));
+        pushButton_4->setGeometry(QRect(150, 270, 131, 35));
         QFont font6;
         font6.setFamily(QStringLiteral("Microsoft YaHei"));
         font6.setPointSize(13);
@@ -494,7 +496,7 @@ public:
 "border-style:solid;\n"
 "border-width:1px;\n"
 "border-radius:5px;\n"
-"	background-color: rgb(199, 238, 255);\n"
+"background-color: rgb(134, 219, 255);\n"
 "}\n"
 "#pushButton_5:hover{\n"
 "color: rgb(255, 255, 255);\n"
@@ -527,7 +529,7 @@ public:
 "border-style:solid;\n"
 "border-width:1px;\n"
 "border-radius:5px;\n"
-"	background-color: rgb(199, 238, 255);\n"
+"	background-color: rgb(134, 219, 255);\n"
 "}\n"
 "#pushButton_6:hover{\n"
 "color: rgb(255, 255, 255);\n"
@@ -557,6 +559,21 @@ public:
         label->raise();
         pushButton_4->raise();
         stackedWidget->raise();
+        label_16 = new QLabel(widget);
+        label_16->setObjectName(QStringLiteral("label_16"));
+        label_16->setGeometry(QRect(0, 310, 431, 20));
+        label_16->setStyleSheet(QLatin1String("background-color: rgb(253, 255, 206);\n"
+"color: rgb(126, 126, 126);"));
+        toolButton_6 = new QToolButton(widget);
+        toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
+        toolButton_6->setGeometry(QRect(391, 308, 25, 25));
+        toolButton_6->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
+"border-style:solid;"));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/lib/close.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_6->setIcon(icon6);
+        toolButton_6->setIconSize(QSize(12, 11));
+        toolButton_6->setAutoRaise(true);
         mian_label->raise();
         label_2->raise();
         register_btn->raise();
@@ -571,6 +588,8 @@ public:
         pushButton_3->raise();
         toolButton_3->raise();
         horizontalWidget->raise();
+        label_16->raise();
+        toolButton_6->raise();
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
@@ -634,6 +653,8 @@ public:
         pushButton_6->setText(QApplication::translate("Login", "\347\241\256\345\256\232", nullptr));
         label_14->setText(QApplication::translate("Login", "(\351\224\231\350\257\257\347\240\201\357\274\2320x00000001)", nullptr));
         label_15->setText(QString());
+        label_16->setText(QApplication::translate("Login", "  \357\274\201\350\257\245\350\264\246\345\217\267\345\267\262\347\273\217\347\231\273\345\275\225\357\274\214\350\257\267\345\213\277\351\207\215\345\244\215\347\231\273\345\275\225\343\200\202", nullptr));
+        toolButton_6->setText(QString());
     } // retranslateUi
 
 };
