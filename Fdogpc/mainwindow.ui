@@ -745,7 +745,7 @@ background-color: rgba(203, 203, 203,250);
 }</string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab">
           <property name="font">

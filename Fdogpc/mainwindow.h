@@ -77,7 +77,7 @@ private:
     QWidget * myinfo = new QWidget();//当鼠标悬浮头像弹出该窗口
     /*聊天相关*/
     QStringList stringlistdata; //数据池
-    QStringList stringaccount;  //消息池
+    //QStringList stringaccount;  //消息池
     QList<Chat *> listchat;     //保存聊天窗口
     QVector<int> Globalinfo;    //全局消息管理 1为普通消息，二位验证消息
     /*连接网络*/
@@ -133,6 +133,10 @@ private slots:
     void updatamaingrouping(QString,QString,QString,QString); //更新好友列表
     void updatamainverify(QString,QString);         //更新验证消息
 
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+    void showAllChat();
+    void hideAllChat();
+    void showAChat(QString account);
 private:
     Ui::MainWindow *ui;
 };

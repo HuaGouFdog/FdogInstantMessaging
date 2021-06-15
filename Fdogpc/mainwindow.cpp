@@ -46,6 +46,9 @@ MainWindow::MainWindow(QString account,QTcpSocket *tcpClient,QWidget *parent) :
     //获取托盘消息窗口
     this->tarywidget  = new Traywidget(this->name);
     this->tarywidget->setName(this->name);
+    connect(this->tarywidget,SIGNAL(senddata()),this,SLOT(showAllChat()));//显示全部
+    connect(this->tarywidget,SIGNAL(senddata2()),this,SLOT(hideAllChat()));//忽略全部
+    connect(this->tarywidget,SIGNAL(senddata3(QString)),this,SLOT(showAChat(QString)));//忽略全部
     //定时检测身鼠标是否位于托盘之上
     this->timemouse.start(200);
     this->timemouse.setSingleShot(false);
@@ -277,23 +280,12 @@ void MainWindow::on_activatedSysTratIcon(QSystemTrayIcon::ActivationReason reaso
                     a->setAccount(this->account); //本身账号
                     a->setAttribute(Qt::WA_DeleteOnClose);
                     a->setObjectName(data.mid(0,8));
-                    //四条数据
                     listchat.append(a);
-                    //this->count++;
-//                    if(this->count==1)
-//                    {
-//                        a->setIsdown(1);
-//                    }
-//                    else
-//                    {
-//                        a->setIsdown(0);
-//                    }
                     connect(a,SIGNAL(sendData(QString)),this,SLOT(MainSendData(QString)));
                     connect(a,SIGNAL(sendCount(QString)),this,SLOT(listchatcount(QString)));
                     a->show();
                     a->setIsread(true);
                     emit sendChatData(data);
-
                 }
             }
             else
@@ -389,32 +381,65 @@ void MainWindow::showicon()
 
 void MainWindow::datawidget(QPixmap pixmap, QString str,QString account)
 {
-    QFont font;
-    font.setFamily("Microsoft YaHei");
-    font.setPointSize(10);
-    font.setStyleStrategy(QFont::PreferAntialias);
+//    QFont font;
+//    font.setFamily("Microsoft YaHei");
+//    font.setPointSize(10);
+//    font.setStyleStrategy(QFont::PreferAntialias);
+//    QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
+//    horLayout->setContentsMargins(0,0,0,0);
+//    horLayout->setSpacing(0);
+//    QPushButton * btn = new QPushButton();
+//    btn->setIcon(pixmap);
+//    QSize btnsize(32,32);
+//    btn->setIconSize(btnsize);
+//    btn->setFixedSize(32,32);
+//    btn->setFlat(true);
+//    QLabel * la = new QLabel("  "+str);
+//    la->setObjectName("label1");
+//    la->setFont(font);
+//    horLayout->addWidget(btn);
+//    horLayout->addWidget(la);
+//    QWidget * widget = new QWidget(this);
+//    widget->setLayout(horLayout);
+//    widget->setObjectName(account);
+//    QListWidgetItem * Listitem = new QListWidgetItem(ui->listWidget);
+//    Listitem->setSizeHint(QSize(321, 50));  //每次改变Item的高度
+//    ui->listWidget->setItemWidget(Listitem,widget);
+//    ui->listWidget->setStyleSheet("QListWidget{color:gray;font-size:12px;background:#FAFAFD;}\
+//                    QScrollBar{width:0;height:0}");
+    //ui->listWidget->setFixedSize(321,50*(1));
     QHBoxLayout *horLayout = new QHBoxLayout();//水平布局
     horLayout->setContentsMargins(0,0,0,0);
     horLayout->setSpacing(0);
-    QPushButton * btn = new QPushButton();
-    btn->setIcon(pixmap);
-    QSize btnsize(32,32);
-    btn->setIconSize(btnsize);
-    btn->setFixedSize(32,32);
-    btn->setFlat(true);
-    QLabel * la = new QLabel("  "+str);
-    la->setFont(font);
-    horLayout->addWidget(btn);
-    horLayout->addWidget(la);
-    QWidget * widget = new QWidget(this);
+    QLabel * l1 = new QLabel();
+    l1->setFixedSize(15,32);
+    QPushButton * btnicon = new QPushButton();
+    btnicon->setFixedSize(32,32);
+    btnicon->setIconSize(QSize(32,32));
+    btnicon->setIcon(pixmap);
+    btnicon->setStyleSheet("background:rgba(0,0,0,0)");
+    QLabel * la2 = new QLabel(QString("%1").arg(account));
+    la2->setObjectName("label2");
+    la2->hide();
+    QLabel * la3 = new QLabel(QString("  %1").arg(str));
+    la3->setObjectName("label3");
+    la3->setFont(Globalobserver::font2);
+    horLayout->addWidget(l1);
+    horLayout->addWidget(btnicon);
+    horLayout->addWidget(la2);
+    horLayout->addWidget(la3);
+    QWidget *widget =new QWidget(this);
     widget->setLayout(horLayout);
+    widget->setStyleSheet("background:rgba(232, 255, 149,0);");
     widget->setObjectName(account);
     QListWidgetItem * Listitem = new QListWidgetItem(ui->listWidget);
-    Listitem->setSizeHint(QSize(321, 50));  //每次改变Item的高度
+    Listitem->setSizeHint(QSize(312, 50));  //每次改变Item的高度
     ui->listWidget->setItemWidget(Listitem,widget);
-    ui->listWidget->setStyleSheet("QListWidget{color:gray;font-size:12px;background:#FAFAFD;}\
-                    QScrollBar{width:0;height:0}");
-    //ui->listWidget->setFixedSize(321,50*(1));
+    //ui->listwidget->setFixedSize(312,50*(sum+1));
+    ui->listWidget->setStyleSheet("QListWidget::Item{background-color: rgba(203, 203, 203,200);}"
+                              "QListWidget::Item:hover{background-color: rgb(193, 193, 193);}"
+                              "QListWidget::Item:selected{background-color: rgb(193, 193, 193);}"
+                              "QListWidget{outline:0px;}");
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -486,7 +511,6 @@ void MainWindow::onDoubleWidgetClicked(QListWidgetItem * witem)
                                pwig->findChild<QLabel *>("label3")->text(),this);
         chat->setAccount(this->account);
         chat->setAttribute(Qt::WA_DeleteOnClose);
-        //四条数据
         listchat.append(chat);
 
         connect(chat,SIGNAL(sendData(QString)),this,SLOT(MainSendData(QString)));
@@ -578,7 +602,7 @@ void MainWindow::onSocketReadyRead() //接收消息
             if(isstr==false)
             {
                 datawidget(QPixmap(":/lib/verify1.png"),"验证消息","10000");
-                this->tarywidget->setTrayWidgetItem(QPixmap(":/lib/verify1.png"),"验证消息");
+                this->tarywidget->setTrayWidgetItem(QPixmap(":/lib/verify1.png"),"验证消息","10000");
             }
             this->timerT.start(400);
             Globalinfo.append(2);
@@ -682,7 +706,7 @@ void MainWindow::onSocketReadyRead() //接收消息
            if(ishide!=true)
            {
                this->timerT.start(400);//判断当前窗口是否显示在桌面，显示则不在托盘显示，也在消息框显示
-               this->tarywidget->setTrayWidgetItem(QPixmap(sqconn.getPixmapIcon(data.mid(0,8))),sqconn.getOtherAccountName(data.mid(0,8)));
+               this->tarywidget->setTrayWidgetItem(QPixmap(sqconn.getPixmapIcon(data.mid(0,8))),sqconn.getOtherAccountName(data.mid(0,8)),data.mid(0,8));
            }
         }
     }
@@ -702,7 +726,7 @@ void MainWindow::listchatcount(QString otheraccount)
 
 void MainWindow::MainSendData(QString str)//发送聊天信息
 {
-    qDebug()<<"接收到消息";
+    qDebug()<<"发送消息";
     QByteArray strdata = str.toUtf8();
     strdata.append('\n');
     tcpClient->write(strdata);
@@ -911,3 +935,71 @@ void MainWindow::showdata()
     }
 }
 
+
+void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    QWidget * pwig=NULL;
+    pwig = ui->listWidget->itemWidget(item);
+    //判断当前窗口在不在
+    bool isshow = false;
+    for(int i=0;i<listchat.length();i++)
+    {
+        if(listchat[i]->getOtheraccount()==pwig->findChild<QLabel *>("label2")->text())
+        {
+            isshow=true;
+            listchat[i]->show();
+        }
+    }
+    if(!isshow)
+    {
+        Chat * chat = new Chat(this->icon,sqconn.getPixmapIcon(pwig->findChild<QLabel *>("label2")->text()),
+                               pwig->findChild<QLabel *>("label2")->text(),
+                               pwig->findChild<QLabel *>("label3")->text(),this);
+        qDebug()<<"问题5";
+        chat->setAccount(this->account);
+        chat->setAttribute(Qt::WA_DeleteOnClose);
+        listchat.append(chat);
+        connect(chat,SIGNAL(sendData(QString)),this,SLOT(MainSendData(QString)));
+        connect(chat,SIGNAL(sendCount(QString)),this,SLOT(listchatcount(QString)));
+        chat->show();
+    }
+}
+
+void MainWindow::showAllChat()
+{
+    qDebug()<<"查看全部";
+    on_activatedSysTratIcon(QSystemTrayIcon::DoubleClick);
+}
+
+void MainWindow::hideAllChat()
+{
+    if (timerT.isActive()) timerT.stop();
+    if (timerNoT.isActive()) timerNoT.stop();
+    this->tarywidget->deleteItem(); //列表清理
+    this->stringlistdata.clear();   //清理数据词内容
+    systemtrayicon->setIcon(QIcon(":/lib/fdogicon.png")); //还原托盘原本icon
+}
+
+void MainWindow::showAChat(QString account)
+{
+    //生成窗口
+    Chat * a = new Chat(this->icon,sqconn.getPixmapIcon(account),account,sqconn.getOtherAccountName(account),this);
+    a->setAccount(this->account); //本身账号
+    a->setAttribute(Qt::WA_DeleteOnClose);
+    a->setObjectName(account);
+    listchat.append(a);
+    connect(a,SIGNAL(sendData(QString)),this,SLOT(MainSendData(QString)));
+    connect(a,SIGNAL(sendCount(QString)),this,SLOT(listchatcount(QString)));
+    a->show();
+    a->setIsread(true);
+    //从消息池找有关消息
+    for(int i=0;i<stringlistdata.length();i++)
+    {
+        QString data = stringlistdata[i];
+        if(data.mid(0,8)==account)
+        {
+            qDebug()<<"找到数据";
+            emit sendChatData(data);
+        }
+    }
+}

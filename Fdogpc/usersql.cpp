@@ -26,9 +26,9 @@ bool Usersql::connData()
     {
         this->dbconn = QSqlDatabase::addDatabase("QMYSQL");
     }
-    this-> dbconn.setHostName("xxxxxxxx");//主机名字
+    this-> dbconn.setHostName("xxxxxxx");//主机名字
     this-> dbconn.setDatabaseName("fdogsql");//数据库名字
-    if(this->dbconn.open("root", "xxxxxx"))
+    if(this->dbconn.open("root", "xxxxxxxx"))
     {
         this->query = (QSqlQuery)this->dbconn; //进行绑定 此后可以使用query对象对数据库进行操作。
         return true;
