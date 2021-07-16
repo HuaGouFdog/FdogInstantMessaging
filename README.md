@@ -8,6 +8,10 @@
 
 
 
+新版本正在编写中，敬请期待！
+
+
+
 # FdogInstantMessaging(Fdog即时通讯软件)
 
 #### 一. 介绍
