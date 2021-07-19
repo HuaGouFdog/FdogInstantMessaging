@@ -1,0 +1,239 @@
+body,
+div {
+	margin: 0;
+	padding: 0;
+	height: 946px;
+	font-family: FangSong_GB2312;
+}
+
+.fdogback {
+	/* background-color: aqua; */
+	float: left;
+	width: 25%;
+	height: 100%;
+}
+
+.fdogback #imgicon_1 {
+	margin: 20px;
+	height: 50px;
+	position: fixed;
+}
+
+.fdogtext {
+	background-color: white;
+	float: left;
+	width: 75%;
+	height: 946px;
+}
+
+.fdogtext .fdogtext_1 {
+	width: 100%;
+	height: 10%;
+	/* background-color: #00FFFF; */
+}
+
+.fdogtext .fdogtext_2 {
+	margin: 0 auto;
+	width: 100%;
+	height: 85%;
+	/* background-color: chartreuse; */
+	text-align: center;
+}
+.fdogtext_1 #mul{
+	margin-top: 0px; margin-right: 100px; padding-top: 30px; font-size: 18px;
+}
+.fdogtext_2 #mh1{
+	height: 90px; width: 495px;  margin: 0 auto; text-align: left;
+}
+.fdogtext_2 #mh2{
+	height: 65px; width: 495px;  margin: 0 auto; text-align: left;
+}
+
+.fdogtext_1 #imgicon_2 {
+	margin: 20px;
+	height: 50px;
+	position: fixed;
+	display: none;
+}
+
+.fdogtext_2 #userName {
+	width: 480px;
+	height: 55px;
+	border-radius: 5px;
+	font-size: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+
+.fdogtext_2 #userPasword {
+	width: 480px;
+	height: 55px;
+	border-radius: 5px;
+	font-size: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+
+.fdogtext_2 #comboxphone {
+	width: 180px;
+	height: 60px;
+	border-radius: 5px;
+	font-size: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+
+.fdogtext_2 #userPhone {
+	width: 300px;
+	height: 55px;
+	border-radius: 5px;
+	font-size: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+
+.fdogtext_2 #codediv {
+	height: 100px;
+	display: none;
+}
+
+.fdogtext_2 #code {
+	width: 173px;
+	height: 51px;
+	border-radius: 5px;
+	font-size: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+
+.fdogtext_2 #codebutton {
+	width: 307px;
+	height: 55px;
+	border-radius: 5px;
+	font-size: 23px;
+	color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #3083ff;
+	background-color: #3083ff;
+}
+
+.fdogtext_2 #up {
+	width: 485px;
+	height: 65px;
+	border-radius: 5px;
+	border-style: solid;
+	color: white;
+	border-width: 1px;
+	border-color: #3083ff;
+	background-color: #3083ff;
+	font-size: 25px;
+}
+#um{
+	height: 37px; width: 480px; margin: 0 auto; text-align: left;
+}
+#pw{
+	height: 50px; width: 480px; margin: 0 auto; text-align: left;
+}
+
+.fdogtext_3 {
+	margin: 0 auto;
+	width: 100%;
+	height: 5%;
+	/* background-color: chocolate; */
+	text-align: center;
+	font-size: 16px;
+	color: gray;
+}
+
+.brcopy {
+	display: none;
+	color: gray;
+}
+
+@media (max-width:1100px) {
+	.fdogback {
+		display: none;
+	}
+
+	.fdogtext {
+		height: 100%;
+		width: 100%;
+	}
+
+	.fdogtext_1 #imgicon_2 {
+		margin: 20px;
+		height: 50px;
+		position: absolute;
+		display: block;
+	}
+}
+
+@media (max-width:600px) {
+body{
+		margin: 0;
+		padding: 0;
+		transform: scale(0.53333);
+}
+
+.fdogtext_1 #imgicon_2 {
+	margin: 20px;
+	height: 50px;
+	position: fixed;
+	display: block;
+}
+.brcopy {
+		display: block;
+}
+.fdogtext_1 #mul{
+	margin-top: 0px; margin-right: 0px; padding-top: 35px; font-size: 18px;
+}
+	.fdogtext_2 #mh1{
+		height: 90px; width: 100%; 
+	}
+	.fdogtext_2 #mh2{
+		height: 65px; width: 100%;
+	}
+	
+	.fdogtext_2 #userName {
+		width: 98%;
+		height: 55px;
+	}
+	.fdogtext_2 #userPasword{
+		width: 98%;
+		height: 55px;
+	}
+	.fdogtext_2 #comboxphone{
+		width: 39%;
+		height: 60px;
+	}
+	
+	.fdogtext_2 #userPhone{
+		width: 58%;
+		height: 55px;
+	}
+	
+	.fdogtext_2 #code{
+		width: 39%;
+		height: 51px;
+	}
+	.fdogtext_2 #codebutton{
+		width: 58%;
+		height: 55px;
+	}
+	.fdogtext_2 #up{
+		width: 100%;
+		height: 65px;
+	}
+#um{
+	height: 37px; width: 410px; margin: 0 auto; text-align: left;
+}
+#pw{
+	height: 50px; width: 410px; margin: 0 auto; text-align: left;
+}
+}
