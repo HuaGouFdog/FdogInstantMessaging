@@ -6,6 +6,8 @@
 
 
 
+[![Coverage Status](![img](file:///C:\Users\fdog\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://coveralls.io/repos/github/HuaGouFdog/FdogInstantMessaging/badge.svg?branch=main)](https://coveralls.io/github/HuaGouFdog/FdogInstantMessaging?branch=main)
+
 
 
 # *新版本正在编写中，文档重写编写中，未来可期！*
