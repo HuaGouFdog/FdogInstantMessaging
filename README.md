@@ -2,7 +2,7 @@
 
 
 
-
+[![Build Status](![img](file:///C:\Users\fdog\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://travis-ci.com/HuaGouFdog/FdogInstantMessaging.svg?branch=main)](https://travis-ci.com/HuaGouFdog/FdogInstantMessaging)
 
 
 
