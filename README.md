@@ -2,11 +2,7 @@
 
 
 
-[![Build Status](![img](file:///C:\Users\fdog\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://travis-ci.com/HuaGouFdog/FdogInstantMessaging.svg?branch=main)](https://travis-ci.com/HuaGouFdog/FdogInstantMessaging)
-
-
-
-[![Coverage Status](![img](file:///C:\Users\fdog\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://coveralls.io/repos/github/HuaGouFdog/FdogInstantMessaging/badge.svg?branch=main)](https://coveralls.io/github/HuaGouFdog/FdogInstantMessaging?branch=main)
+[![Build Status](https://travis-ci.com/HuaGouFdog/FdogInstantMessaging.svg)](https://travis-ci.com/HuaGouFdog/FdogInstantMessaging)  [![Coverage Status](https://shields.io/badge/coverage-67%25-yellow)](https://coveralls.io/github/HuaGouFdog/FdogInstantMessaging?branch=main)  ![](https://img.shields.io/badge/QQ-2506897252-brightgreen)   ![](https://img.shields.io/badge/CSDN%E5%8D%9A%E5%AE%A2-%E8%8A%B1%E7%8B%97Fdog-brightgreen)   
 
 
 
