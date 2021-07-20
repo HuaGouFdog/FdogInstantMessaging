@@ -80,7 +80,7 @@ function codeclick(thisBtn) {
 	const phone = checkPhone();
 	const VerifyPhone = document.getElementById('userPhone');
 	if (name && password && phone) {
-		SendPhoneVerify(VerifyPhone.value)
+		GetPhoneNumberVerify(VerifyPhone.value)
 		.then((res)=>{
 			if(VerifyPhone.value == res){
 				codeErr.innerHTML = "该手机号已注册";
@@ -88,7 +88,7 @@ function codeclick(thisBtn) {
 				console.log("已注册")
 			}
 			else{
-				fetch('/sendSmsVerify?_w_phone='+VerifyPhone.value);
+				fetch('/sendverifycode?_w_phone='+VerifyPhone.value);
 				codediv.style.display = 'block';
 				btn = thisBtn;
 				btn.disabled = true; //按钮不可点击
@@ -102,8 +102,8 @@ function codeclick(thisBtn) {
 	}
 }
 
-async function SendPhoneVerify(VerifyPhone) {
-	const res = await fetch('/sendPhoneVerify?_w_phone='+VerifyPhone) ;// getToken -> expires_in
+async function GetPhoneNumberVerify(VerifyPhone) {
+	const res = await fetch('/getphonenumberverify?_w_phone='+VerifyPhone) ;// getToken -> expires_in
 	const data = await res.json();
 	return data.phone;
 }
@@ -155,7 +155,7 @@ function codeverify(){
 	//提示
 	const codeErr = document.getElementById('codeErr');
 	//获取注册页面验证码，与数据库作对比
-	SendVerify(userphone.value)
+	GetVerifyCode(userphone.value)
 	.then((res)=>{
 		if(res == usercode.value){
 			//若正确 根据相关信息生成fdog号转向新的界面
@@ -177,8 +177,8 @@ function codeverify(){
 	//window.open('registersuccess.html'
 }
 
-async function SendVerify(VerifyPhone){
-		const res = await fetch('/sendVerify?_w_phone='+VerifyPhone) ;// getToken -> expires_in
+async function GetVerifyCode(VerifyPhone){
+		const res = await fetch('/getverifycode?_w_phone='+VerifyPhone) ;// getToken -> expires_in
 	const data = await res.json();
 	return data.code;
 }

@@ -1,7 +1,6 @@
 html,body{
     margin: 0;
     padding: 0;
-    /*background: aquamarine;*/
     font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
     float: left;
     width: 100%;
@@ -50,7 +49,7 @@ html,body{
 }
 .tab span{
     font-size: 28px;
-    font-weight: 450;
+    font-weight: 600;
     float: left;
     margin:  16px 0 0 0;
 }
@@ -87,7 +86,7 @@ html,body{
 .tab_title li a{
     /*字体大小*/
     font-size: 18px;
-    font-weight: 550;
+    font-weight: 500;
     /*去除下划线*/
     text-decoration:none;
     color: black;
@@ -105,9 +104,6 @@ html,body{
     background:transparent;
     border-width:0px;
     outline:none;	/*点击后没边框*/
-    /*font-size: 14px;*/
-    /*font-weight: 550;*/
-    /*background: blanchedalmond;*/
 }
 .data_1{
     height: 800px;
