@@ -3,6 +3,7 @@
 #include<thread>
 #include<vector>
 #include<queue>
+#include<map>
 #include<mutex>
 #include<condition_variable>
 
@@ -10,7 +11,7 @@ static std::mutex mutexPool;           //互斥锁 锁整个线程
 static std::mutex mutexBusy;           //互斥锁 锁忙碌线程数量
 static std::unique_lock<std::mutex> locker(mutexPool);
 
-typedef struct Task
+typedef struct Task                    //任务函数用于接受任意函数，任意参数的函数
 {
     void (*function)(void* arg);
     void* arg;
@@ -22,27 +23,23 @@ public:
     std::queue<Task> taskQueue;             //任务队列
     std::thread * managerTID;               //管理线程
     std::vector<std::thread *> worksTID;    //工作线程
-    int threadNum;      //默认工作线程数
-    int threadMin;      //最小工作线程
-    int threadMax;      //最大工作线程
-    int threadBusyNum;  //忙碌线程数量
-    int threadLiveNum;  //存活线程数量
-    int threadEixtNum;  //退出线程数量
-    std::condition_variable queueFull;   //条件变量
-    std::condition_variable queueEmpty;   //条件变量
-    int threadShutdown;             //是否要销毁线程池
-    // std::mutex mutexPool;           //互斥锁 锁整个线程
-    // std::mutex mutexBusy;           //互斥锁 锁忙碌线程数量
-    // std::unique_lock<std::mutex> * locker;
+    std::map<std::thread::id,std::thread *> workAddr;   //记录线程的地址
+    int threadNum;                          //默认工作线程数
+    int threadMin;                          //最小工作线程
+    int threadMax;                          //最大工作线程
+    int threadBusyNum;                      //忙碌线程数量
+    int threadLiveNum;                      //存活线程数量
+    int threadEixtNum;                      //退出线程数量
+    std::condition_variable queueFull;      //条件变量
+    std::condition_variable queueEmpty;     //条件变量
+    int threadShutdown;                     //是否要销毁线程池
 public:
 
     //默认构造函数
     ThreadPool();
     //初始化线程池 默认配置
     bool ThreadCreateInit();
-    //初始化线程池 根据参数配置
-    //bool ThreadCreateInit(int cores,int cores_min,int cores_max, int thread_applynumint, int avilable_count,int model);
-    
+
     //获取当前任务队列的剩余任务数量
     int getTaskResidualQuantity();
 
@@ -69,6 +66,7 @@ public:
     
     //管理函数
     friend void * managerFunctionv(void * arg);
+    
     //工作函数
     friend void * workFunction(void * arg);
 
