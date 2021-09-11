@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Fdog注册</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" /> 
+		<link rel="stylesheet" href="css/registercss.css">
+		<link rel="shortcut icon" href="img/icon32.png" type="image/x-icon">
+		<link rel="apple-touch-icon" href="img/icon32.png">
+		<link style="text:css" rel="stylesheet" href="css/indexcss.css">
+	</head>
+	<body>
+		<script src="../js/BehaviorCheck.js"></script>
+		<script src="../js/ChangeBackground.js"></script>
+		<div class="tab_contact">
+			<span>Email : 2506897252@qq.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仅研究学习使用，项目已上传github，欢迎star！</span>
+			<a href="https://github.com/FdogMain/FdogInstantMessaging" target ="_blank">
+				<img src="img/github.png" height="18" width="18">
+			</a>
+			<a href="https://github.com/FdogMain/FdogInstantMessaging" target ="_blank">
+				<img src="img/csdn.png" height="18" width="18">
+			</a>
+			<a href="https://github.com/FdogMain/FdogInstantMessaging" target ="_blank">
+				<img src="img/qq.png" height="18" width="18">
+			</a>
+		</div>
+		<div class="tab">
+			<img src="img/icon1.png" height="45" width="45">
+			<span>Fdog</span>
+			<select class="language_btn">
+				<option value="volvo">中文</option>
+				<option value="saab">English</option>
+			</select>
+			<ul class="tab_title">
+				<li><a href="retaccount">找回账号</a></li>
+				<li><a href="index">下载FDOG</a></li>
+				<li><a href="index">官网首页</a></li>
+			</ul>
+		</div>
+		<div class="fdogback">
+			<a href="http://127.0.0.1:8848/newfdog/index_3.html">
+				<img id="imgicon_1" src="img/mainicon.png" />
+			</a>
+			<img src="img/background02.png" id="backimg" style="height: 100%;" />
+		</div>
+		<div class="fdogtext">
+			<div class="fdogtext_2">
+				<div id ="mh1">
+					<span style="font-size: 48px;">欢迎注册Fdog</span>
+				</div>
+				<div id ="mh2">
+					<span style="font-size: 30px;">每一天，乐在沟通。</span>
+				</div>
+				<form name="form" method="post">
+					<div style="height: 30px; "></div>
+					<input tyle="text" id="userName" name="username" placeholder="昵称" onBlur="checkUserName()" oninput="checkUserName()"/>
+					<div id="um">
+						<span class="default" id="nameErr" style="color: white;"></span>
+					</div>
+					<input type="password" id="userPasword" name="password" placeholder="密码" onBlur="checkPassword()" oninput="checkPassword()"/>
+					<div id="pw">
+						<span class="default" id="passwordErr" style="color: white;"></span>
+					</div>
+					<span>
+						<select name="comboxphone" id="comboxphone">
+							<option>中国+86</option>
+							<option>中国香港特别行政区+852</option>
+							<option>中国澳门特别行政区+853</option>
+							<option>中国台湾地区+886</option>
+						</select>
+						<input type="text" id="userPhone" name="phone" placeholder="手机号" onBlur="checkPhone()" oninput="checkPhone()"/>
+					</span>
+					<div style="height: 50px; width: 490px;  margin: 0 auto; text-align: left; color: gray;">
+						<span>可通过该手机号找回密码&nbsp;</span>
+						<span class="default" id="phoneErr" style="color: white;"></span>
+					</div>
+					<div id="codediv" style=" height: 100px; width:100%;">
+						<input tyle="text" id="userCode" name="verificationcode" placeholder="验证码" />
+						<input type="button" id="codebutton" value="获取短信验证码" onclick="codeclick(this)"/>
+						<div style="height: 50px; width: 490px;  margin: 0 auto; text-align: left; color: gray;">
+							<span class="default" id="codeErr" style="color: white;"></span>
+						</div>
+					</div>
+					<input type="button" id="up" class="register" value="立即注册" onclick="codeverify()"/>
+					<div style="height: 30px;width: 490px;  margin: 0 auto; text-align: left; color: gray;">
+						<p><input type="checkbox" checked="checked" />
+						我已阅读并同意相关服务条款和隐私政策 
+						<img id="imgupdown" style="height: 16px;" src="img/up.png" onclick="lableclick()"/> 
+						</p>
+					</div>
+					<div id ="clause" style=" height: 100px; width: 480px; text-align: left; margin:  0 auto; display: none;">
+						<a href="#" style="text-decoration: none; color: cornflowerblue;" >《Fdog号码规则》</a><br>
+						<a href="#" style="text-decoration: none; color: cornflowerblue;" >《隐私协议》</a><br>
+						<a href="#" style="text-decoration: none; color: cornflowerblue;">《Fdog注册使用协议》</a>
+					</div>
+				</form>
+			</div>
+			<div class="fdogtext_3">
+				Copyright © 2021.花狗Fdog All rights reserved.
+				<br class="brcopy">
+				<a href="https://beian.miit.gov.cn/" style="text-decoration: none; color: black; color: gray;">蒙ICP备2021000567号</a>
+			</div>
+		</div>
+	</body>
+</html>
