@@ -11,8 +11,9 @@
 #include<unistd.h>
 #include<fcntl.h>
 #include<arpa/inet.h>
-#include"threadpool.h"
-
+#include"threadpool/threadpool.h"
+#include"fdoglog/FdogLog.h"
+#include"service.h"
 #define MAXLINE 4096
 
 using namespace std;
@@ -21,7 +22,9 @@ void run(void * arg);
 int service(ThreadPool * threadpool);
 
 int main(){
-
+    LOG_INIT;
+    fun();
+    //LOG_Info("日志服务启用");
     ThreadPool * threadpool = new ThreadPool();
     service(threadpool);
     return 0;
@@ -39,7 +42,7 @@ void run(void * arg){
         buff[len] = '\0';
         if(len!=0)
         {
-            //printf("recv msg from client: %s\n", buff);
+            printf("recv msg from client: %s\n", buff);
             close(connfd);
         }
         len =0;
